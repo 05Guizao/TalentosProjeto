@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eQg7vAoip7A=",
+  "dgSpecHash": "EBIxaLqHCn8=",
   "success": true,
   "projectFilePath": "C:\\Users\\kikom\\RiderProjects\\TalentosIT\\TalentosIT\\TalentosIT.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,7 @@
     "C:\\Users\\kikom\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\9.0.3\\microsoft.entityframeworkcore.analyzers.9.0.3.nupkg.sha512",
     "C:\\Users\\kikom\\.nuget\\packages\\microsoft.entityframeworkcore.design\\9.0.3\\microsoft.entityframeworkcore.design.9.0.3.nupkg.sha512",
     "C:\\Users\\kikom\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\9.0.3\\microsoft.entityframeworkcore.relational.9.0.3.nupkg.sha512",
+    "C:\\Users\\kikom\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\9.0.3\\microsoft.entityframeworkcore.tools.9.0.3.nupkg.sha512",
     "C:\\Users\\kikom\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\kikom\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.3\\microsoft.extensions.caching.abstractions.9.0.3.nupkg.sha512",
     "C:\\Users\\kikom\\.nuget\\packages\\microsoft.extensions.caching.memory\\9.0.3\\microsoft.extensions.caching.memory.9.0.3.nupkg.sha512",

@@ -25,6 +25,9 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddHttpClient();
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:5072") });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
