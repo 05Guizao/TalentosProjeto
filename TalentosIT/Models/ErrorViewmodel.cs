@@ -1,4 +1,4 @@
-namespace TalentosIT.Models;
+﻿namespace TalentosIT.Models;
 
 public class ErrorViewModel
 {
