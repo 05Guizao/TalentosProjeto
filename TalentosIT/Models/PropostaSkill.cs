@@ -1,21 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using Microsoft.EntityFrameworkCore;
+[Table("PropostaSkill")]
+[PrimaryKey(nameof(IdPropostaTrabalho), nameof(CodSkill))]
 public class PropostaSkill
 {
-    [Key]
-    [Column(Order = 1)]
     public int IdPropostaTrabalho { get; set; }
-    
-    [Key]
-    [Column(Order = 2)]
     public int CodSkill { get; set; }
-    
     public int? MinAnosExperiencia { get; set; }
-    
-    [ForeignKey("CodSkill")]
+
+    [ForeignKey(nameof(CodSkill))]
     public Skill Skill { get; set; }
-    
-    [ForeignKey("IdPropostaTrabalho")]
+
+    [ForeignKey(nameof(IdPropostaTrabalho))]
     public PropostaTrabalho PropostaTrabalho { get; set; }
 }
