@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Registo";
+}
+
+<div class="register-container">
+    <h2 class="text-center">Criar Conta</h2>
+    <form>
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" placeholder="Digite seu nome" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" placeholder="Digite seu email" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" placeholder="Digite sua senha" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Criar Conta</button>
+        <p class="text-center mt-3">
+            Já tem conta? <a href="/Account/Login">Faça login aqui</a>
+        </p>
+    </form>
+</div>
+
+<style>
+    .register-container {
+        max-width: 400px;
+        margin: auto;
+        margin-top: 50px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
