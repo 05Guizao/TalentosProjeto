@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Utilizador\\Desktop\\NovoTrabalhoIT\\TalentosIT\\TalentosIT.csproj": {}
+    "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/TalentosIT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Utilizador\\Desktop\\NovoTrabalhoIT\\TalentosIT\\TalentosIT.csproj": {
+    "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/TalentosIT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Utilizador\\Desktop\\NovoTrabalhoIT\\TalentosIT\\TalentosIT.csproj",
+        "projectUniqueName": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/TalentosIT.csproj",
         "projectName": "TalentosIT",
-        "projectPath": "C:\\Users\\Utilizador\\Desktop\\NovoTrabalhoIT\\TalentosIT\\TalentosIT.csproj",
-        "packagesPath": "C:\\Users\\Utilizador\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Utilizador\\Desktop\\NovoTrabalhoIT\\TalentosIT\\obj\\",
+        "projectPath": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/TalentosIT.csproj",
+        "packagesPath": "/Users/guilhermebarros/.nuget/packages/",
+        "outputPath": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Utilizador\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/guilhermebarros/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
