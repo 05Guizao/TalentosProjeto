@@ -1,97 +1,104 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TalentosIT.Data;
+using TalentosIT.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-
-[Route("api/[controller]")]
-[ApiController]
-public class UtilizadorController : ControllerBase
+namespace TalentosIT.Controllers
 {
-    private readonly ApplicationDbContext _context;
-
-    public UtilizadorController(ApplicationDbContext context)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UtilizadorController : ControllerBase
     {
-        _context = context;
-    }
+        private readonly ApplicationDbContext _context;
 
-    // GET: api/Utilizador
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Utilizador>>> GetUtilizadores()
-    {
-        return await _context.Utilizadores.ToListAsync();
-    }
-
-    // GET: api/Utilizador/{id}
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Utilizador>> GetUtilizador(int id)
-    {
-        var utilizador = await _context.Utilizadores.FindAsync(id);
-
-        if (utilizador == null)
+        public UtilizadorController(ApplicationDbContext context)
         {
-            return NotFound();
+            _context = context;
         }
 
-        return utilizador;
-    }
-
-    // POST: api/Utilizador
-    [HttpPost]
-    public async Task<ActionResult<Utilizador>> PostUtilizador(Utilizador utilizador)
-    {
-        _context.Utilizadores.Add(utilizador);
-        await _context.SaveChangesAsync();
-
-        return CreatedAtAction(nameof(GetUtilizador), new { id = utilizador.Id }, utilizador);
-    }
-
-    // PUT: api/Utilizador/{id}
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutUtilizador(int id, Utilizador utilizador)
-    {
-        if (id != utilizador.Id)
+        // GET: api/Utilizador
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Utilizador>>> GetUtilizadores()
         {
-            return BadRequest();
+            return await _context.Utilizadores.ToListAsync();
         }
 
-        _context.Entry(utilizador).State = EntityState.Modified;
+        // GET: api/Utilizador/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Utilizador>> GetUtilizador(int id)
+        {
+            var utilizador = await _context.Utilizadores.FindAsync(id);
 
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!UtilizadorExists(id))
+            if (utilizador == null)
             {
                 return NotFound();
             }
-            else
-            {
-                throw;
-            }
+
+            return utilizador;
         }
 
-        return NoContent();
-    }
-
-    // DELETE: api/Utilizador/{id}
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteUtilizador(int id)
-    {
-        var utilizador = await _context.Utilizadores.FindAsync(id);
-        if (utilizador == null)
+        // POST: api/Utilizador
+        [HttpPost]
+        public async Task<ActionResult<Utilizador>> PostUtilizador(Utilizador utilizador)
         {
-            return NotFound();
+            _context.Utilizadores.Add(utilizador);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetUtilizador), new { id = utilizador.Id }, utilizador);
         }
 
-        _context.Utilizadores.Remove(utilizador);
-        await _context.SaveChangesAsync();
+        // PUT: api/Utilizador/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUtilizador(int id, Utilizador utilizador)
+        {
+            if (id != utilizador.Id)
+            {
+                return BadRequest();
+            }
 
-        return NoContent();
-    }
+            _context.Entry(utilizador).State = EntityState.Modified;
 
-    private bool UtilizadorExists(int id)
-    {
-        return _context.Utilizadores.Any(e => e.Id == id);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UtilizadorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // DELETE: api/Utilizador/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUtilizador(int id)
+        {
+            var utilizador = await _context.Utilizadores.FindAsync(id);
+            if (utilizador == null)
+            {
+                return NotFound();
+            }
+
+            _context.Utilizadores.Remove(utilizador);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool UtilizadorExists(int id)
+        {
+            return _context.Utilizadores.Any(e => e.Id == id);
+        }
     }
 }

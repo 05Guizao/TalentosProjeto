@@ -1,28 +1,57 @@
-﻿@{
+﻿@model TalentosIT.Models.Utilizador
+
+@{
     ViewData["Title"] = "Registo";
 }
 
 <div class="register-container">
     <h2 class="text-center">Criar Conta</h2>
-    <form>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger text-center">@ViewBag.Error</div>
+    }
+
+    <form asp-controller="Account" asp-action="Register" method="post">
+        <div class="mb-3">
+            <label asp-for="Tipo" class="form-label">Tipo de Conta</label>
+            <select asp-for="Tipo" class="form-control">
+                <option value="">-- Selecione o tipo de conta --</option>
+                <option value="Cliente">Cliente</option>
+                <option value="Empresa">Empresa</option>
+            </select>
+            <span asp-validation-for="Tipo" class="text-danger"></span>
+        </div>
+
         <div class="mb-3">
             <label class="form-label">Nome</label>
-            <input type="text" class="form-control" placeholder="Digite seu nome" required>
+            <input asp-for="Nome" class="form-control" placeholder="Digite seu nome" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
         </div>
+
         <div class="mb-3">
             <label class="form-label">Email</label>
-            <input type="email" class="form-control" placeholder="Digite seu email" required>
+            <input asp-for="Email" class="form-control" placeholder="Digite seu email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
+
         <div class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" class="form-control" placeholder="Digite sua senha" required>
+            <input asp-for="Password" type="password" class="form-control" placeholder="Digite sua senha" />
+            <span asp-validation-for="Password" class="text-danger"></span>
         </div>
+
         <button type="submit" class="btn btn-success w-100">Criar Conta</button>
+
         <p class="text-center mt-3">
             Já tem conta? <a href="/Account/Login">Faça login aqui</a>
         </p>
     </form>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
 <style>
     .register-container {
