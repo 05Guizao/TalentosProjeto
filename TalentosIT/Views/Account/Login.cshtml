@@ -4,14 +4,20 @@
 
 <div class="login-container">
     <h2 class="text-center">Login</h2>
-    <form>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form method="post" asp-controller="Account" asp-action="Login">
         <div class="mb-3">
             <label class="form-label">Email</label>
-            <input type="email" class="form-control" placeholder="Digite seu email" required>
+            <input type="email" name="email" class="form-control" placeholder="Digite seu email" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" class="form-control" placeholder="Digite sua senha" required>
+            <input type="password" name="password" class="form-control" placeholder="Digite sua senha" required>
         </div>
         <button type="submit" class="btn btn-primary w-100">Entrar</button>
         <p class="text-center mt-3">
