@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gw8+6Kml1U2fDzADSYX6/LQe0eIqKUD1N8ML3rSF9EA=",
+  "Hash": "K9NURUGqKWRVTmCZy5H2x/88/Hsjy0TNi8pN7b13QN8=",
   "Source": "TalentosIT",
   "BasePath": "_content/TalentosIT",
   "Mode": "Default",
@@ -941,12 +941,12 @@
       "OriginalItemSpec": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Identity": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-zm1h0rj5ks.gz",
+      "Identity": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-pzk32occ6e.gz",
       "SourceId": "TalentosIT",
       "SourceType": "Computed",
       "ContentRoot": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/TalentosIT",
-      "RelativePath": "TalentosIT#[.{fingerprint=zm1h0rj5ks}]!.bundle.scp.css.gz",
+      "RelativePath": "TalentosIT#[.{fingerprint=pzk32occ6e}]!.bundle.scp.css.gz",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Alternative",
@@ -955,8 +955,8 @@
       "RelatedAsset": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/projectbundle/TalentosIT.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "jcpvw33cmv",
-      "Integrity": "7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag=",
+      "Fingerprint": "ihlltoddpl",
+      "Integrity": "Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/projectbundle/TalentosIT.bundle.scp.css"
@@ -1319,12 +1319,12 @@
       "OriginalItemSpec": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js"
     },
     {
-      "Identity": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-zm1h0rj5ks.gz",
+      "Identity": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-pzk32occ6e.gz",
       "SourceId": "TalentosIT",
       "SourceType": "Computed",
       "ContentRoot": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/TalentosIT",
-      "RelativePath": "TalentosIT#[.{fingerprint=zm1h0rj5ks}]?.styles.css.gz",
+      "RelativePath": "TalentosIT#[.{fingerprint=pzk32occ6e}]?.styles.css.gz",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Alternative",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/bundle/TalentosIT.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "jcpvw33cmv",
-      "Integrity": "7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag=",
+      "Fingerprint": "ihlltoddpl",
+      "Integrity": "Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/bundle/TalentosIT.styles.css"
@@ -1375,8 +1375,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "zm1h0rj5ks",
-      "Integrity": "i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE=",
+      "Fingerprint": "pzk32occ6e",
+      "Integrity": "Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/bundle/TalentosIT.styles.css"
@@ -1396,8 +1396,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "zm1h0rj5ks",
-      "Integrity": "i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE=",
+      "Fingerprint": "pzk32occ6e",
+      "Integrity": "Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/projectbundle/TalentosIT.bundle.scp.css"
@@ -21287,12 +21287,12 @@
     },
     {
       "Route": "TalentosIT.bundle.scp.css",
-      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-zm1h0rj5ks.gz",
+      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-pzk32occ6e.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001869158879"
+          "Quality": "0.001577287066"
         }
       ],
       "ResponseHeaders": [
@@ -21302,15 +21302,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "534"
+          "Value": "633"
         },
         {
           "Name": "ETag",
-          "Value": "\"7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag=\""
+          "Value": "\"Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21330,13 +21330,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE=\""
+          "Value": "W/\"Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE="
+          "Value": "sha256-Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0="
         }
       ]
     },
@@ -21351,7 +21351,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1079"
+          "Value": "2198"
         },
         {
           "Name": "Content-Type",
@@ -21359,11 +21359,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE=\""
+          "Value": "\"Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21373,13 +21373,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE="
+          "Value": "sha256-Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0="
         }
       ]
     },
     {
       "Route": "TalentosIT.bundle.scp.css.gz",
-      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-zm1h0rj5ks.gz",
+      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-pzk32occ6e.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -21388,7 +21388,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "534"
+          "Value": "633"
         },
         {
           "Name": "Content-Type",
@@ -21396,11 +21396,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag=\""
+          "Value": "\"Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21418,18 +21418,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag="
+          "Value": "sha256-Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw="
         }
       ]
     },
     {
-      "Route": "TalentosIT.styles.css",
-      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-zm1h0rj5ks.gz",
+      "Route": "TalentosIT.pzk32occ6e.bundle.scp.css",
+      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-pzk32occ6e.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001869158879"
+          "Quality": "0.001577287066"
         }
       ],
       "ResponseHeaders": [
@@ -21439,152 +21439,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "534"
+          "Value": "633"
         },
         {
           "Name": "ETag",
-          "Value": "\"7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag=\""
+          "Value": "\"Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE="
-        }
-      ]
-    },
-    {
-      "Route": "TalentosIT.styles.css",
-      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/bundle/TalentosIT.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1079"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE="
-        }
-      ]
-    },
-    {
-      "Route": "TalentosIT.styles.css.gz",
-      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-zm1h0rj5ks.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "534"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag="
-        }
-      ]
-    },
-    {
-      "Route": "TalentosIT.zm1h0rj5ks.bundle.scp.css",
-      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-zm1h0rj5ks.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.001869158879"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "534"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21604,13 +21467,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE=\""
+          "Value": "W/\"Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "zm1h0rj5ks"
+          "Value": "pzk32occ6e"
         },
         {
           "Name": "label",
@@ -21618,12 +21481,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE="
+          "Value": "sha256-Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0="
         }
       ]
     },
     {
-      "Route": "TalentosIT.zm1h0rj5ks.bundle.scp.css",
+      "Route": "TalentosIT.pzk32occ6e.bundle.scp.css",
       "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/projectbundle/TalentosIT.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -21633,7 +21496,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1079"
+          "Value": "2198"
         },
         {
           "Name": "Content-Type",
@@ -21641,11 +21504,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE=\""
+          "Value": "\"Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21655,7 +21518,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "zm1h0rj5ks"
+          "Value": "pzk32occ6e"
         },
         {
           "Name": "label",
@@ -21663,13 +21526,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE="
+          "Value": "sha256-Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0="
         }
       ]
     },
     {
-      "Route": "TalentosIT.zm1h0rj5ks.bundle.scp.css.gz",
-      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-zm1h0rj5ks.gz",
+      "Route": "TalentosIT.pzk32occ6e.bundle.scp.css.gz",
+      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-pzk32occ6e.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -21678,7 +21541,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "534"
+          "Value": "633"
         },
         {
           "Name": "Content-Type",
@@ -21686,11 +21549,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag=\""
+          "Value": "\"Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21708,7 +21571,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "zm1h0rj5ks"
+          "Value": "pzk32occ6e"
         },
         {
           "Name": "label",
@@ -21716,18 +21579,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag="
+          "Value": "sha256-Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw="
         }
       ]
     },
     {
-      "Route": "TalentosIT.zm1h0rj5ks.styles.css",
-      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-zm1h0rj5ks.gz",
+      "Route": "TalentosIT.pzk32occ6e.styles.css",
+      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-pzk32occ6e.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001869158879"
+          "Quality": "0.001577287066"
         }
       ],
       "ResponseHeaders": [
@@ -21737,15 +21600,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "534"
+          "Value": "633"
         },
         {
           "Name": "ETag",
-          "Value": "\"7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag=\""
+          "Value": "\"Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21765,13 +21628,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE=\""
+          "Value": "W/\"Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "zm1h0rj5ks"
+          "Value": "pzk32occ6e"
         },
         {
           "Name": "label",
@@ -21779,12 +21642,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE="
+          "Value": "sha256-Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0="
         }
       ]
     },
     {
-      "Route": "TalentosIT.zm1h0rj5ks.styles.css",
+      "Route": "TalentosIT.pzk32occ6e.styles.css",
       "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/bundle/TalentosIT.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -21794,7 +21657,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1079"
+          "Value": "2198"
         },
         {
           "Name": "Content-Type",
@@ -21802,11 +21665,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE=\""
+          "Value": "\"Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21816,7 +21679,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "zm1h0rj5ks"
+          "Value": "pzk32occ6e"
         },
         {
           "Name": "label",
@@ -21824,13 +21687,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-i950JjRPnwl5S8v/484KNlGNKztWsrVj59NjX7TLdOE="
+          "Value": "sha256-Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0="
         }
       ]
     },
     {
-      "Route": "TalentosIT.zm1h0rj5ks.styles.css.gz",
-      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-zm1h0rj5ks.gz",
+      "Route": "TalentosIT.pzk32occ6e.styles.css.gz",
+      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-pzk32occ6e.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -21839,7 +21702,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "534"
+          "Value": "633"
         },
         {
           "Name": "Content-Type",
@@ -21847,11 +21710,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag=\""
+          "Value": "\"Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 10 Apr 2025 11:41:35 GMT"
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -21869,7 +21732,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "zm1h0rj5ks"
+          "Value": "pzk32occ6e"
         },
         {
           "Name": "label",
@@ -21877,7 +21740,144 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-7TF7QYunZQu8xPz9Vz5vKe/eelgNu3m5WIRCAPjj6Ag="
+          "Value": "sha256-Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw="
+        }
+      ]
+    },
+    {
+      "Route": "TalentosIT.styles.css",
+      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-pzk32occ6e.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001577287066"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "633"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0="
+        }
+      ]
+    },
+    {
+      "Route": "TalentosIT.styles.css",
+      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/bundle/TalentosIT.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2198"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Be/SslwpiME+3/zfkW8T+zlpcavtPrsn0NVtIYL+Bn0="
+        }
+      ]
+    },
+    {
+      "Route": "TalentosIT.styles.css.gz",
+      "AssetFile": "/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-pzk32occ6e.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "633"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 10 Apr 2025 14:38:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Bg0AlZdYH2M2Wb/dhZGuwDZx/FXNkMoUHZS846jMXXw="
         }
       ]
     }
