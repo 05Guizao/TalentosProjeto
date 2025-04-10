@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;    
+using Microsoft.EntityFrameworkCore;
+using TalentosIT.Data;
+using TalentosIT.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace TalentosIT.Controllers
 {

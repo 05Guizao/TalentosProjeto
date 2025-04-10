@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using TalentosIT.Data; // ADICIONA ESTA LINHA para reconhecer ApplicationDbContext
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,24 +43,23 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-// Mapear controllers
-app.MapControllers();
 
 app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
 
+// Mapear controllers
+app.MapControllers();
+
+// Static files e MVC route
 app.MapStaticAssets();
 
 app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();
