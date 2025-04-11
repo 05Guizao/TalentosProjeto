@@ -1,11 +1,8 @@
 /* _content/TalentosIT/Views/Shared/Layout2.cshtml.rz.scp.css */
-/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
 a.navbar-brand[b-yo87f6og5j] {
     white-space: normal;
     text-align: center;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 a[b-yo87f6og5j] {

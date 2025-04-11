@@ -1,0 +1,33 @@
+@model TalentosIT.Models.PropostaTrabalho
+
+<h2>Criar Proposta de Trabalho</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CategoriaTalento">Categoria do Talento</label>
+        <input asp-for="CategoriaTalento" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NumTotalHoras">Total de Horas</label>
+        <input asp-for="NumTotalHoras" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DescricaoTrabalho">Descrição</label>
+        <textarea asp-for="DescricaoTrabalho" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Estado">Estado</label>
+        <input asp-for="Estado" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Salvar</button>
+    <a href="@Url.Action("Index", "PropostaTrabalho")" class="btn btn-secondary mt-3">Cancelar</a>
+</form>

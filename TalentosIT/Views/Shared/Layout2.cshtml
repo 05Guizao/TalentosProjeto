@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - TalentosIT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/Layout2.cshtml.css" />
     <style>
         html, body {
             height: 100%;
@@ -40,15 +41,26 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Skill" asp-action="Index">Skill</a>
+                    <a class="nav-link" asp-controller="MVCSkill" asp-action="Index">Skills</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Talento" asp-action="Index">Talento</a>
+                    <a class="nav-link" asp-controller="MVCTalento" asp-action="Index">Talentos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Proposta" asp-action="Index">Proposta</a>
+                    <a class="nav-link" asp-controller="MVCProposta" asp-action="Index">Propostas</a>
                 </li>
             </ul>
+            @if (!(ViewData["HideAuthButtons"] as bool? ?? false))
+            {
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light me-2" asp-controller="Account" asp-action="Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-light text-primary" asp-controller="Account" asp-action="Register">Registo</a>
+                    </li>
+                </ul>
+            }
         </div>
     </div>
 </nav>
@@ -58,7 +70,7 @@
 </div>
 
 <footer>
-    <p>&copy; @DateTime.Now.Year - TalentosIT - <a href="#" class="text-white">Privacy</a></p>
+    <p>&copy; @DateTime.Now.Year - TalentosIT - <a href="#" class="text-white">Privacidade</a></p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

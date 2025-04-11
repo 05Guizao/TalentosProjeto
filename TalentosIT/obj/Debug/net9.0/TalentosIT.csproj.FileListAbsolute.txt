@@ -401,5 +401,5 @@ C:/Users/Utilizador/Desktop/NovoTrabalhoIT/TalentosIT/obj/Debug/net9.0/ref/Talen
 /Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/TalentosIT.genruntimeconfig.cache
 /Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/ref/TalentosIT.dll
 /Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/scopedcss/Views/Shared/Layout2.cshtml.rz.scp.css
-/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-pzk32occ6e.gz
-/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-pzk32occ6e.gz
+/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/yfhre243ab-8j5bzem5af.gz
+/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/obj/Debug/net9.0/compressed/lgr3oftgm4-8j5bzem5af.gz
