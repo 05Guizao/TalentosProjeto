@@ -1,0 +1,32 @@
+﻿@model TalentosIT.Models.PerfilTalento
+
+@{
+    ViewData["Title"] = "Meu Perfil";
+    Layout = "~/Views/Shared/Layout2.cshtml";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="mt-4">
+    <dl class="row">
+        <dt class="col-sm-3">Nome</dt>
+        <dd class="col-sm-9">@Model.Nome</dd>
+
+        <dt class="col-sm-3">País</dt>
+        <dd class="col-sm-9">@Model.Pais</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Model.Email</dd>
+
+        <dt class="col-sm-3">Preço por Hora</dt>
+        <dd class="col-sm-9">€@Model.PrecoHora</dd>
+
+        <dt class="col-sm-3">Tipo</dt>
+        <dd class="col-sm-9">@Model.Tipo</dd>
+    </dl>
+
+    <div class="mt-3">
+        <a class="btn btn-primary" asp-action="Edit">Editar</a>
+        <a class="btn btn-success" asp-controller="BemVindoPerfil" asp-action="Index">Avançar</a>
+    </div>
+</div>

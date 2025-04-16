@@ -40,6 +40,40 @@ namespace TalentosIT.Controllers
             return View(skill);
         }
 
-        // Podemos adicionar Edit e Delete depois
+        public IActionResult Edit(int id)
+        {
+            var skill = _context.Skills.FirstOrDefault(s => s.Cod == id);
+            if (skill == null)
+            {
+                return NotFound();
+            }
+            return View(skill);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Skill skill)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Skills.Update(skill);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(skill);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var skill = await _context.Skills.FindAsync(id);
+            if (skill != null)
+            {
+                _context.Skills.Remove(skill);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

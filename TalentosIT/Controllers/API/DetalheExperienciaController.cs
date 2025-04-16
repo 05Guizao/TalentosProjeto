@@ -47,14 +47,14 @@ namespace TalentosIT.Controllers
             _context.DetalheExperiencias.Add(detalheExperiencia);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetDetalheExperiencia), new { id = detalheExperiencia.CodExperienciaTalento }, detalheExperiencia);
+            return CreatedAtAction(nameof(GetDetalheExperiencia), new { id = detalheExperiencia.Cod }, detalheExperiencia);
         }
 
         // PUT: api/DetalheExperiencia/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDetalheExperiencia(int id, DetalheExperiencia detalheExperiencia)
         {
-            if (id != detalheExperiencia.CodExperienciaTalento)
+            if (id != detalheExperiencia.Cod)
             {
                 return BadRequest();
             }
@@ -98,7 +98,7 @@ namespace TalentosIT.Controllers
 
         private bool DetalheExperienciaExists(int id)
         {
-            return _context.DetalheExperiencias.Any(e => e.CodExperienciaTalento == id);
+            return _context.DetalheExperiencias.Any(e => e.Cod == id);
         }
     }
 }

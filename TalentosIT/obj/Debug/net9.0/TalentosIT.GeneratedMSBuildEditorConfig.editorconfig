@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/BemVindoPerfil/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVtVmluZG9QZXJmaWxcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/Home/BemVindo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCZW1WaW5kby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -46,6 +50,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCDetalheExperiencia/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDRGV0YWxoZUV4cGVyaWVuY2lhXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCDetalheExperiencia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDRGV0YWxoZUV4cGVyaWVuY2lhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCPerfilTalento/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUGVyZmlsVGFsZW50b1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCPerfilTalento/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUGVyZmlsVGFsZW50b1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCPerfilTalento/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUGVyZmlsVGFsZW50b1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCProposta/Create.cshtml]
@@ -60,20 +84,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDU2tpbGxcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCSkill/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDU2tpbGxcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCSkill/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDU2tpbGxcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCTalento/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDVGFsZW50b1xDcmVhdGUuY3NodG1s
+[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCTalentoSkill/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDVGFsZW50b1NraWxsXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCTalento/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDVGFsZW50b1xJbmRleC5jc2h0bWw=
+[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/MVCTalentoSkill/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDVGFsZW50b1NraWxsXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/Shared/Layout3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExheW91dDMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/guiba/RiderProjects/TalentosIT/TalentosIT/Views/Shared/_LoginPartial.cshtml]

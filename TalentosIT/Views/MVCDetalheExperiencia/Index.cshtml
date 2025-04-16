@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TalentosIT.Models.DetalheExperiencia>
+@{
+    Layout = "~/Views/Shared/Layout3.cshtml";
+    ViewData["Title"] = "Minhas Experiências";
+}
+
+<h2>Minhas Experiências</h2>
+
+<a class="btn btn-success mb-3" asp-action="Create">Adicionar Nova Experiência</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Título</th>
+        <th>Empresa</th>
+        <th>Ano Início</th>
+        <th>Ano Término</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Titulo</td>
+            <td>@item.NomeEmpresa</td>
+            <td>@item.AnoComeco</td>
+            <td>@item.AnoTermino</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a asp-controller="MVCTalentoSkill" asp-action="Index" class="btn btn-info mt-3">Avançar para Skills</a>

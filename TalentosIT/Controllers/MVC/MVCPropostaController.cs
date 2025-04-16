@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TalentosIT.Data;
 using TalentosIT.Models;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace TalentosIT.Controllers
 {
@@ -17,12 +19,23 @@ namespace TalentosIT.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var propostas = await _context.PropostaTrabalhos.ToListAsync();
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            var propostas = await _context.PropostaTrabalhos
+                .Where(p => p.IdUtilizador == userId)
+                .ToListAsync();
+
             return View(propostas);
         }
 
         public IActionResult Create()
         {
+            var tipo = HttpContext.Session.GetString("UserTipo");
+            if (tipo != "Empresa")
+                return RedirectToAction("Index", "Home"); // Bloquear acesso indevido
+
             return View();
         }
 
@@ -30,19 +43,30 @@ namespace TalentosIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PropostaTrabalho proposta)
         {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var tipo = HttpContext.Session.GetString("UserTipo");
+
+            if (userId == null || tipo != "Empresa")
+                return RedirectToAction("Login", "Account");
+
             if (ModelState.IsValid)
             {
+                proposta.IdUtilizador = userId.Value;
+                proposta.Estado = "Ativo";
                 _context.Add(proposta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(proposta);
         }
 
         public async Task<IActionResult> Edit(int id)
         {
             var proposta = await _context.PropostaTrabalhos.FindAsync(id);
-            if (proposta == null)
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if (proposta == null || proposta.IdUtilizador != userId)
                 return NotFound();
 
             return View(proposta);
@@ -52,7 +76,12 @@ namespace TalentosIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, PropostaTrabalho proposta)
         {
-            if (id != proposta.Id) return NotFound();
+            if (id != proposta.Id)
+                return NotFound();
+
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (proposta.IdUtilizador != userId)
+                return Unauthorized();
 
             if (ModelState.IsValid)
             {
@@ -66,7 +95,10 @@ namespace TalentosIT.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var proposta = await _context.PropostaTrabalhos.FindAsync(id);
-            if (proposta == null) return NotFound();
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            if (proposta == null || proposta.IdUtilizador != userId)
+                return NotFound();
 
             _context.PropostaTrabalhos.Remove(proposta);
             await _context.SaveChangesAsync();
