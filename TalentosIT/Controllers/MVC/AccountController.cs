@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using TalentosIT.Data;
 using TalentosIT.Models;
 using System.Linq;
@@ -31,6 +32,10 @@ namespace TalentosIT.Controllers
 
             if (utilizador != null)
             {
+                HttpContext.Session.SetInt32("UserId", utilizador.Id);
+                HttpContext.Session.SetString("UserTipo", utilizador.Tipo);
+                HttpContext.Session.SetString("UserNome", utilizador.Nome);
+
                 return RedirectToAction("BemVindo", "Home");
             }
 
@@ -56,10 +61,15 @@ namespace TalentosIT.Controllers
                 return View(utilizador);
             }
 
-            // Tipo já vem do formulário (Cliente ou Empresa)
             _context.Utilizadores.Add(utilizador);
             _context.SaveChanges();
 
+            return RedirectToAction("Login");
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
             return RedirectToAction("Login");
         }
     }

@@ -1,0 +1,31 @@
+@model TalentosIT.Models.TalentoSkill
+
+@{
+    ViewData["Title"] = "Adicionar Skill";
+    Layout = "~/Views/Shared/Layout2.cshtml";
+}
+
+<h2>Adicionar Skill ao Perfil</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="CodSkill">Skill</label>
+        <select asp-for="CodSkill" class="form-control" asp-items="ViewBag.Skills">
+            <option value="">-- Seleciona uma Skill --</option>
+        </select>
+        <span asp-validation-for="CodSkill" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-3">
+        <label asp-for="AnosDeExperiencia">Anos de Experiência</label>
+        <input asp-for="AnosDeExperiencia" type="number" class="form-control" min="0" />
+        <span asp-validation-for="AnosDeExperiencia" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4" style="background: linear-gradient(90deg, #007bff, #6610f2); color: white;">Adicionar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-4">Cancelar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

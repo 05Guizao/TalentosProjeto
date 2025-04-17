@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using TalentosIT.Models;
 
 namespace TalentosIT.Models
@@ -20,9 +21,12 @@ namespace TalentosIT.Models
 
         public string Tipo { get; set; }
 
-        [ForeignKey("Utilizador")]
+        [ForeignKey("IdUtilizador")]
         public int IdUtilizador { get; set; }
 
+        [NotMapped]
+        [ValidateNever]
         public Utilizador Utilizador { get; set; }
+        
     }
 }

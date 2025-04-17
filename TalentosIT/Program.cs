@@ -1,12 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using TalentosIT.Data; // ADICIONA ESTA LINHA para reconhecer ApplicationDbContext
+using TalentosIT.Data; // Reconhece ApplicationDbContext
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Adicionar serviços MVC e sessões
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession(); // <-- Adiciona sessões
 
+
+// Adicionar DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
@@ -31,7 +34,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configuração de ambiente
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -47,16 +50,17 @@ else
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
 app.UseRouting();
 
+app.UseSession(); // <-- Middleware de sessão (DEVE vir antes da autenticação)
 app.UseAuthorization();
 
 // Mapear controllers
 app.MapControllers();
 
-// Static files e MVC route
-app.MapStaticAssets();
-
+// Rotas MVC
 app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}")

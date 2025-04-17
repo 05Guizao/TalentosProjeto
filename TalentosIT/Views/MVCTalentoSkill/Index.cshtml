@@ -1,0 +1,44 @@
+@model IEnumerable<TalentosIT.Models.TalentoSkill>
+
+@{
+    ViewData["Title"] = "Minhas Skills";
+    Layout = "~/Views/Shared/Layout3.cshtml";
+}
+
+<h2>Minhas Skills</h2>
+<p>Abaixo estão listadas as skills associadas ao teu perfil.</p>
+
+<a asp-action="Create" class="btn btn-primary mb-3" style="background: linear-gradient(90deg, #007bff, #6610f2); color: white;">Adicionar Nova Skill</a>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Ainda não adicionaste nenhuma skill.</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Skill</th>
+            <th>Área Profissional</th>
+            <th>Anos de Experiência</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var ts in Model)
+        {
+            <tr>
+                <td>@ts.Skill?.Nome</td>
+                <td>@ts.Skill?.AreaProfissional</td>
+                <td>@ts.AnosDeExperiencia</td>
+                <td>
+                    <form asp-action="Delete" asp-route-codSkill="@ts.CodSkill" method="post" onsubmit="return confirm('Tens a certeza que queres remover esta skill?');">
+                        <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,40 @@
+﻿@model TalentosIT.Models.PerfilTalento
+
+@{
+    ViewData["Title"] = "Editar Perfil";
+    Layout = "~/Views/Shared/Layout2.cshtml";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="Nome"></label>
+        <input asp-for="Nome" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Pais"></label>
+        <input asp-for="Pais" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PrecoHora"></label>
+        <input asp-for="PrecoHora" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Tipo"></label>
+        <select asp-for="Tipo" class="form-control">
+            <option value="Publico">Público</option>
+            <option value="Privado">Privado</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar Alterações</button>
+</form>
