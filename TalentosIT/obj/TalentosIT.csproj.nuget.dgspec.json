@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guiba\\RiderProjects\\TalentosIT\\TalentosIT\\TalentosIT.csproj": {}
+    "C:\\Users\\kikom\\RiderProjects\\TalentosIT\\TalentosIT\\TalentosIT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guiba\\RiderProjects\\TalentosIT\\TalentosIT\\TalentosIT.csproj": {
+    "C:\\Users\\kikom\\RiderProjects\\TalentosIT\\TalentosIT\\TalentosIT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guiba\\RiderProjects\\TalentosIT\\TalentosIT\\TalentosIT.csproj",
+        "projectUniqueName": "C:\\Users\\kikom\\RiderProjects\\TalentosIT\\TalentosIT\\TalentosIT.csproj",
         "projectName": "TalentosIT",
-        "projectPath": "C:\\Users\\guiba\\RiderProjects\\TalentosIT\\TalentosIT\\TalentosIT.csproj",
-        "packagesPath": "C:\\Users\\guiba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guiba\\RiderProjects\\TalentosIT\\TalentosIT\\obj\\",
+        "projectPath": "C:\\Users\\kikom\\RiderProjects\\TalentosIT\\TalentosIT\\TalentosIT.csproj",
+        "packagesPath": "C:\\Users\\kikom\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kikom\\RiderProjects\\TalentosIT\\TalentosIT\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\guiba\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kikom\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -94,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\guiba\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
