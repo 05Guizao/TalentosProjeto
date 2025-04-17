@@ -1,0 +1,112 @@
+@{
+    var tipo = Context.Session.GetString("UserTipo");
+    var nome = Context.Session.GetString("UserNome");
+    var perfilCriado = Context.Session.GetString("PerfilCriado") == "true";
+}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - TalentosIT</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #007bff, #6610f2);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .navbar-nav .nav-item .navbar-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            padding-left: 10px;
+        }
+
+        .navbar-nav .nav-item .btn-danger {
+            margin-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(90deg, #007bff, #6610f2);">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/Home/BemVindo">TalentosIT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                @if (tipo == "Cliente")
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="MVCPerfilTalento" asp-action="Index">Meu Perfil</a>
+                    </li>
+
+                    @if (perfilCriado)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="MVCDetalheExperiencia" asp-action="Index">Experiência</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="MVCTalentoSkill" asp-action="Index">Skills</a>
+                        </li>
+                    }
+                }
+                else if (tipo == "Empresa")
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="MVCProposta" asp-action="Index">Propostas</a>
+                    </li>
+                }
+            </ul>
+
+            <ul class="navbar-nav">
+                <li class="nav-item d-flex align-items-center">
+                        <span class="navbar-text text-white me-2">
+                            Olá, @nome!
+                        </span>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-danger" asp-controller="Account" asp-action="Logout">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container content mt-4">
+    @RenderBody()
+</div>
+
+<footer>
+    <p>&copy; @DateTime.Now.Year - TalentosIT - <a href="#" class="text-white">Privacidade</a></p>
+</footer>
+
+<!-- Scripts no fim para garantir que tudo carrega corretamente -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate-unobtrusive/3.2.13/jquery.validate.unobtrusive.min.js"></script>
+
+
+@RenderSection("Scripts", required: false)
+</body>
+</html>

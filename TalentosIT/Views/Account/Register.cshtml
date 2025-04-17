@@ -25,23 +25,23 @@
 
         <div class="mb-3">
             <label class="form-label">Nome</label>
-            <input asp-for="Nome" class="form-control" placeholder="Digite seu nome" />
+            <input asp-for="Nome" class="form-control" placeholder="Introduza o seu nome" />
             <span asp-validation-for="Nome" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Email</label>
-            <input asp-for="Email" class="form-control" placeholder="Digite seu email" />
+            <input asp-for="Email" class="form-control" placeholder="Introduza o seu email" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Password</label>
-            <input asp-for="Password" type="password" class="form-control" placeholder="Digite sua senha" />
+            <input asp-for="Password" type="password" class="form-control" placeholder="Introduza uma password" />
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
 
-        <button type="submit" class="btn w-100" style="background-color: #0077b6; color: white;">Criar Conta</button>
+        <button type="submit" class="btn w-100" style="background: linear-gradient(90deg, #007bff, #6610f2); color: white;">Criar Conta</button>
 
         <p class="text-center mt-3">
             Já tem conta? <a href="/Account/Login">Faça login aqui</a>

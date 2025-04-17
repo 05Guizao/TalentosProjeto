@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TalentosIT.Models;
 
 namespace TalentosIT.Models
 {
@@ -8,7 +7,7 @@ namespace TalentosIT.Models
     public class DetalheExperiencia
     {
         [Key]
-        public int CodExperienciaTalento { get; set; }
+        public int Cod { get; set; }
 
         public string Titulo { get; set; }
 
@@ -18,7 +17,8 @@ namespace TalentosIT.Models
 
         public int AnoTermino { get; set; }
 
-        [ForeignKey("CodExperienciaTalento")]
+        [ForeignKey("PerfilTalento")]
+        public int CodPerfilTalento { get; set; }
         public PerfilTalento PerfilTalento { get; set; }
     }
 }
