@@ -1,12 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using TalentosIT.Data; // Reconhece ApplicationDbContext
+using TalentosIT.Data;
+using TalentosIT.Repository;
+using TalentosIT.Services; // Reconhece ApplicationDbContext
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Adicionar serviços MVC e sessões
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession(); // <-- Adiciona sessões
+builder.Services.AddScoped<SessaoUtilizadorService>();
+builder.Services.AddScoped<PerfilTalentoRepository>();
+builder.Services.AddScoped<PerfilTalentoService>();
+builder.Services.AddHttpContextAccessor(); // para o SessaoUtilizadorService funcionar
 
 
 // Adicionar DbContext
@@ -30,7 +36,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddHttpClient();
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5072") });
+builder.Services.AddScoped(
+    sp => new HttpClient { BaseAddress = new Uri("http://localhost:5072") });
 
 var app = builder.Build();
 
