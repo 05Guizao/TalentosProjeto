@@ -15,7 +15,14 @@ namespace TalentosIT.Repository
 
         public PerfilTalento ObterPerfilPorUtilizadorId(int userId)
         {
-            return _context.PerfilTalentos.FirstOrDefault(p => p.IdUtilizador == userId);
+            return _context.PerfilTalentos
+                .FirstOrDefault(p => p.IdUtilizador == userId);
+        }
+
+        public void Adicionar(PerfilTalento perfil)
+        {
+            _context.PerfilTalentos.Add(perfil);
+            _context.SaveChanges();
         }
     }
 }

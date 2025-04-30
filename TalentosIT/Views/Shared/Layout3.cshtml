@@ -7,6 +7,8 @@
 <html lang="pt">
 <head>
     <meta charset="utf-8" />
+    <!-- Adicionado meta viewport para responsividade -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] - TalentosIT</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
@@ -33,9 +35,9 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item d-flex align-items-center">
-                    <span class="navbar-text text-white me-2">
-                        Olá, @nome!
-                    </span>
+                        <span class="navbar-text text-white me-2">
+                            Olá, @nome!
+                        </span>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-danger" asp-controller="Account" asp-action="Logout">Sair</a>
@@ -48,7 +50,14 @@
 <main class="container mt-4">
     @RenderBody()
 </main>
-@RenderSection("Scripts", required: false)
 
+<!-- Incluir jQuery antes dos scripts de validação -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJ+Y3uk9BE10p4GfJCXf8B7Td3qzF2N/tzLM4=" crossorigin="anonymous"></script>
+
+<!-- Opcional: incluir Bootstrap JS para funcionalidades do navbar -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+@RenderSection("Scripts", required: false)
 </body>
 </html>

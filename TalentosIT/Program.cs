@@ -1,31 +1,42 @@
+using System;
+using System.Net.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using TalentosIT.Data;
 using TalentosIT.Repository;
-using TalentosIT.Services; // Reconhece ApplicationDbContext
+using TalentosIT.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Adicionar serviços MVC e sessões
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession(); // <-- Adiciona sessões
+builder.Services.AddSession();
+
+// Sessão e contexto do utilizador
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<SessaoUtilizadorService>();
+
+// Repositórios e serviços de PerfilTalento
 builder.Services.AddScoped<PerfilTalentoRepository>();
 builder.Services.AddScoped<PerfilTalentoService>();
-builder.Services.AddHttpContextAccessor(); // para o SessaoUtilizadorService funcionar
+
+// Repositórios e serviços de Skill
+builder.Services.AddScoped<SkillRepository>();
+builder.Services.AddScoped<SkillService>();
+
+// Serviços de Experiência
 builder.Services.AddScoped<IDetalheExperienciaService, DetalheExperienciaService>();
-
-
 
 // Adicionar DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-// Adicionar controllers de API
-builder.Services.AddControllers();
+// HttpClient para chamadas internas
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5072") });
 
-// Adicionar serviços do Swagger
+// Adicionar controllers de API e Swagger
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -36,10 +47,6 @@ builder.Services.AddSwaggerGen(c =>
         Description = "API para a aplicação Blazor Sandbox"
     });
 });
-
-builder.Services.AddHttpClient();
-builder.Services.AddScoped(
-    sp => new HttpClient { BaseAddress = new Uri("http://localhost:5072") });
 
 var app = builder.Build();
 
@@ -63,16 +70,16 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession(); // <-- Middleware de sessão (DEVE vir antes da autenticação)
+app.UseSession(); // Middleware de sessão
 app.UseAuthorization();
 
-// Mapear controllers
+// Mapear controllers e rotas MVC
 app.MapControllers();
 
-// Rotas MVC
 app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+)
+.WithStaticAssets();
 
 app.Run();

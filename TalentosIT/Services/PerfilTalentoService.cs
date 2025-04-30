@@ -14,8 +14,12 @@ namespace TalentosIT.Services
 
         public PerfilTalento ObterOuCriarPerfil(int userId)
         {
-            var perfil = _repository.ObterPerfilPorUtilizadorId(userId);
-            return perfil;
+            return _repository.ObterPerfilPorUtilizadorId(userId);
+        }
+
+        public void InserirPerfil(PerfilTalento perfil)
+        {
+            _repository.Adicionar(perfil);
         }
     }
 }

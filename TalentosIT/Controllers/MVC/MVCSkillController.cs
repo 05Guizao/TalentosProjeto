@@ -1,78 +1,106 @@
 using Microsoft.AspNetCore.Mvc;
-using TalentosIT.Data;
 using TalentosIT.Models;
-using System.Linq;
-using System.Threading.Tasks;
+using TalentosIT.Services;
 
-namespace TalentosIT.Controllers
+namespace TalentosIT.Controllers.MVC
 {
     public class MVCSkillController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly SessaoUtilizadorService _sessao;
+        private readonly SkillService _skillService;
 
-        public MVCSkillController(ApplicationDbContext context)
+        public MVCSkillController(
+            SessaoUtilizadorService sessao,
+            SkillService skillService)
         {
-            _context = context;
+            _sessao = sessao;
+            _skillService = skillService;
         }
 
         public IActionResult Index()
         {
-            var skills = _context.Skills.ToList();
+            var userId = _sessao.ObterIdUtilizador();
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            var skills = _skillService.ObterSkillsDoUsuario(userId.Value);
             return View(skills);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
+            if (_sessao.ObterIdUtilizador() == null)
+                return RedirectToAction("Login", "Account");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Skill skill)
+        public IActionResult Create(Skill model)
         {
+            var userId = _sessao.ObterIdUtilizador();
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            model.Estado = "Ativo";
+            model.IdUtilizador = userId.Value;
+
             if (ModelState.IsValid)
             {
-                skill.Estado = "Ativo"; // Definindo estado padrão
-                _context.Skills.Add(skill);
-                await _context.SaveChangesAsync();
+                _skillService.CriarSkill(model);
                 return RedirectToAction(nameof(Index));
             }
-            return View(skill);
+            return View(model);
         }
 
+        [HttpGet]
         public IActionResult Edit(int id)
         {
-            var skill = _context.Skills.FirstOrDefault(s => s.Cod == id);
+            var userId = _sessao.ObterIdUtilizador();
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            var skill = _skillService.ObterSkill(id, userId.Value);
             if (skill == null)
-            {
                 return NotFound();
-            }
+
             return View(skill);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Skill skill)
+        public IActionResult Edit(Skill model)
         {
+            var userId = _sessao.ObterIdUtilizador();
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            var existing = _skillService.ObterSkill(model.Cod, userId.Value);
+            if (existing == null)
+                return NotFound();
+
+            existing.Nome = model.Nome;
+            existing.AreaProfissional = model.AreaProfissional;
+            // Estado mantido ou atualizado conforme necessidade
+
             if (ModelState.IsValid)
             {
-                _context.Skills.Update(skill);
-                await _context.SaveChangesAsync();
+                _skillService.AtualizarSkill(existing);
                 return RedirectToAction(nameof(Index));
             }
-            return View(skill);
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            var skill = await _context.Skills.FindAsync(id);
-            if (skill != null)
-            {
-                _context.Skills.Remove(skill);
-                await _context.SaveChangesAsync();
-            }
+            var userId = _sessao.ObterIdUtilizador();
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            _skillService.RemoverSkill(id, userId.Value);
             return RedirectToAction(nameof(Index));
         }
     }
