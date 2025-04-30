@@ -21,15 +21,21 @@ namespace TalentosIT.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("DetalheExperiencia", b =>
+            modelBuilder.Entity("TalentosIT.Models.DetalheExperiencia", b =>
                 {
-                    b.Property<int>("CodExperienciaTalento")
+                    b.Property<int>("Cod")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Cod"));
 
                     b.Property<int>("AnoComeco")
                         .HasColumnType("integer");
 
                     b.Property<int>("AnoTermino")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CodPerfilTalento")
                         .HasColumnType("integer");
 
                     b.Property<string>("NomeEmpresa")
@@ -40,12 +46,14 @@ namespace TalentosIT.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("CodExperienciaTalento");
+                    b.HasKey("Cod");
+
+                    b.HasIndex("CodPerfilTalento");
 
                     b.ToTable("DetalheExperiencia");
                 });
 
-            modelBuilder.Entity("PerfilTalento", b =>
+            modelBuilder.Entity("TalentosIT.Models.PerfilTalento", b =>
                 {
                     b.Property<int>("Cod")
                         .ValueGeneratedOnAdd()
@@ -77,12 +85,10 @@ namespace TalentosIT.Migrations
 
                     b.HasKey("Cod");
 
-                    b.HasIndex("IdUtilizador");
-
                     b.ToTable("PerfilTalento");
                 });
 
-            modelBuilder.Entity("PropostaSkill", b =>
+            modelBuilder.Entity("TalentosIT.Models.PropostaSkill", b =>
                 {
                     b.Property<int>("IdPropostaTrabalho")
                         .HasColumnType("integer");
@@ -100,7 +106,7 @@ namespace TalentosIT.Migrations
                     b.ToTable("PropostaSkill");
                 });
 
-            modelBuilder.Entity("PropostaTrabalho", b =>
+            modelBuilder.Entity("TalentosIT.Models.PropostaTrabalho", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,9 +117,6 @@ namespace TalentosIT.Migrations
                     b.Property<string>("CategoriaTalento")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int>("CodPerfilTalento")
-                        .HasColumnType("integer");
 
                     b.Property<string>("DescricaoTrabalho")
                         .IsRequired()
@@ -135,14 +138,10 @@ namespace TalentosIT.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CodPerfilTalento");
-
-                    b.HasIndex("IdUtilizador");
-
                     b.ToTable("PropostaTrabalho");
                 });
 
-            modelBuilder.Entity("Skill", b =>
+            modelBuilder.Entity("TalentosIT.Models.Skill", b =>
                 {
                     b.Property<int>("Cod")
                         .ValueGeneratedOnAdd()
@@ -158,6 +157,9 @@ namespace TalentosIT.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("IdUtilizador")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");
@@ -167,7 +169,7 @@ namespace TalentosIT.Migrations
                     b.ToTable("Skill");
                 });
 
-            modelBuilder.Entity("TalentoSkill", b =>
+            modelBuilder.Entity("TalentosIT.Models.TalentoSkill", b =>
                 {
                     b.Property<int>("CodPerfilTalento")
                         .HasColumnType("integer");
@@ -185,7 +187,7 @@ namespace TalentosIT.Migrations
                     b.ToTable("TalentoSkill");
                 });
 
-            modelBuilder.Entity("Utilizador", b =>
+            modelBuilder.Entity("TalentosIT.Models.Utilizador", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -201,6 +203,10 @@ namespace TalentosIT.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("text");
@@ -210,37 +216,26 @@ namespace TalentosIT.Migrations
                     b.ToTable("Utilizador");
                 });
 
-            modelBuilder.Entity("DetalheExperiencia", b =>
+            modelBuilder.Entity("TalentosIT.Models.DetalheExperiencia", b =>
                 {
-                    b.HasOne("PerfilTalento", "PerfilTalento")
+                    b.HasOne("TalentosIT.Models.PerfilTalento", "PerfilTalento")
                         .WithMany()
-                        .HasForeignKey("CodExperienciaTalento")
+                        .HasForeignKey("CodPerfilTalento")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PerfilTalento");
                 });
 
-            modelBuilder.Entity("PerfilTalento", b =>
+            modelBuilder.Entity("TalentosIT.Models.PropostaSkill", b =>
                 {
-                    b.HasOne("Utilizador", "Utilizador")
-                        .WithMany()
-                        .HasForeignKey("IdUtilizador")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Utilizador");
-                });
-
-            modelBuilder.Entity("PropostaSkill", b =>
-                {
-                    b.HasOne("Skill", "Skill")
+                    b.HasOne("TalentosIT.Models.Skill", "Skill")
                         .WithMany()
                         .HasForeignKey("CodSkill")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PropostaTrabalho", "PropostaTrabalho")
+                    b.HasOne("TalentosIT.Models.PropostaTrabalho", "PropostaTrabalho")
                         .WithMany()
                         .HasForeignKey("IdPropostaTrabalho")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -251,34 +246,15 @@ namespace TalentosIT.Migrations
                     b.Navigation("Skill");
                 });
 
-            modelBuilder.Entity("PropostaTrabalho", b =>
+            modelBuilder.Entity("TalentosIT.Models.TalentoSkill", b =>
                 {
-                    b.HasOne("PerfilTalento", "PerfilTalento")
+                    b.HasOne("TalentosIT.Models.PerfilTalento", "PerfilTalento")
                         .WithMany()
                         .HasForeignKey("CodPerfilTalento")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Utilizador", "Utilizador")
-                        .WithMany()
-                        .HasForeignKey("IdUtilizador")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PerfilTalento");
-
-                    b.Navigation("Utilizador");
-                });
-
-            modelBuilder.Entity("TalentoSkill", b =>
-                {
-                    b.HasOne("PerfilTalento", "PerfilTalento")
-                        .WithMany()
-                        .HasForeignKey("CodPerfilTalento")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Skill", "Skill")
+                    b.HasOne("TalentosIT.Models.Skill", "Skill")
                         .WithMany()
                         .HasForeignKey("CodSkill")
                         .OnDelete(DeleteBehavior.Cascade)

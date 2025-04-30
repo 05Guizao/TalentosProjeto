@@ -1,64 +1,42 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using TalentosIT.Data;
 using TalentosIT.Models;
-using System.Linq;
+using TalentosIT.Services;
 using System.Threading.Tasks;
 
 namespace TalentosIT.Controllers
 {
     public class MVCDetalheExperienciaController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IDetalheExperienciaService _service;
 
-        public MVCDetalheExperienciaController(ApplicationDbContext context)
+        public MVCDetalheExperienciaController(IDetalheExperienciaService service)
         {
-            _context = context;
+            _service = service;
         }
 
         public IActionResult Index()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login", "Account");
 
-            if (userId == null)
-                return RedirectToAction("Login", "Account");
-
-            var perfil = _context.PerfilTalentos.FirstOrDefault(p => p.IdUtilizador == userId);
-            if (perfil == null)
-                return RedirectToAction("Create", "MVCPerfilTalento");
-
-            var experiencias = _context.DetalheExperiencias
-                .Where(e => e.CodPerfilTalento == perfil.Cod)
-                .ToList();
-
+            var experiencias = _service.ObterPorUtilizador(userId.Value);
             return View(experiencias);
         }
 
         [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DetalheExperiencia experiencia)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-
-            if (userId == null)
-                return RedirectToAction("Login", "Account");
-
-            var perfil = _context.PerfilTalentos.FirstOrDefault(p => p.IdUtilizador == userId);
-            if (perfil == null)
-                return RedirectToAction("Create", "MVCPerfilTalento");
-
-            experiencia.CodPerfilTalento = perfil.Cod;
+            if (userId == null) return RedirectToAction("Login", "Account");
 
             if (ModelState.IsValid)
             {
-                _context.DetalheExperiencias.Add(experiencia);
-                await _context.SaveChangesAsync();
+                await _service.CriarAsync(userId.Value, experiencia);
                 return RedirectToAction("Index");
             }
 

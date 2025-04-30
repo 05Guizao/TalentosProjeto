@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TalentosIT.Services;
 using TalentosIT.Models;
+using TalentosIT.Services;
 
 namespace TalentosIT.Controllers.MVC
 {
@@ -9,7 +9,9 @@ namespace TalentosIT.Controllers.MVC
         private readonly SessaoUtilizadorService _sessaoUtilizador;
         private readonly PerfilTalentoService _perfilTalentoService;
 
-        public MVCPerfilTalentoController(SessaoUtilizadorService sessaoUtilizador, PerfilTalentoService perfilTalentoService)
+        public MVCPerfilTalentoController(
+            SessaoUtilizadorService sessaoUtilizador,
+            PerfilTalentoService perfilTalentoService)
         {
             _sessaoUtilizador = sessaoUtilizador;
             _perfilTalentoService = perfilTalentoService;
@@ -18,14 +20,12 @@ namespace TalentosIT.Controllers.MVC
         public IActionResult Index()
         {
             var userId = _sessaoUtilizador.ObterIdUtilizador();
-
             if (userId == null)
                 return RedirectToAction("Login", "Account");
 
             var perfil = _perfilTalentoService.ObterOuCriarPerfil(userId.Value);
-
             if (perfil == null)
-                return RedirectToAction("Create");
+                return RedirectToAction(nameof(Create));
 
             return View(perfil);
         }
@@ -33,18 +33,43 @@ namespace TalentosIT.Controllers.MVC
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var userId = _sessaoUtilizador.ObterIdUtilizador();
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            // Pré-preenche Nome e Email:
+            var utilizador = _sessaoUtilizador.ObterUtilizador(); 
+            // -> implementa em SessaoUtilizadorService: ObterUtilizador() que devolve o objeto Utilizador
+
+            var model = new PerfilTalento
+            {
+                Nome  = utilizador.Nome,
+                Email = utilizador.Email
+            };
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(PerfilTalento perfil)
         {
+            var userId = _sessaoUtilizador.ObterIdUtilizador();
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            perfil.IdUtilizador = userId.Value;
+
             if (ModelState.IsValid)
             {
-                // Aqui podias eventualmente usar o serviço para guardar também
+                _perfilTalentoService.InserirPerfil(perfil);
                 return RedirectToAction(nameof(Index));
             }
+
+            // Se falhar validação, mantém Nome/Email preenchidos
+            var utilizador = _sessaoUtilizador.ObterUtilizador();
+            perfil.Nome  = utilizador.Nome;
+            perfil.Email = utilizador.Email;
 
             return View(perfil);
         }
