@@ -52,6 +52,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCAdmin/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDQWRtaW4vQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCAdmin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDQWRtaW4vSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCDetalheExperiencia/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDRGV0YWxoZUV4cGVyaWVuY2lhL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -106,6 +114,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/Layout3.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0xheW91dDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0xheW91dEFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/_LoginPartial.cshtml]

@@ -21,6 +21,6 @@ namespace TalentosIT.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "O tipo de conta é obrigatório")]
-        public string Tipo { get; set; } // "Cliente" ou "Empresa"
+        public string Tipo { get; set; }
     }
 }

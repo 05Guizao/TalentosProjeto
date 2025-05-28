@@ -37,9 +37,7 @@ namespace TalentosIT.Controllers.MVC
             if (userId == null)
                 return RedirectToAction("Login", "Account");
 
-            // Pré-preenche Nome e Email:
-            var utilizador = _sessaoUtilizador.ObterUtilizador(); 
-            // -> implementa em SessaoUtilizadorService: ObterUtilizador() que devolve o objeto Utilizador
+            var utilizador = _sessaoUtilizador.ObterUtilizador();
 
             var model = new PerfilTalento
             {
@@ -66,7 +64,6 @@ namespace TalentosIT.Controllers.MVC
                 return RedirectToAction(nameof(Index));
             }
 
-            // Se falhar validação, mantém Nome/Email preenchidos
             var utilizador = _sessaoUtilizador.ObterUtilizador();
             perfil.Nome  = utilizador.Nome;
             perfil.Email = utilizador.Email;

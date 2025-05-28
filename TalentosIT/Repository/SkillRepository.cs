@@ -9,24 +9,29 @@ namespace TalentosIT.Repository
     public class SkillRepository
     {
         private readonly ApplicationDbContext _context;
+
         public SkillRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // Lista só as skills do utilizador
-        public IEnumerable<Skill> ObterPorUsuario(int userId)
+        public IEnumerable<Skill> ObterPorUtilizador(int? utilizadorId)
         {
-            return _context.Skills
-                .Where(s => s.IdUtilizador == userId)
-                .ToList();
+            if (utilizadorId.HasValue)
+            {
+                return _context.Skills.Where(s => s.IdUtilizador == utilizadorId.Value).ToList();
+            }
+            else
+            {
+                return _context.Skills.Where(s => s.IdUtilizador == null).ToList(); // Skills globais
+            }
         }
 
-        // Obtem skill por id e userId (para editar/apagar)
-        public Skill ObterPorIdEUsuario(int id, int userId)
+        public Skill ObterPorCodEUtilizador(int cod, int? utilizadorId)
         {
             return _context.Skills
-                .FirstOrDefault(s => s.Cod == id && s.IdUtilizador == userId);
+                .Where(s => s.Cod == cod && (utilizadorId == null || s.IdUtilizador == utilizadorId))
+                .FirstOrDefault();
         }
 
         public void Adicionar(Skill skill)

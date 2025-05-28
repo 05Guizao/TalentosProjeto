@@ -33,15 +33,28 @@ namespace TalentosIT.Controllers
             if (utilizador != null)
             {
                 HttpContext.Session.SetInt32("UserId", utilizador.Id);
-                HttpContext.Session.SetString("UserTipo", utilizador.Tipo);
+                HttpContext.Session.SetString("UserTipo", utilizador.Tipo); // Guardando tipo como string
                 HttpContext.Session.SetString("UserNome", utilizador.Nome);
 
-                return RedirectToAction("BemVindo", "Home");
+                // Verificando tipo de utilizador e redirecionando para a página apropriada
+                if (utilizador.Tipo == "Admin")
+                {
+                    return RedirectToAction("Index", "MVCAdmin"); // Alterar para o nome da página de administração
+                }
+                else if (utilizador.Tipo == "Empresa")
+                {
+                    return RedirectToAction("Index", "MVCProposta"); // Exemplo de redirecionamento para as Propostas da Empresa
+                }
+                else if (utilizador.Tipo == "Cliente")
+                {
+                    return RedirectToAction("Index", "MVCPerfilTalento"); // Exemplo de redirecionamento para o Perfil do Cliente
+                }
             }
 
             ViewBag.Error = "Email ou password inválidos.";
             return View();
         }
+
 
         [HttpGet]
         public IActionResult Register()
