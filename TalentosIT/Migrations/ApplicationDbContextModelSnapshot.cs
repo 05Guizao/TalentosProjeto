@@ -157,7 +157,7 @@ namespace TalentosIT.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("IdUtilizador")
+                    b.Property<int?>("IdUtilizador")
                         .HasColumnType("integer");
 
                     b.Property<string>("Nome")

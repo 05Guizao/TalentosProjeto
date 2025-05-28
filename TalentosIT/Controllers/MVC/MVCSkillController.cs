@@ -9,29 +9,33 @@ namespace TalentosIT.Controllers.MVC
         private readonly SessaoUtilizadorService _sessao;
         private readonly SkillService _skillService;
 
-        public MVCSkillController(
-            SessaoUtilizadorService sessao,
-            SkillService skillService)
+        public MVCSkillController(SessaoUtilizadorService sessao, SkillService skillService)
         {
             _sessao = sessao;
             _skillService = skillService;
         }
 
+        private bool EhAdmin()
+        {
+            var tipo = _sessao.ObterTipoUtilizador();
+            return tipo == "Admin";
+        }
+
         public IActionResult Index()
         {
-            var userId = _sessao.ObterIdUtilizador();
-            if (userId == null)
-                return RedirectToAction("Login", "Account");
+            if (!EhAdmin())
+                return Unauthorized();
 
-            var skills = _skillService.ObterSkillsDoUsuario(userId.Value);
+            var skills = _skillService.ObterSkillsDoUtilizador(null); // Skills globais
             return View(skills);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            if (_sessao.ObterIdUtilizador() == null)
-                return RedirectToAction("Login", "Account");
+            if (!EhAdmin())
+                return Unauthorized();
+
             return View();
         }
 
@@ -39,12 +43,11 @@ namespace TalentosIT.Controllers.MVC
         [ValidateAntiForgeryToken]
         public IActionResult Create(Skill model)
         {
-            var userId = _sessao.ObterIdUtilizador();
-            if (userId == null)
-                return RedirectToAction("Login", "Account");
+            if (!EhAdmin())
+                return Unauthorized();
 
             model.Estado = "Ativo";
-            model.IdUtilizador = userId.Value;
+            model.IdUtilizador = null; // global
 
             if (ModelState.IsValid)
             {
@@ -55,13 +58,12 @@ namespace TalentosIT.Controllers.MVC
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int cod)
         {
-            var userId = _sessao.ObterIdUtilizador();
-            if (userId == null)
-                return RedirectToAction("Login", "Account");
+            if (!EhAdmin())
+                return Unauthorized();
 
-            var skill = _skillService.ObterSkill(id, userId.Value);
+            var skill = _skillService.ObterSkill(cod, null);
             if (skill == null)
                 return NotFound();
 
@@ -72,21 +74,19 @@ namespace TalentosIT.Controllers.MVC
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Skill model)
         {
-            var userId = _sessao.ObterIdUtilizador();
-            if (userId == null)
-                return RedirectToAction("Login", "Account");
+            if (!EhAdmin())
+                return Unauthorized();
 
-            var existing = _skillService.ObterSkill(model.Cod, userId.Value);
-            if (existing == null)
+            var skillExistente = _skillService.ObterSkill(model.Cod, null);
+            if (skillExistente == null)
                 return NotFound();
 
-            existing.Nome = model.Nome;
-            existing.AreaProfissional = model.AreaProfissional;
-            // Estado mantido ou atualizado conforme necessidade
+            skillExistente.Nome = model.Nome;
+            skillExistente.AreaProfissional = model.AreaProfissional;
 
             if (ModelState.IsValid)
             {
-                _skillService.AtualizarSkill(existing);
+                _skillService.AtualizarSkill(skillExistente);
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -94,13 +94,12 @@ namespace TalentosIT.Controllers.MVC
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int cod)
         {
-            var userId = _sessao.ObterIdUtilizador();
-            if (userId == null)
-                return RedirectToAction("Login", "Account");
+            if (!EhAdmin())
+                return Unauthorized();
 
-            _skillService.RemoverSkill(id, userId.Value);
+            _skillService.RemoverSkill(cod, null);
             return RedirectToAction(nameof(Index));
         }
     }

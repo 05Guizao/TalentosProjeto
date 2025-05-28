@@ -34,7 +34,7 @@ namespace TalentosIT.Controllers
         {
             var tipo = HttpContext.Session.GetString("UserTipo");
             if (tipo != "Empresa")
-                return RedirectToAction("Index", "Home"); // Bloquear acesso indevido
+                return RedirectToAction("Index", "Home");
 
             return View();
         }

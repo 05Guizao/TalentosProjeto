@@ -7,24 +7,16 @@ namespace TalentosIT.Models
     [Table("Skill")]
     public class Skill
     {
-        [Key]
-        public int Cod { get; set; }
+        [Key] public int Cod { get; set; }
 
-        [Required]
-        public string Nome { get; set; }
+        [Required] public string Nome { get; set; }
 
-        [Required]
-        public string AreaProfissional { get; set; }
+        [Required] public string AreaProfissional { get; set; }
 
-        [Required]
-        public string Estado { get; set; }
+        [Required] public string Estado { get; set; }
 
-        // FK para ligar ao utilizador logado
-        public int IdUtilizador { get; set; }
+        public int? IdUtilizador { get; set; } // Agora é opcional: null = skill global do admin
 
-        // Não quero que o binder/validador tente preencher isto no POST:
-        [NotMapped]
-        [ValidateNever]
-        public Utilizador Utilizador { get; set; }
+        [NotMapped] [ValidateNever] public Utilizador Utilizador { get; set; }
     }
 }

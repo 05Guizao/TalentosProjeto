@@ -1,5 +1,3 @@
-using System;
-using System.Net.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using TalentosIT.Data;
@@ -8,55 +6,60 @@ using TalentosIT.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicionar serviços MVC e sessões
-builder.Services.AddControllersWithViews();
-builder.Services.AddSession();
+// ✅ Usa a connection string do ficheiro appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Sessão e contexto do utilizador
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<SessaoUtilizadorService>();
-
-// Repositórios e serviços de PerfilTalento
-builder.Services.AddScoped<PerfilTalentoRepository>();
-builder.Services.AddScoped<PerfilTalentoService>();
-
-// Repositórios e serviços de Skill
-builder.Services.AddScoped<SkillRepository>();
-builder.Services.AddScoped<SkillService>();
-
-// Serviços de Experiência
-builder.Services.AddScoped<IDetalheExperienciaService, DetalheExperienciaService>();
-
-// Adicionar DbContext
+// Serviços
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseNpgsql(connectionString, npgsqlOptions =>
+    {
+        npgsqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 3,
+            maxRetryDelay: TimeSpan.FromSeconds(5),
+            errorCodesToAdd: null
+        );
+    })
 );
 
-// HttpClient para chamadas internas
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5072") });
+builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<SessaoUtilizadorService>();
+builder.Services.AddScoped<PerfilTalentoRepository>();
+builder.Services.AddScoped<PerfilTalentoService>();
+builder.Services.AddScoped<SkillRepository>();
+builder.Services.AddScoped<SkillService>();
+builder.Services.AddScoped<IDetalheExperienciaService, DetalheExperienciaService>();
 
-// Adicionar controllers de API e Swagger
+// Swagger & HttpClient
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5072") });
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Sandbox API",
+        Title = "TalentosIT API",
         Version = "v1",
-        Description = "API para a aplicação Blazor Sandbox"
+        Description = "API para gestão de talentos IT"
     });
 });
 
 var app = builder.Build();
 
-// Configuração de ambiente
+// ✅ Aplica migrations na base de dados no arranque
+//using (var scope = app.Services.CreateScope())
+//{
+//    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+//    db.Database.Migrate();
+//}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sandbox API V1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "TalentosIT API V1");
     });
 }
 else
@@ -67,19 +70,15 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-app.UseSession(); // Middleware de sessão
+app.UseSession();
 app.UseAuthorization();
 
-// Mapear controllers e rotas MVC
 app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
-)
-.WithStaticAssets();
+).WithStaticAssets();
 
 app.Run();

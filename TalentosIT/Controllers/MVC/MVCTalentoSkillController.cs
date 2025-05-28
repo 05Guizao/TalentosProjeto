@@ -23,7 +23,7 @@ namespace TalentosIT.Controllers
             if (userId == null) return RedirectToAction("Login", "Account");
 
             var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
-            if (perfil == null) return RedirectToAction("Create", "MVCTalento");
+            if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
 
             var skills = _context.TalentoSkills
                 .Include(ts => ts.Skill)
@@ -39,9 +39,9 @@ namespace TalentosIT.Controllers
             if (userId == null) return RedirectToAction("Login", "Account");
 
             var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
-            if (perfil == null) return RedirectToAction("Create", "MVCTalento");
+            if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
 
-            ViewBag.Skills = _context.Skills.Where(s => s.Estado == "Ativo").ToList();
+            ViewBag.Skills = _context.Skills.Where(s => s.Estado == "Ativo" && s.IdUtilizador == null).ToList(); // Só skills globais
             return View();
         }
 
@@ -53,13 +53,13 @@ namespace TalentosIT.Controllers
             if (userId == null) return RedirectToAction("Login", "Account");
 
             var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
-            if (perfil == null) return RedirectToAction("Create", "MVCTalento");
+            if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
 
             var exists = await _context.TalentoSkills.AnyAsync(t => t.CodPerfilTalento == perfil.Cod && t.CodSkill == CodSkill);
             if (exists)
             {
                 ModelState.AddModelError("", "Skill já associada.");
-                ViewBag.Skills = _context.Skills.Where(s => s.Estado == "Ativo").ToList();
+                ViewBag.Skills = _context.Skills.Where(s => s.Estado == "Ativo" && s.IdUtilizador == null).ToList();
                 return View();
             }
 
@@ -82,7 +82,7 @@ namespace TalentosIT.Controllers
             if (userId == null) return RedirectToAction("Login", "Account");
 
             var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
-            if (perfil == null) return RedirectToAction("Create", "MVCTalento");
+            if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
 
             var talentoSkill = await _context.TalentoSkills.FirstOrDefaultAsync(ts => ts.CodPerfilTalento == perfil.Cod && ts.CodSkill == codSkill);
             if (talentoSkill != null)

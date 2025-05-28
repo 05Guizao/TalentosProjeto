@@ -1,6 +1,7 @@
 ﻿using TalentosIT.Data;
 using TalentosIT.Models;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace TalentosIT.Repository
 {
@@ -15,7 +16,10 @@ namespace TalentosIT.Repository
 
         public PerfilTalento ObterPerfilPorUtilizadorId(int userId)
         {
+            Console.WriteLine($"🟡 A procurar perfil com idUtilizador = {userId}");
+
             return _context.PerfilTalentos
+                .AsNoTracking()
                 .FirstOrDefault(p => p.IdUtilizador == userId);
         }
 

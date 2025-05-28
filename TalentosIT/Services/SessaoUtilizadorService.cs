@@ -17,19 +17,11 @@ namespace TalentosIT.Services
             _context = context;
         }
 
-        /// <summary>
-        /// Retorna o ID do utilizador guardado na sessão, ou null se não existir.
-        /// </summary>
         public int? ObterIdUtilizador()
         {
-            return _httpContextAccessor.HttpContext?
-                .Session.GetInt32("UserId");
+            return _httpContextAccessor.HttpContext?.Session.GetInt32("UserId");
         }
 
-        /// <summary>
-        /// Retorna o objeto Utilizador correspondente ao ID na sessão,
-        /// ou null se não estiver autenticado.
-        /// </summary>
         public Utilizador ObterUtilizador()
         {
             var userId = ObterIdUtilizador();
@@ -38,6 +30,11 @@ namespace TalentosIT.Services
 
             return _context.Utilizadores
                 .Find(userId.Value);
+        }
+
+        public string ObterTipoUtilizador()
+        {
+            return _httpContextAccessor.HttpContext?.Session.GetString("UserTipo");
         }
     }
 }
