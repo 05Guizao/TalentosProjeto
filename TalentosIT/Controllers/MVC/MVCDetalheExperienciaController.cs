@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using TalentosIT.Models;
 using TalentosIT.Services;
 using System.Threading.Tasks;
+using TalentosIT.Views.MVCDetalheExperiencia;
 
 namespace TalentosIT.Controllers
 {
@@ -21,7 +22,13 @@ namespace TalentosIT.Controllers
             if (userId == null) return RedirectToAction("Login", "Account");
 
             var experiencias = _service.ObterPorUtilizador(userId.Value);
-            return View(experiencias);
+            var model = new IndexModel
+            {
+                Experiencias = experiencias,
+                MensagemSucesso = TempData["Sucesso"] as string
+            };
+
+            return View(model);
         }
 
         [HttpGet]
@@ -38,12 +45,12 @@ namespace TalentosIT.Controllers
             if (ModelState.IsValid)
             {
                 await _service.CriarAsync(userId.Value, experiencia);
+                TempData["Sucesso"] = "Experiência adicionada com sucesso!";
                 return RedirectToAction("Index");
             }
 
             return View(experiencia);
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
@@ -60,6 +67,7 @@ namespace TalentosIT.Controllers
             if (ModelState.IsValid)
             {
                 await _service.AtualizarAsync(experiencia);
+                TempData["Sucesso"] = "Experiência atualizada com sucesso!";
                 return RedirectToAction("Index");
             }
 
@@ -71,6 +79,7 @@ namespace TalentosIT.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _service.EliminarAsync(id);
+            TempData["Sucesso"] = "Experiência eliminada com sucesso!";
             return RedirectToAction("Index");
         }
     }
