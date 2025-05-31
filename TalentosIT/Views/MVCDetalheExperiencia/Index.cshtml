@@ -1,5 +1,5 @@
-﻿@page
-@model TalentosIT.Views.MVCDetalheExperiencia.IndexModel
+﻿@model TalentosIT.Views.MVCDetalheExperiencia.IndexModel
+
 @{
     Layout = "~/Views/Shared/LayoutCliente.cshtml";
     ViewData["Title"] = "Minhas Experiências";
@@ -20,20 +20,29 @@
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.Experiencias!)
+    @if (Model.Experiencias != null && Model.Experiencias.Any())
+    {
+        foreach (var item in Model.Experiencias)
+        {
+            <tr>
+                <td>@item.Titulo</td>
+                <td>@item.NomeEmpresa</td>
+                <td>@item.AnoComeco</td>
+                <td>@item.AnoTermino</td>
+                <td>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Cod">Editar</a>
+                    <form asp-action="Delete" asp-route-id="@item.Cod" method="post" style="display:inline;">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem a certeza que deseja eliminar?');">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    }
+    else
     {
         <tr>
-            <td>@item.Titulo</td>
-            <td>@item.NomeEmpresa</td>
-            <td>@item.AnoComeco</td>
-            <td>@item.AnoTermino</td>
-            <td>
-                <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Cod">Editar</a>
-                <form asp-action="Delete" asp-route-id="@item.Cod" method="post" style="display:inline;">
-                    @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem a certeza que deseja eliminar?');">Eliminar</button>
-                </form>
-            </td>
+            <td colspan="5" class="text-center">Nenhuma experiência encontrada.</td>
         </tr>
     }
     </tbody>

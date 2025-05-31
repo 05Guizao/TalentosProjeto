@@ -1,18 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TalentosIT.Models;
+﻿using TalentosIT.Models;
+using System.Collections.Generic;
 
 namespace TalentosIT.Views.MVCDetalheExperiencia
 {
-    public class IndexModel : PageModel
+    public class IndexModel
     {
         public string? MensagemSucesso { get; set; }
         public List<DetalheExperiencia> Experiencias { get; set; } = new();
-
-        public void OnGet()
-        {
-            MensagemSucesso = TempData["Sucesso"] as string;
-        }
     }
 }
