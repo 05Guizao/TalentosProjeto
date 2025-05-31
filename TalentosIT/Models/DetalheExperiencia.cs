@@ -7,6 +7,7 @@ namespace TalentosIT.Models
     public class DetalheExperiencia
     {
         [Key]
+        [Column("CodExperienciaTalento")]
         public int Cod { get; set; }
 
         public string Titulo { get; set; }
@@ -17,8 +18,10 @@ namespace TalentosIT.Models
 
         public int AnoTermino { get; set; }
 
-        [ForeignKey("PerfilTalento")]
+        [Column("CodPerfilTalento")]
         public int CodPerfilTalento { get; set; }
+
+        [ForeignKey(nameof(CodPerfilTalento))]
         public PerfilTalento PerfilTalento { get; set; }
     }
 }
