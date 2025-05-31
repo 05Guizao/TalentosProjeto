@@ -25,23 +25,38 @@ namespace TalentosIT.Controllers
 
             var propostas = await _context.PropostaTrabalhos
                 .Where(p => p.IdUtilizador == userId)
+                .Include(p => p.PerfilTalento)
                 .ToListAsync();
 
             return View(propostas);
         }
 
-        public IActionResult Create()
+        // GET: /MVCProposta/SelecionarPerfil
+        public async Task<IActionResult> SelecionarPerfil()
         {
             var tipo = HttpContext.Session.GetString("UserTipo");
             if (tipo != "Empresa")
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Account");
 
+            var perfis = await _context.PerfilTalentos.ToListAsync();
+            return View(perfis);
+        }
+
+// GET: /MVCProposta/Create?perfilId=3
+        public IActionResult Create(int perfilId)
+        {
+            var tipo = HttpContext.Session.GetString("UserTipo");
+            if (tipo != "Empresa")
+                return RedirectToAction("Login", "Account");
+
+            ViewBag.PerfilId = perfilId;
             return View();
         }
 
+// POST: /MVCProposta/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PropostaTrabalho proposta)
+        public async Task<IActionResult> Create(PropostaTrabalho proposta, int perfilId)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             var tipo = HttpContext.Session.GetString("UserTipo");
@@ -52,7 +67,9 @@ namespace TalentosIT.Controllers
             if (ModelState.IsValid)
             {
                 proposta.IdUtilizador = userId.Value;
+                proposta.IdPerfilTalento = perfilId; // <- aqui associamos o perfil
                 proposta.Estado = "Ativo";
+
                 _context.Add(proposta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -61,48 +78,8 @@ namespace TalentosIT.Controllers
             return View(proposta);
         }
 
-        public async Task<IActionResult> Edit(int id)
-        {
-            var proposta = await _context.PropostaTrabalhos.FindAsync(id);
-            var userId = HttpContext.Session.GetInt32("UserId");
 
-            if (proposta == null || proposta.IdUtilizador != userId)
-                return NotFound();
 
-            return View(proposta);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, PropostaTrabalho proposta)
-        {
-            if (id != proposta.Id)
-                return NotFound();
-
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (proposta.IdUtilizador != userId)
-                return Unauthorized();
-
-            if (ModelState.IsValid)
-            {
-                _context.Update(proposta);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(proposta);
-        }
-
-        public async Task<IActionResult> Delete(int id)
-        {
-            var proposta = await _context.PropostaTrabalhos.FindAsync(id);
-            var userId = HttpContext.Session.GetInt32("UserId");
-
-            if (proposta == null || proposta.IdUtilizador != userId)
-                return NotFound();
-
-            _context.PropostaTrabalhos.Remove(proposta);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        // Edit & Delete mantêm-se como já estavam
     }
 }

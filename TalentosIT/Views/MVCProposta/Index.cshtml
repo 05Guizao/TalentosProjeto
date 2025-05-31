@@ -1,9 +1,39 @@
+@model List<TalentosIT.Models.PropostaTrabalho>
+
 @{
-    ViewData["Title"] = "Proposta";
+    ViewData["Title"] = "Propostas";
     Layout = "~/Views/Shared/LayoutEmpresa.cshtml";
-    ViewData["HideAuthButtons"] = true;
 }
 
+<h2>Minhas Propostas de Trabalho</h2>
 
-<h2>Página de Propostas</h2>
-<p>Aqui podes gerir as Propostas disponíveis.</p>
+<a class="btn btn-primary mb-3" href="@Url.Action("SelecionarPerfil", "MVCProposta")">Criar Nova Proposta</a>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Total Horas</th>
+        <th>Estado</th>
+        <th>Perfil Destinatário</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var proposta in Model)
+    {
+        <tr>
+            <td>@proposta.Nome</td>
+            <td>@proposta.CategoriaTalento</td>
+            <td>@proposta.NumTotalHoras</td>
+            <td>@proposta.Estado</td>
+            <td>@proposta.PerfilTalento?.Nome</td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = proposta.Id })" class="btn btn-warning btn-sm">Editar</a>
+                <a href="@Url.Action("Delete", new { id = proposta.Id })" class="btn btn-danger btn-sm">Apagar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

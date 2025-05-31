@@ -1,0 +1,31 @@
+@model List<TalentosIT.Models.PerfilTalento>
+@{
+    ViewData["Title"] = "Selecionar Perfil";
+    Layout = "~/Views/Shared/LayoutEmpresa.cshtml";
+}
+
+<h2>Seleciona um perfil para criar proposta</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>País</th>
+        <th>Email</th>
+        <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var perfil in Model)
+    {
+        <tr>
+            <td>@perfil.Nome</td>
+            <td>@perfil.Pais</td>
+            <td>@perfil.Email</td>
+            <td>
+                <a class="btn btn-primary" asp-action="Create" asp-route-perfilId="@perfil.Cod">Criar Proposta</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

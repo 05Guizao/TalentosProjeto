@@ -21,5 +21,11 @@ namespace TalentosIT.Models
 
         [ForeignKey("Utilizador")]
         public int IdUtilizador { get; set; }
+
+        [Column("IdPerfilTalento")]
+        [ForeignKey("PerfilTalento")]
+        public int IdPerfilTalento { get; set; }
+
+        public PerfilTalento? PerfilTalento { get; set; }
     }
 }
