@@ -1,5 +1,4 @@
 @{
-    var tipo = Context.Session.GetString("UserTipo");
     var nome = Context.Session.GetString("UserNome");
 }
 
@@ -11,42 +10,18 @@
     <title>@ViewData["Title"] - TalentosIT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .content {
-            flex: 1;
-        }
-
-        footer {
-            background: linear-gradient(90deg, #007bff, #6610f2);
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            width: 100%;
-        }
-
-        .navbar-nav .nav-item .navbar-text {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: white;
-            padding-left: 10px;
-        }
-
-        .navbar-nav .nav-item .btn-danger {
-            margin-left: 15px;
-        }
+        html, body { height: 100%; margin: 0; display: flex; flex-direction: column; }
+        .content { flex: 1; }
+        footer { background: linear-gradient(90deg, #007bff, #6610f2); color: white; text-align: center; padding: 10px 0; width: 100%; }
+        .navbar-nav .nav-item .navbar-text { font-size: 1.1rem; font-weight: bold; color: white; padding-left: 10px; }
+        .navbar-nav .nav-item .btn-danger { margin-left: 15px; }
     </style>
 </head>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(90deg, #007bff, #6610f2);">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/Home/BemVindo">TalentosIT</a>
+        <a class="navbar-brand" href="@Url.Action("Index", "MVCProposta")">TalentosIT</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -54,25 +29,11 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
-                @if (tipo == "Admin")
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="MVCPerfilTalento" asp-action="Index">Perfis</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="MVCSkill" asp-action="Index">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="MVCProposta" asp-action="Index">Propostas</a>
-                    </li>
-                }
+                <li class="nav-item"><a class="nav-link" asp-controller="MVCProposta" asp-action="Index">Propostas</a></li>
             </ul>
-
             <ul class="navbar-nav">
                 <li class="nav-item d-flex align-items-center">
-                    <span class="navbar-text text-white me-2">
-                        Olá, @nome!
-                    </span>
+                    <span class="navbar-text text-white me-2">Olá, @nome!</span>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-danger" asp-controller="Account" asp-action="Logout">Sair</a>
@@ -94,4 +55,3 @@
 @RenderSection("Scripts", required: false)
 </body>
 </html>
-
