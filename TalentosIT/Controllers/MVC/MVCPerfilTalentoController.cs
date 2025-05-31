@@ -41,7 +41,7 @@ namespace TalentosIT.Controllers.MVC
 
             var model = new PerfilTalento
             {
-                Nome  = utilizador.Nome,
+                Nome = utilizador.Nome,
                 Email = utilizador.Email
             };
 
@@ -65,7 +65,7 @@ namespace TalentosIT.Controllers.MVC
             }
 
             var utilizador = _sessaoUtilizador.ObterUtilizador();
-            perfil.Nome  = utilizador.Nome;
+            perfil.Nome = utilizador.Nome;
             perfil.Email = utilizador.Email;
 
             return View(perfil);
