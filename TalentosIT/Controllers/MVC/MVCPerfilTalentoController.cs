@@ -17,13 +17,13 @@ namespace TalentosIT.Controllers.MVC
             _perfilTalentoService = perfilTalentoService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var userId = _sessaoUtilizador.ObterIdUtilizador();
             if (userId == null)
                 return RedirectToAction("Login", "Account");
 
-            var perfil = _perfilTalentoService.ObterOuCriarPerfil(userId.Value);
+            var perfil = await _perfilTalentoService.ObterOuCriarPerfilAsync(userId.Value);
             if (perfil == null)
                 return RedirectToAction(nameof(Create));
 
@@ -50,7 +50,7 @@ namespace TalentosIT.Controllers.MVC
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(PerfilTalento perfil)
+        public async Task<IActionResult> Create(PerfilTalento perfil)
         {
             var userId = _sessaoUtilizador.ObterIdUtilizador();
             if (userId == null)
@@ -60,7 +60,7 @@ namespace TalentosIT.Controllers.MVC
 
             if (ModelState.IsValid)
             {
-                _perfilTalentoService.InserirPerfil(perfil);
+                await _perfilTalentoService.InserirPerfilAsync(perfil);
                 return RedirectToAction(nameof(Index));
             }
 

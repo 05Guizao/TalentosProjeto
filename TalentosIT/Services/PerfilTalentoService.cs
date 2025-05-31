@@ -12,14 +12,14 @@ namespace TalentosIT.Services
             _repository = repository;
         }
 
-        public PerfilTalento ObterOuCriarPerfil(int userId)
+        public async Task<PerfilTalento?> ObterOuCriarPerfilAsync(int userId)
         {
-            return _repository.ObterPerfilPorUtilizadorId(userId);
+            return await _repository.ObterPerfilPorUtilizadorIdAsync(userId);
         }
 
-        public void InserirPerfil(PerfilTalento perfil)
+        public async Task InserirPerfilAsync(PerfilTalento perfil)
         {
-            _repository.Adicionar(perfil);
+            await _repository.AdicionarAsync(perfil);
         }
     }
 }

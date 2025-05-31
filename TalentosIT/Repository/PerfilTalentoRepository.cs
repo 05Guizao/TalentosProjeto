@@ -1,7 +1,7 @@
 ﻿using TalentosIT.Data;
 using TalentosIT.Models;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace TalentosIT.Repository
 {
@@ -14,19 +14,25 @@ namespace TalentosIT.Repository
             _context = context;
         }
 
-        public PerfilTalento ObterPerfilPorUtilizadorId(int userId)
+        public async Task<PerfilTalento?> ObterPerfilPorUtilizadorIdAsync(int userId)
         {
-            Console.WriteLine($"🟡 A procurar perfil com idUtilizador = {userId}");
+            Console.WriteLine($"🔍 A procurar perfil com IdUtilizador = {userId}...");
 
-            return _context.PerfilTalentos
+            var sw = Stopwatch.StartNew();
+            var perfil = await _context.PerfilTalentos
                 .AsNoTracking()
-                .FirstOrDefault(p => p.IdUtilizador == userId);
+                .FirstOrDefaultAsync(p => p.IdUtilizador == userId);
+            sw.Stop();
+
+            Console.WriteLine($"✅ Query executada em {sw.ElapsedMilliseconds} ms");
+
+            return perfil;
         }
 
-        public void Adicionar(PerfilTalento perfil)
+        public async Task AdicionarAsync(PerfilTalento perfil)
         {
-            _context.PerfilTalentos.Add(perfil);
-            _context.SaveChanges();
+            await _context.PerfilTalentos.AddAsync(perfil);
+            await _context.SaveChangesAsync();
         }
     }
 }
