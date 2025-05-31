@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TalentosIT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d65fee15464bb7fc05e3b9d056e994ebe50c8cd8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a638c8800c36562f18db7596fdf47fd434fe49a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TalentosIT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TalentosIT")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
