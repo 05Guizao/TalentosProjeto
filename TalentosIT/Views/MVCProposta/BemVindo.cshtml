@@ -1,0 +1,19 @@
+@{
+    var nome = Context.Session.GetString("UserNome");
+    ViewData["Title"] = "Bem-vindo Empresa";
+    Layout = "~/Views/Shared/LayoutEmpresa.cshtml";
+}
+
+<div class="text-center mt-5">
+    <h2 class="mb-4">Bem-vindo de volta, @nome 👋</h2>
+    <p class="lead">Aqui podes gerir as tuas propostas de trabalho e encontrar os melhores talentos.</p>
+
+    <a href="@Url.Action("SelecionarPerfil", "MVCProposta")" class="btn btn-primary mt-4">
+        Criar Nova Proposta
+    </a>
+
+    <a href="@Url.Action("Index", "MVCProposta")" class="btn btn-outline-secondary mt-4 ms-3">
+        Ver Minhas Propostas
+    </a>
+</div>
+

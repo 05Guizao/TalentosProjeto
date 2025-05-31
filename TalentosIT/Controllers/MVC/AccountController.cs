@@ -20,6 +20,7 @@ namespace TalentosIT.Controllers
         {
             return View();
         }
+        
 
         [HttpPost]
         public IActionResult Login(string email, string password)
@@ -43,7 +44,7 @@ namespace TalentosIT.Controllers
                 }
                 else if (utilizador.Tipo == "Empresa")
                 {
-                    return RedirectToAction("Index", "MVCProposta"); // Exemplo de redirecionamento para as Propostas da Empresa
+                    return RedirectToAction("BemVindo", "MVCProposta");
                 }
                 else if (utilizador.Tipo == "Cliente")
                 {

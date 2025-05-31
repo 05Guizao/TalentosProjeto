@@ -30,6 +30,13 @@ namespace TalentosIT.Controllers
 
             return View(propostas);
         }
+        
+        [HttpGet]
+        public IActionResult BemVindo()
+        {
+            return View();
+        }
+
 
         // GET: /MVCProposta/SelecionarPerfil
         public async Task<IActionResult> SelecionarPerfil()
