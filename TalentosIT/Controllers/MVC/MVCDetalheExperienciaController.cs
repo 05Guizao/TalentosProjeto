@@ -32,7 +32,8 @@ namespace TalentosIT.Controllers
         public async Task<IActionResult> Create(DetalheExperiencia experiencia)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null) return RedirectToAction("Login", "Account");
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
 
             if (ModelState.IsValid)
             {
@@ -42,6 +43,7 @@ namespace TalentosIT.Controllers
 
             return View(experiencia);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)

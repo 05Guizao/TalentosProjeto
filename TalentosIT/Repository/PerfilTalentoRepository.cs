@@ -34,5 +34,17 @@ namespace TalentosIT.Repository
             await _context.PerfilTalentos.AddAsync(perfil);
             await _context.SaveChangesAsync();
         }
+        
+        public void Atualizar(PerfilTalento perfil)
+        {
+            _context.PerfilTalentos.Update(perfil);
+        }
+
+        public async Task GravarAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+
     }
 }

@@ -70,5 +70,33 @@ namespace TalentosIT.Controllers.MVC
 
             return View(perfil);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            var userId = _sessaoUtilizador.ObterIdUtilizador();
+            if (userId == null) return RedirectToAction("Login", "Account");
+
+            var perfil = await _perfilTalentoService.ObterOuCriarPerfilAsync(userId.Value);
+            return View(perfil);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(PerfilTalento perfil)
+        {
+            var userId = _sessaoUtilizador.ObterIdUtilizador();
+            if (userId == null) return RedirectToAction("Login", "Account");
+
+            perfil.IdUtilizador = userId.Value;
+
+            if (ModelState.IsValid)
+            {
+                await _perfilTalentoService.AtualizarPerfilAsync(perfil);
+                return RedirectToAction("Index");
+            }
+
+            return View(perfil);
+        }
     }
 }

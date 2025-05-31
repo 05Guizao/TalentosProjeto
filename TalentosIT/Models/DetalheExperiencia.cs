@@ -13,9 +13,11 @@ namespace TalentosIT.Models
         public string Titulo { get; set; }
 
         public string NomeEmpresa { get; set; }
-
+        
+        [Range(1900, 2025)]
         public int AnoComeco { get; set; }
-
+        
+        [Range(1900, 2025)]
         public int AnoTermino { get; set; }
 
         [Column("CodPerfilTalento")]

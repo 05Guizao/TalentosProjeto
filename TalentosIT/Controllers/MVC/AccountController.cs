@@ -47,7 +47,7 @@ namespace TalentosIT.Controllers
                 }
                 else if (utilizador.Tipo == "Cliente")
                 {
-                    return RedirectToAction("Index", "MVCPerfilTalento"); // Exemplo de redirecionamento para o Perfil do Cliente
+                    return RedirectToAction("Index", "BemVindoPerfil"); // Exemplo de redirecionamento para o Perfil do Cliente
                 }
             }
 
