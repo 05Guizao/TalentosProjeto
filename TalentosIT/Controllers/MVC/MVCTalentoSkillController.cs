@@ -25,10 +25,10 @@ namespace TalentosIT.Controllers
             var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
             if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
 
-            var skills = _context.TalentoSkills
+            var skills = await _context.TalentoSkills
                 .Include(ts => ts.Skill)
                 .Where(ts => ts.CodPerfilTalento == perfil.Cod)
-                .ToList();
+                .ToListAsync();
 
             return View(skills);
         }
@@ -41,13 +41,16 @@ namespace TalentosIT.Controllers
             var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
             if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
 
-            ViewBag.Skills = _context.Skills.Where(s => s.Estado == "Ativo" && s.IdUtilizador == null).ToList(); // Só skills globais
+            ViewBag.Skills = await _context.Skills
+                .Where(s => s.Estado == "Ativo")
+                .ToListAsync();
+
             return View();
         }
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int CodSkill, int AnosDeExperiencia)
+        public async Task<IActionResult> Create(int CodSkill, int AnosDeExperiencia, string NivelConforto, string DescricaoProjetos)
         {
             int? userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null) return RedirectToAction("Login", "Account");
@@ -59,7 +62,7 @@ namespace TalentosIT.Controllers
             if (exists)
             {
                 ModelState.AddModelError("", "Skill já associada.");
-                ViewBag.Skills = _context.Skills.Where(s => s.Estado == "Ativo" && s.IdUtilizador == null).ToList();
+                ViewBag.Skills = await _context.Skills.Where(s => s.Estado == "Ativo").ToListAsync();
                 return View();
             }
 
@@ -67,12 +70,16 @@ namespace TalentosIT.Controllers
             {
                 CodPerfilTalento = perfil.Cod,
                 CodSkill = CodSkill,
-                AnosDeExperiencia = AnosDeExperiencia
+                AnosDeExperiencia = AnosDeExperiencia,
+                NivelConforto = NivelConforto,
+                DescricaoProjetos = DescricaoProjetos
             });
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -90,6 +97,7 @@ namespace TalentosIT.Controllers
                 _context.TalentoSkills.Remove(talentoSkill);
                 await _context.SaveChangesAsync();
             }
+
             return RedirectToAction("Index");
         }
     }

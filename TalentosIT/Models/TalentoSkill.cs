@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-using TalentosIT.Models;
 
 namespace TalentosIT.Models
 {
@@ -10,7 +10,14 @@ namespace TalentosIT.Models
     {
         public int CodPerfilTalento { get; set; }
         public int CodSkill { get; set; }
+
         public int AnosDeExperiencia { get; set; }
+
+        [Column(TypeName = "text")]
+        public string NivelConforto { get; set; }  // "Baixo", "Médio" ou "Alto"
+
+        [Column(TypeName = "text")]
+        public string DescricaoProjetos { get; set; }
 
         [ForeignKey(nameof(CodPerfilTalento))]
         public PerfilTalento PerfilTalento { get; set; }

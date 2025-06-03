@@ -92,6 +92,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUHJvcG9zdGEvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCProposta/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUHJvcG9zdGEvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCProposta/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUHJvcG9zdGEvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCProposta/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUHJvcG9zdGEvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

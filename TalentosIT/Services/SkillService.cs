@@ -13,17 +13,19 @@ namespace TalentosIT.Services
             _repo = repo;
         }
 
-        public IEnumerable<Skill> ObterSkillsDoUtilizador(int? utilizadorId)
+        public IEnumerable<Skill> ObterTodasSkills()
         {
-            if (utilizadorId.HasValue)
-                return _repo.ObterPorUtilizador(utilizadorId.Value);
-
-            return _repo.ObterPorUtilizador(null); // Skills globais
+            return _repo.ObterTodas();
         }
 
-        public Skill ObterSkill(int cod, int? utilizadorId)
+        public IEnumerable<Skill> ObterTodasSkillsGlobais()
         {
-            return _repo.ObterPorCodEUtilizador(cod, utilizadorId);
+            return _repo.ObterGlobais();
+        }
+
+        public Skill ObterSkill(int cod)
+        {
+            return _repo.ObterPorCod(cod);
         }
 
         public void CriarSkill(Skill skill)
@@ -36,11 +38,9 @@ namespace TalentosIT.Services
             _repo.Atualizar(skill);
         }
 
-        public void RemoverSkill(int cod, int? utilizadorId)
+        public void RemoverSkill(int cod)
         {
-            var skill = _repo.ObterPorCodEUtilizador(cod, utilizadorId);
-            if (skill != null)
-                _repo.Remover(skill);
+            _repo.Remover(cod);
         }
     }
 }

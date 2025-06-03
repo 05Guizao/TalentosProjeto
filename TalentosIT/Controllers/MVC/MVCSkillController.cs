@@ -17,25 +17,21 @@ namespace TalentosIT.Controllers.MVC
 
         private bool EhAdmin()
         {
-            var tipo = _sessao.ObterTipoUtilizador();
-            return tipo == "Admin";
+            return _sessao.ObterTipoUtilizador() == "Admin";
         }
 
         public IActionResult Index()
         {
-            if (!EhAdmin())
-                return Unauthorized();
+            if (!EhAdmin()) return Unauthorized();
 
-            var skills = _skillService.ObterSkillsDoUtilizador(null); // Skills globais
+            var skills = _skillService.ObterTodasSkillsGlobais();
             return View(skills);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            if (!EhAdmin())
-                return Unauthorized();
-
+            if (!EhAdmin()) return Unauthorized();
             return View();
         }
 
@@ -43,29 +39,26 @@ namespace TalentosIT.Controllers.MVC
         [ValidateAntiForgeryToken]
         public IActionResult Create(Skill model)
         {
-            if (!EhAdmin())
-                return Unauthorized();
+            if (!EhAdmin()) return Unauthorized();
 
             model.Estado = "Ativo";
-            model.IdUtilizador = null; // global
 
             if (ModelState.IsValid)
             {
                 _skillService.CriarSkill(model);
                 return RedirectToAction(nameof(Index));
             }
+
             return View(model);
         }
 
         [HttpGet]
         public IActionResult Edit(int cod)
         {
-            if (!EhAdmin())
-                return Unauthorized();
+            if (!EhAdmin()) return Unauthorized();
 
-            var skill = _skillService.ObterSkill(cod, null);
-            if (skill == null)
-                return NotFound();
+            var skill = _skillService.ObterSkill(cod);
+            if (skill == null) return NotFound();
 
             return View(skill);
         }
@@ -74,21 +67,20 @@ namespace TalentosIT.Controllers.MVC
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Skill model)
         {
-            if (!EhAdmin())
-                return Unauthorized();
+            if (!EhAdmin()) return Unauthorized();
 
-            var skillExistente = _skillService.ObterSkill(model.Cod, null);
-            if (skillExistente == null)
-                return NotFound();
+            var skill = _skillService.ObterSkill(model.Cod);
+            if (skill == null) return NotFound();
 
-            skillExistente.Nome = model.Nome;
-            skillExistente.AreaProfissional = model.AreaProfissional;
+            skill.Nome = model.Nome;
+            skill.AreaProfissional = model.AreaProfissional;
 
             if (ModelState.IsValid)
             {
-                _skillService.AtualizarSkill(skillExistente);
+                _skillService.AtualizarSkill(skill);
                 return RedirectToAction(nameof(Index));
             }
+
             return View(model);
         }
 
@@ -96,10 +88,9 @@ namespace TalentosIT.Controllers.MVC
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int cod)
         {
-            if (!EhAdmin())
-                return Unauthorized();
+            if (!EhAdmin()) return Unauthorized();
 
-            _skillService.RemoverSkill(cod, null);
+            _skillService.RemoverSkill(cod);
             return RedirectToAction(nameof(Index));
         }
     }

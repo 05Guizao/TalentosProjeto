@@ -1,0 +1,28 @@
+@model TalentosIT.Models.PropostaTrabalho
+
+@{
+    ViewData["Title"] = "Eliminar Proposta";
+    Layout = "~/Views/Shared/LayoutEmpresa.cshtml";
+}
+
+<h2>Tem a certeza que quer eliminar esta proposta?</h2>
+
+<div>
+    <h4>Proposta: @Model.Nome</h4>
+    <dl class="row">
+        <dt class="col-sm-2">Categoria</dt>
+        <dd class="col-sm-10">@Model.CategoriaTalento</dd>
+
+        <dt class="col-sm-2">Horas</dt>
+        <dd class="col-sm-10">@Model.NumTotalHoras</dd>
+
+        <dt class="col-sm-2">Estado</dt>
+        <dd class="col-sm-10">@Model.Estado</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="@Url.Action("Index", "MVCProposta")" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

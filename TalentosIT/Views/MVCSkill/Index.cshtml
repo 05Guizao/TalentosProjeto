@@ -26,8 +26,8 @@
             <td>@skill.Nome</td>
             <td>@skill.AreaProfissional</td>
             <td>
-                <a asp-action="Edit" asp-route-id="@skill.Cod" class="btn btn-warning btn-sm">Editar</a>
-                <form asp-action="Delete" asp-route-id="@skill.Cod" method="post" style="display:inline;">
+                <a asp-action="Edit" asp-route-cod="@skill.Cod" class="btn btn-warning btn-sm">Editar</a>
+                <form asp-action="Delete" asp-route-cod="@skill.Cod" method="post" style="display:inline;">
                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tens a certeza que queres apagar esta skill?');">Apagar</button>
                 </form>
             </td>

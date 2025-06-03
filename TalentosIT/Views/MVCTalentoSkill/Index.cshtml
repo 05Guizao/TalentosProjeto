@@ -22,6 +22,8 @@ else
             <th>Skill</th>
             <th>Área Profissional</th>
             <th>Anos de Experiência</th>
+            <th>Nível de Conforto</th>
+            <th>Projetos</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -32,6 +34,8 @@ else
                 <td>@ts.Skill?.Nome</td>
                 <td>@ts.Skill?.AreaProfissional</td>
                 <td>@ts.AnosDeExperiencia</td>
+                <td>@ts.NivelConforto</td>
+                <td>@ts.DescricaoProjetos</td>
                 <td>
                     <form asp-action="Delete" asp-route-codSkill="@ts.CodSkill" method="post" onsubmit="return confirm('Tens a certeza que queres remover esta skill?');">
                         <button type="submit" class="btn btn-danger btn-sm">Remover</button>

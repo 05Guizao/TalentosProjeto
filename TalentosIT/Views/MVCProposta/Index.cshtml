@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/LayoutEmpresa.cshtml";
 }
 
-<h2>Minhas Propostas de Trabalho</h2>
+<h2>Propostas de Trabalho</h2>
 
 
 <table class="table table-bordered">
@@ -29,8 +29,9 @@
             <td>@proposta.Estado</td>
             <td>@proposta.PerfilTalento?.Nome</td>
             <td>
-                <a href="@Url.Action("Edit", new { id = proposta.Id })" class="btn btn-warning btn-sm">Editar</a>
-                <a href="@Url.Action("Delete", new { id = proposta.Id })" class="btn btn-danger btn-sm">Apagar</a>
+                <a href="@Url.Action("Edit", "MVCProposta", new { id = proposta.Id })" class="btn btn-warning btn-sm">Editar</a>
+                <a href="@Url.Action("Delete", "MVCProposta", new { id = proposta.Id })" class="btn btn-danger btn-sm">Apagar</a>
+
             </td>
         </tr>
     }
