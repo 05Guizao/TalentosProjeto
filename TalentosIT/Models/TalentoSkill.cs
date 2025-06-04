@@ -18,6 +18,8 @@ namespace TalentosIT.Models
 
         [Column(TypeName = "text")]
         public string DescricaoProjetos { get; set; }
+        
+        public string AreaProfissional { get; set; }
 
         [ForeignKey(nameof(CodPerfilTalento))]
         public PerfilTalento PerfilTalento { get; set; }

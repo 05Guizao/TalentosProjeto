@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TalentosIT.Data;
 using TalentosIT.Models;
+using Microsoft.AspNetCore.Http;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace TalentosIT.Controllers
 {
@@ -15,6 +15,16 @@ namespace TalentosIT.Controllers
         public MVCPropostaController(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        [HttpGet]
+        public IActionResult BemVindo()
+        {
+            var tipo = HttpContext.Session.GetString("UserTipo");
+            if (tipo != "Empresa")
+                return RedirectToAction("Login", "Account");
+
+            return View();
         }
 
         public async Task<IActionResult> Index()
@@ -31,19 +41,17 @@ namespace TalentosIT.Controllers
             return View(propostas);
         }
 
-        [HttpGet]
-        public IActionResult BemVindo()
-        {
-            return View();
-        }
-
         public async Task<IActionResult> SelecionarPerfil()
         {
             var tipo = HttpContext.Session.GetString("UserTipo");
             if (tipo != "Empresa")
                 return RedirectToAction("Login", "Account");
 
-            var perfis = await _context.PerfilTalentos.ToListAsync();
+            var perfis = await _context.PerfilTalentos
+                .Include(p => p.TalentoSkills)
+                .ThenInclude(ts => ts.Skill)
+                .ToListAsync();
+
             return View(perfis);
         }
 
@@ -71,7 +79,7 @@ namespace TalentosIT.Controllers
             {
                 proposta.IdUtilizador = userId.Value;
                 proposta.IdPerfilTalento = perfilId;
-                proposta.Estado = "Ativo";
+                proposta.Estado = "Pendente";
 
                 _context.Add(proposta);
                 await _context.SaveChangesAsync();
@@ -80,75 +88,6 @@ namespace TalentosIT.Controllers
 
             ViewBag.PerfilId = perfilId;
             return View(proposta);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Edit(int id)
-        {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            var proposta = await _context.PropostaTrabalhos.FindAsync(id);
-
-            if (proposta == null || proposta.IdUtilizador != userId)
-                return NotFound();
-
-            return View(proposta);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, PropostaTrabalho proposta)
-        {
-            var userId = HttpContext.Session.GetInt32("UserId");
-
-            if (id != proposta.Id || userId == null)
-                return NotFound();
-
-            var propostaExistente = await _context.PropostaTrabalhos.FindAsync(id);
-            if (propostaExistente == null || propostaExistente.IdUtilizador != userId)
-                return NotFound();
-
-            if (ModelState.IsValid)
-            {
-                proposta.IdUtilizador = userId.Value;
-                proposta.IdPerfilTalento = propostaExistente.IdPerfilTalento;
-
-                _context.Entry(propostaExistente).CurrentValues.SetValues(proposta);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
-            }
-
-            return View(proposta);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            var proposta = await _context.PropostaTrabalhos
-                .FirstOrDefaultAsync(p => p.Id == id && p.IdUtilizador == userId);
-
-            if (proposta == null)
-                return NotFound();
-
-            return View(proposta);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            var proposta = await _context.PropostaTrabalhos
-                .FirstOrDefaultAsync(p => p.Id == id && p.IdUtilizador == userId);
-
-            if (proposta != null)
-            {
-                _context.PropostaTrabalhos.Remove(proposta);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction(nameof(Index));
         }
     }
 }

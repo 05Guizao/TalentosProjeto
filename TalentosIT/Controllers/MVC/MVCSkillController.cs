@@ -73,7 +73,6 @@ namespace TalentosIT.Controllers.MVC
             if (skill == null) return NotFound();
 
             skill.Nome = model.Nome;
-            skill.AreaProfissional = model.AreaProfissional;
 
             if (ModelState.IsValid)
             {

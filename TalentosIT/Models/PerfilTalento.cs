@@ -8,8 +8,7 @@ namespace TalentosIT.Models
     [Table("PerfilTalento")]
     public class PerfilTalento
     {
-        [Key]
-        public int Cod { get; set; }
+        [Key] public int Cod { get; set; }
 
         public string Nome { get; set; }
 
@@ -21,12 +20,11 @@ namespace TalentosIT.Models
 
         public string Tipo { get; set; }
 
-        [ForeignKey("IdUtilizador")]
-        public int IdUtilizador { get; set; }
+        [ForeignKey("IdUtilizador")] public int IdUtilizador { get; set; }
 
-        [NotMapped]
-        [ValidateNever]
-        public Utilizador Utilizador { get; set; }
-        
+        [NotMapped] [ValidateNever] public Utilizador Utilizador { get; set; }
+
+        // IMPORTANTE: adicionar esta linha
+        public virtual ICollection<TalentoSkill> TalentoSkills { get; set; }
     }
 }

@@ -5,42 +5,38 @@
     Layout = "~/Views/Shared/LayoutEmpresa.cshtml";
 }
 
-<h2>Criar Proposta de Trabalho</h2>
+<h2>Criar Proposta</h2>
 
-<form asp-action="Create" method="post">
-    @* Campo hidden para associar o perfil selecionado à proposta *@
-    <input type="hidden" name="perfilId" value="@Context.Request.Query["perfilId"]" />
+<form asp-action="Create" asp-route-perfilId="@ViewBag.PerfilId" method="post">
+    @Html.AntiForgeryToken()
 
-    <div class="form-group">
-        <label asp-for="Nome">Nome</label>
+    <div class="mb-3">
+        <label asp-for="Nome" class="form-label"></label>
         <input asp-for="Nome" class="form-control" />
         <span asp-validation-for="Nome" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="CategoriaTalento">Categoria do Talento</label>
+    <div class="mb-3">
+        <label asp-for="CategoriaTalento" class="form-label"></label>
         <input asp-for="CategoriaTalento" class="form-control" />
         <span asp-validation-for="CategoriaTalento" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="NumTotalHoras">Total de Horas</label>
-        <input asp-for="NumTotalHoras" class="form-control" />
+    <div class="mb-3">
+        <label asp-for="NumTotalHoras" class="form-label"></label>
+        <input asp-for="NumTotalHoras" type="number" class="form-control" />
         <span asp-validation-for="NumTotalHoras" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="DescricaoTrabalho">Descrição</label>
+    <div class="mb-3">
+        <label asp-for="DescricaoTrabalho" class="form-label"></label>
         <textarea asp-for="DescricaoTrabalho" class="form-control"></textarea>
         <span asp-validation-for="DescricaoTrabalho" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label asp-for="Estado">Estado</label>
-        <input asp-for="Estado" class="form-control" />
-        <span asp-validation-for="Estado" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-success mt-3">Salvar</button>
-    <a href="@Url.Action("Index", "MVCProposta")" class="btn btn-secondary mt-3">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Submeter Proposta</button>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

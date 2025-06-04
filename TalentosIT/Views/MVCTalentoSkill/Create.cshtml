@@ -1,58 +1,48 @@
 @model TalentosIT.Models.TalentoSkill
-
 @{
-    ViewData["Title"] = "Associar Skill";
+    ViewData["Title"] = "Associar Nova Skill";
     Layout = "~/Views/Shared/LayoutCliente.cshtml";
-    var skills = ViewBag.Skills as List<TalentosIT.Models.Skill>;
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>Associar Nova Skill</h2>
 
-@if (!skills.Any())
-{
-    <div class="alert alert-warning">Nenhuma skill global disponível. Contacta um administrador.</div>
-}
-else
-{
-    <form asp-action="Create" method="post">
-        @Html.AntiForgeryToken()
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="CodSkill">Skill</label>
+        <select class="form-control" id="CodSkill" name="CodSkill" required>
+            <option value="">-- Seleciona uma skill --</option>
+            @foreach (var skill in ViewBag.Skills)
+            {
+                <option value="@skill.Cod">@skill.Nome</option>
+            }
+        </select>
+    </div>
 
-        <div class="form-group">
-            <label for="CodSkill">Skill</label>
-            <select asp-for="CodSkill" class="form-control" asp-items="@(new SelectList(skills, "Cod", "Nome"))">
-                <option value="">-- Seleciona uma skill --</option>
-            </select>
-            <span asp-validation-for="CodSkill" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label for="AreaProfissional">Área Profissional</label>
+        <input type="text" class="form-control" id="AreaProfissional" name="AreaProfissional" required placeholder="Ex: Desenvolvimento Web, Redes, etc." />
+    </div>
 
-        <div class="form-group">
-            <label asp-for="AnosDeExperiencia">Anos de Experiência</label>
-            <input asp-for="AnosDeExperiencia" class="form-control" min="0" />
-            <span asp-validation-for="AnosDeExperiencia" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label for="AnosDeExperiencia">Anos de Experiência</label>
+        <input type="number" class="form-control" id="AnosDeExperiencia" name="AnosDeExperiencia" min="0" required />
+    </div>
 
-        <div class="form-group">
-            <label asp-for="NivelConforto">Nível de Conforto</label>
-            <select asp-for="NivelConforto" class="form-control">
-                <option value="">-- Seleciona o nível --</option>
-                <option value="Baixo">Baixo</option>
-                <option value="Médio">Médio</option>
-                <option value="Alto">Alto</option>
-            </select>
-            <span asp-validation-for="NivelConforto" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label for="NivelConforto">Nível de Conforto</label>
+        <select class="form-control" id="NivelConforto" name="NivelConforto" required>
+            <option value="">-- Seleciona --</option>
+            <option value="Baixo">Baixo</option>
+            <option value="Médio">Médio</option>
+            <option value="Elevado">Elevado</option>
+        </select>
+    </div>
 
-        <div class="form-group">
-            <label asp-for="DescricaoProjetos">Descrição dos Projetos</label>
-            <textarea asp-for="DescricaoProjetos" class="form-control" rows="4"></textarea>
-            <span asp-validation-for="DescricaoProjetos" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label for="DescricaoProjetos">Projetos Relacionados (opcional)</label>
+        <textarea class="form-control" id="DescricaoProjetos" name="DescricaoProjetos" rows="3"></textarea>
+    </div>
 
-        <button type="submit" class="btn btn-success mt-3">Salvar</button>
-        <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
-    </form>
-}
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    <button type="submit" class="btn btn-success mt-3">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>

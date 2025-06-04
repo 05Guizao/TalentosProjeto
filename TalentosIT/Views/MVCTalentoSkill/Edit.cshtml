@@ -1,0 +1,49 @@
+@model TalentosIT.Models.TalentoSkill
+
+@{
+    ViewData["Title"] = "Editar Skill Associada";
+    Layout = "~/Views/Shared/LayoutCliente.cshtml";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="CodPerfilTalento" />
+    <input type="hidden" asp-for="CodSkill" />
+
+    <div class="form-group">
+        <label asp-for="AreaProfissional">Área Profissional</label>
+        <input asp-for="AreaProfissional" class="form-control" />
+        <span asp-validation-for="AreaProfissional" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AnosDeExperiencia">Anos de Experiência</label>
+        <input asp-for="AnosDeExperiencia" class="form-control" />
+        <span asp-validation-for="AnosDeExperiencia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NivelConforto">Nível de Conforto</label>
+        <select asp-for="NivelConforto" class="form-control">
+            <option value="Baixo">Baixo</option>
+            <option value="Médio">Médio</option>
+            <option value="Alto">Alto</option>
+        </select>
+        <span asp-validation-for="NivelConforto" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DescricaoProjetos">Descrição dos Projetos</label>
+        <textarea asp-for="DescricaoProjetos" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="DescricaoProjetos" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Guardar Alterações</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

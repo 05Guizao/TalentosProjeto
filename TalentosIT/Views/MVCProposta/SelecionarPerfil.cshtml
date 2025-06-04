@@ -1,29 +1,41 @@
-@model List<TalentosIT.Models.PerfilTalento>
-@{
-    ViewData["Title"] = "Selecionar Perfil";
-    Layout = "~/Views/Shared/LayoutEmpresa.cshtml";
-}
+@using System.Linq
 
-<h2>Seleciona um perfil para criar proposta</h2>
-
-<table class="table">
+<table class="table table-hover">
     <thead>
     <tr>
-        <th>Nome</th>
+        <th>Perfil</th>
         <th>País</th>
         <th>Email</th>
-        <th>Ação</th>
+        <th>Ações</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var perfil in Model)
     {
+        var talentoSkills = perfil.TalentoSkills as IEnumerable<TalentosIT.Models.TalentoSkill>;
+
         <tr>
-            <td>@perfil.Nome</td>
+            <td>
+                <strong>@perfil.Nome</strong><br />
+
+                <small><i>Skills:</i>
+                    @if (talentoSkills != null && talentoSkills.Any())
+                    {
+                        foreach (var ts in talentoSkills)
+                        {
+                            <span class="badge bg-secondary me-1">@ts.Skill?.Nome</span>
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-muted">Sem skills</span>
+                    }
+                </small>
+            </td>
             <td>@perfil.Pais</td>
             <td>@perfil.Email</td>
             <td>
-                <a class="btn btn-primary" asp-action="Create" asp-route-perfilId="@perfil.Cod">Criar Proposta</a>
+                <a class="btn btn-primary btn-sm" asp-action="Create" asp-route-perfilId="@perfil.Cod">Criar Proposta</a>
             </td>
         </tr>
     }

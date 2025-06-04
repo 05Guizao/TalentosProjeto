@@ -1,0 +1,55 @@
+@model List<TalentosIT.Models.PropostaTrabalho>
+
+@{
+    ViewData["Title"] = "Minhas Propostas";
+    Layout = "~/Views/Shared/LayoutCliente.cshtml";
+}
+
+<h2 class="mb-4">Minhas Propostas Recebidas</h2>
+
+@if (!Model.Any())
+{
+    <p>Não tens propostas no momento.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Horas</th>
+            <th>Descrição</th>
+            <th>Estado</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var proposta in Model)
+        {
+            <tr>
+                <td>@proposta.Nome</td>
+                <td>@proposta.CategoriaTalento</td>
+                <td>@proposta.NumTotalHoras</td>
+                <td>@proposta.DescricaoTrabalho</td>
+                <td>@proposta.Estado</td>
+                <td>
+                    @if (proposta.Estado == "Pendente")
+                    {
+                        <form method="post" asp-action="Aceitar" asp-route-id="@proposta.Id" style="display:inline">
+                            <button type="submit" class="btn btn-success btn-sm">Aceitar</button>
+                        </form>
+                        <form method="post" asp-action="Recusar" asp-route-id="@proposta.Id" style="display:inline">
+                            <button type="submit" class="btn btn-danger btn-sm ms-2">Recusar</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Já @proposta.Estado.ToLower()</span>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

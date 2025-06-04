@@ -48,9 +48,30 @@ namespace TalentosIT.Controllers
             return View();
         }
         
+        [HttpGet]
+        public async Task<IActionResult> Edit(int codSkill)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login", "Account");
+
+            var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
+            if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
+
+            var talentoSkill = await _context.TalentoSkills
+                .FirstOrDefaultAsync(ts => ts.CodPerfilTalento == perfil.Cod && ts.CodSkill == codSkill);
+
+            if (talentoSkill == null)
+            {
+                return NotFound();
+            }
+
+            return View(talentoSkill);
+        }
+
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int CodSkill, int AnosDeExperiencia, string NivelConforto, string DescricaoProjetos)
+        public async Task<IActionResult> Create(int CodSkill, int AnosDeExperiencia, string NivelConforto, string DescricaoProjetos, string AreaProfissional)
         {
             int? userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null) return RedirectToAction("Login", "Account");
@@ -72,12 +93,14 @@ namespace TalentosIT.Controllers
                 CodSkill = CodSkill,
                 AnosDeExperiencia = AnosDeExperiencia,
                 NivelConforto = NivelConforto,
-                DescricaoProjetos = DescricaoProjetos
+                DescricaoProjetos = DescricaoProjetos,
+                AreaProfissional = AreaProfissional // 🆕 NOVO
             });
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
 
 
 
@@ -100,5 +123,34 @@ namespace TalentosIT.Controllers
 
             return RedirectToAction("Index");
         }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(TalentoSkill model)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login", "Account");
+
+            var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
+            if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
+
+            var talentoSkill = await _context.TalentoSkills
+                .FirstOrDefaultAsync(ts => ts.CodPerfilTalento == perfil.Cod && ts.CodSkill == model.CodSkill);
+
+            if (talentoSkill == null)
+            {
+                return NotFound();
+            }
+
+            // Atualizar os campos editáveis
+            talentoSkill.AreaProfissional = model.AreaProfissional;
+            talentoSkill.AnosDeExperiencia = model.AnosDeExperiencia;
+            talentoSkill.NivelConforto = model.NivelConforto;
+            talentoSkill.DescricaoProjetos = model.DescricaoProjetos;
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
     }
 }

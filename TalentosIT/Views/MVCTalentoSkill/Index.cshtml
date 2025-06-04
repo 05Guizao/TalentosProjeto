@@ -32,11 +32,12 @@ else
         {
             <tr>
                 <td>@ts.Skill?.Nome</td>
-                <td>@ts.Skill?.AreaProfissional</td>
+                <td>@ts.AreaProfissional</td>
                 <td>@ts.AnosDeExperiencia</td>
                 <td>@ts.NivelConforto</td>
                 <td>@ts.DescricaoProjetos</td>
                 <td>
+                    <a asp-action="Edit" asp-route-codSkill="@ts.CodSkill" class="btn btn-warning btn-sm me-1">Editar</a>
                     <form asp-action="Delete" asp-route-codSkill="@ts.CodSkill" method="post" onsubmit="return confirm('Tens a certeza que queres remover esta skill?');">
                         <button type="submit" class="btn btn-danger btn-sm">Remover</button>
                     </form>

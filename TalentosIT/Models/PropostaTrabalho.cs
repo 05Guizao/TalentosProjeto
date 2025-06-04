@@ -9,12 +9,17 @@ namespace TalentosIT.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
         public string Nome { get; set; }
 
+        [Required]
         public string CategoriaTalento { get; set; }
 
+        [Required]
+        [Range(1, 10000)]
         public int NumTotalHoras { get; set; }
 
+        [Required]
         public string DescricaoTrabalho { get; set; }
 
         public string Estado { get; set; }
