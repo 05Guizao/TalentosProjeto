@@ -1,0 +1,46 @@
+
+# ===== Ignorar pastas de build do .NET =====
+**/bin/
+**/obj/
+
+# ===== Rider IDE =====
+.idea/
+*.sln.iml
+
+# Configurações do usuário e caches
+*.DotSettings.user
+*.DotSettings
+*.suo
+*.user
+*.userosscache
+*.DSWACache.json
+*.Cache/
+
+# Pastas temporárias do Rider
+*.rpswa.dswa.cache.json
+*.rjmschtml.dswa.cache.json
+*.rjmsrazor.dswa.cache.json
+*.rjmswa.dswa.cache.json
+*.rjijmswa.dswa.cache.json
+
+# ===== Outros ficheiros temporários comuns em projetos .NET =====
+*.log
+*.vs/
+.vs/
+*.dbmdl
+*.pdb
+*.pdbobj
+*.cachefile
+*.bak
+~$*.*
+
+# ===== Pacotes NuGet =====
+*.nupkg
+# Varrer pastas de pacotes geradas localmente
+packages/
+
+# ===== Publicação e artefactos =====
+*.Publish.xml
+
+# ===== Arquivos de configuração sensíveis =====
+secrets.json
