@@ -17,153 +17,153 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TalentosIT
 build_property.RootNamespace = TalentosIT
-build_property.ProjectDir = /Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/
+build_property.ProjectDir = C:\Users\kikom\OneDrive\Ambiente de Trabalho\TalentosProjeto\TalentosIT\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT
+build_property.MSBuildProjectDirectory = C:\Users\kikom\OneDrive\Ambiente de Trabalho\TalentosProjeto\TalentosIT
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Account/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Account/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/BemVindoPerfil/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmVtVmluZG9QZXJmaWwvSW5kZXguY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/BemVindoPerfil/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmVtVmluZG9QZXJmaWxcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Home/BemVindo.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9CZW1WaW5kby5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Home/BemVindo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCZW1WaW5kby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCAdmin/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDQWRtaW4vQ3JlYXRlLmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCAdmin/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDQWRtaW5cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCAdmin/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDQWRtaW4vSW5kZXguY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCAdmin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCDetalheExperiencia/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDRGV0YWxoZUV4cGVyaWVuY2lhL0NyZWF0ZS5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCDetalheExperiencia/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDRGV0YWxoZUV4cGVyaWVuY2lhXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCDetalheExperiencia/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDRGV0YWxoZUV4cGVyaWVuY2lhL0VkaXQuY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCDetalheExperiencia/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDRGV0YWxoZUV4cGVyaWVuY2lhXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCDetalheExperiencia/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDRGV0YWxoZUV4cGVyaWVuY2lhL0luZGV4LmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCDetalheExperiencia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDRGV0YWxoZUV4cGVyaWVuY2lhXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCPerfilTalento/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUGVyZmlsVGFsZW50by9DcmVhdGUuY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCPerfilTalento/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUGVyZmlsVGFsZW50b1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCPerfilTalento/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUGVyZmlsVGFsZW50by9FZGl0LmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCPerfilTalento/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUGVyZmlsVGFsZW50b1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCPerfilTalento/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUGVyZmlsVGFsZW50by9JbmRleC5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCPerfilTalento/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUGVyZmlsVGFsZW50b1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCProposta/BemVindo.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUHJvcG9zdGEvQmVtVmluZG8uY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCProposta/BemVindo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUHJvcG9zdGFcQmVtVmluZG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCProposta/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUHJvcG9zdGEvQ3JlYXRlLmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCProposta/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUHJvcG9zdGFcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCProposta/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUHJvcG9zdGEvRGVsZXRlLmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCProposta/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUHJvcG9zdGFcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCProposta/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUHJvcG9zdGEvRWRpdC5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCProposta/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUHJvcG9zdGFcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCProposta/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUHJvcG9zdGEvSW5kZXguY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCProposta/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUHJvcG9zdGFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCProposta/SelecionarPerfil.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDUHJvcG9zdGEvU2VsZWNpb25hclBlcmZpbC5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCProposta/SelecionarPerfil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDUHJvcG9zdGFcU2VsZWNpb25hclBlcmZpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCSkill/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDU2tpbGwvQ3JlYXRlLmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCSkill/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDU2tpbGxcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCSkill/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDU2tpbGwvRWRpdC5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCSkill/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDU2tpbGxcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCSkill/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDU2tpbGwvSW5kZXguY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCSkill/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDU2tpbGxcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCTalentoSkill/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDVGFsZW50b1NraWxsL0NyZWF0ZS5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCTalentoSkill/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDVGFsZW50b1NraWxsXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/MVCTalentoSkill/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTVZDVGFsZW50b1NraWxsL0luZGV4LmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/MVCTalentoSkill/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTVZDVGFsZW50b1NraWxsXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/LayoutAdmin.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0xheW91dEFkbWluLmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Shared/LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExheW91dEFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/LayoutBemVindo.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0xheW91dEJlbVZpbmRvLmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Shared/LayoutBemVindo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExheW91dEJlbVZpbmRvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/LayoutCliente.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0xheW91dENsaWVudGUuY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Shared/LayoutCliente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExheW91dENsaWVudGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/LayoutEmpresa.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0xheW91dEVtcHJlc2EuY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Shared/LayoutEmpresa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExheW91dEVtcHJlc2EuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/_LoginPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Mb2dpblBhcnRpYWwuY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/guilhermebarros/RiderProjects/TalentosIT/TalentosIT/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-f8p44j57hb
+[C:/Users/kikom/OneDrive/Ambiente de Trabalho/TalentosProjeto/TalentosIT/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-x2fnhnnxk2

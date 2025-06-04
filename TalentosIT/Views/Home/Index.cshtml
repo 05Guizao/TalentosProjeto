@@ -1,8 +1,40 @@
 ﻿@{
-    ViewData["Title"] = "Página Principal";
+    ViewData["Title"] = "Bem-Vindo ao TalentosIT";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bem-Vindo</h1>
-    <p>Aprende sobre <a href="https://learn.microsoft.com/aspnet/core">contruir aplicações Web com ASP.NET Core</a>.</p>
+<div class="hero-white text-center">
+    <div class="hero-text">
+        <h1 class="gradient-text">Bem-vindo ao TalentosIT</h1>
+        <p class="lead gradient-text">Conecta talentos de tecnologia a oportunidades reais no mercado.</p>
+    </div>
 </div>
+
+<style>
+.hero-white {
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+}
+
+.lead {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #007bff, #6f42c1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+</style>
