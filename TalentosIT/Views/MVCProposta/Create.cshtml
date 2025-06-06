@@ -7,8 +7,17 @@
 
 <h2>Criar Proposta</h2>
 
-<form asp-action="Create" asp-route-perfilId="@ViewBag.PerfilId" method="post">
+<!-- Mensagem de erro geral (caso necessário) -->
+@if (!ViewData.ModelState.IsValid && ViewData.ModelState.ErrorCount > 0)
+{
+    <div class="alert alert-danger">Por favor preenche todos os campos corretamente.</div>
+}
+
+<form asp-action="Create" method="post">
     @Html.AntiForgeryToken()
+
+    <!-- Campo oculto para o perfilId (essencial para o POST funcionar corretamente) -->
+    <input type="hidden" name="perfilId" value="@ViewBag.PerfilId" />
 
     <div class="mb-3">
         <label asp-for="Nome" class="form-label"></label>
@@ -24,13 +33,13 @@
 
     <div class="mb-3">
         <label asp-for="NumTotalHoras" class="form-label"></label>
-        <input asp-for="NumTotalHoras" type="number" class="form-control" />
+        <input asp-for="NumTotalHoras" type="number" class="form-control" min="1" />
         <span asp-validation-for="NumTotalHoras" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="DescricaoTrabalho" class="form-label"></label>
-        <textarea asp-for="DescricaoTrabalho" class="form-control"></textarea>
+        <textarea asp-for="DescricaoTrabalho" class="form-control" rows="4"></textarea>
         <span asp-validation-for="DescricaoTrabalho" class="text-danger"></span>
     </div>
 

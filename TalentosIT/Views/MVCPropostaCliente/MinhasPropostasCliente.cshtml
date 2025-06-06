@@ -7,21 +7,30 @@
 
 <h2 class="mb-4">Minhas Propostas Recebidas</h2>
 
+<!-- Mensagem de confirmação (se existir) -->
+@if (TempData["Mensagem"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Mensagem"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+}
+
 @if (!Model.Any())
 {
-    <p>Não tens propostas no momento.</p>
+    <div class="alert alert-info">Ainda não recebeste propostas para o teu perfil.</div>
 }
 else
 {
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
         <tr>
             <th>Nome</th>
             <th>Categoria</th>
             <th>Horas</th>
             <th>Descrição</th>
             <th>Estado</th>
-            <th>Ações</th>
+            <th class="text-center">Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -32,20 +41,39 @@ else
                 <td>@proposta.CategoriaTalento</td>
                 <td>@proposta.NumTotalHoras</td>
                 <td>@proposta.DescricaoTrabalho</td>
-                <td>@proposta.Estado</td>
                 <td>
                     @if (proposta.Estado == "Pendente")
                     {
-                        <form method="post" asp-action="Aceitar" asp-route-id="@proposta.Id" style="display:inline">
-                            <button type="submit" class="btn btn-success btn-sm">Aceitar</button>
-                        </form>
-                        <form method="post" asp-action="Recusar" asp-route-id="@proposta.Id" style="display:inline">
-                            <button type="submit" class="btn btn-danger btn-sm ms-2">Recusar</button>
-                        </form>
+                        <span class="badge bg-warning text-dark">Sem Resposta</span>
+                    }
+                    else if (proposta.Estado == "Aceite")
+                    {
+                        <span class="badge bg-success">Aceite</span>
+                    }
+                    else if (proposta.Estado == "Recusada")
+                    {
+                        <span class="badge bg-danger">Recusada</span>
+                    }
+                </td>
+                <td class="text-center">
+                    @if (proposta.Estado == "Pendente")
+                    {
+                        <div class="d-flex justify-content-center gap-2">
+                            <form method="post" asp-action="AtualizarEstado" asp-controller="MVCPropostaCliente">
+                                <input type="hidden" name="id" value="@proposta.Id" />
+                                <input type="hidden" name="novoEstado" value="Aceite" />
+                                <button type="submit" class="btn btn-success btn-sm">Aceitar</button>
+                            </form>
+                            <form method="post" asp-action="AtualizarEstado" asp-controller="MVCPropostaCliente">
+                                <input type="hidden" name="id" value="@proposta.Id" />
+                                <input type="hidden" name="novoEstado" value="Recusada" />
+                                <button type="submit" class="btn btn-danger btn-sm">Recusar</button>
+                            </form>
+                        </div>
                     }
                     else
                     {
-                        <span class="text-muted">Já @proposta.Estado.ToLower()</span>
+                        <span class="text-muted">Já foi @proposta.Estado.ToLower()</span>
                     }
                 </td>
             </tr>

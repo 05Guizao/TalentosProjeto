@@ -30,7 +30,9 @@ namespace TalentosIT.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null)
+            var tipo = HttpContext.Session.GetString("UserTipo");
+
+            if (userId == null || tipo != "Empresa")
                 return RedirectToAction("Login", "Account");
 
             var propostas = await _context.PropostaTrabalhos
@@ -55,11 +57,16 @@ namespace TalentosIT.Controllers
             return View(perfis);
         }
 
-        public IActionResult Create(int perfilId)
+        public async Task<IActionResult> Create(int perfilId)
         {
             var tipo = HttpContext.Session.GetString("UserTipo");
             if (tipo != "Empresa")
                 return RedirectToAction("Login", "Account");
+
+            // Verificar se o perfil realmente existe
+            var perfil = await _context.PerfilTalentos.FindAsync(perfilId);
+            if (perfil == null)
+                return NotFound("Perfil não encontrado.");
 
             ViewBag.PerfilId = perfilId;
             return View();
@@ -74,6 +81,15 @@ namespace TalentosIT.Controllers
 
             if (userId == null || tipo != "Empresa")
                 return RedirectToAction("Login", "Account");
+
+            // Verificar se o perfil ainda existe
+            var perfil = await _context.PerfilTalentos.FindAsync(perfilId);
+            if (perfil == null)
+            {
+                ModelState.AddModelError("", "O perfil selecionado já não existe.");
+                ViewBag.PerfilId = perfilId;
+                return View(proposta);
+            }
 
             if (ModelState.IsValid)
             {

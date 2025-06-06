@@ -17,10 +17,14 @@ namespace TalentosIT.Controllers.MVC
             _context = context;
         }
 
+        // GET: Visualizar propostas recebidas pelo cliente
         public async Task<IActionResult> MinhasPropostas()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null) return RedirectToAction("Login", "Account");
+            var tipo = HttpContext.Session.GetString("UserTipo");
+
+            if (userId == null || tipo != "Cliente")
+                return RedirectToAction("Login", "Account");
 
             var perfil = await _context.PerfilTalentos
                 .FirstOrDefaultAsync(p => p.IdUtilizador == userId.Value);
@@ -30,23 +34,35 @@ namespace TalentosIT.Controllers.MVC
 
             var propostas = await _context.PropostaTrabalhos
                 .Where(p => p.IdPerfilTalento == perfil.Cod)
-                .Include(p => p.PerfilTalento)
+                .OrderByDescending(p => p.Id) // ordena por mais recente primeiro
                 .ToListAsync();
 
-            return View(propostas);
+            return View("MinhasPropostasCliente", propostas);
         }
 
+        // POST: Cliente aceita ou recusa uma proposta
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AtualizarEstado(int id, string novoEstado)
         {
-            var proposta = await _context.PropostaTrabalhos.FindAsync(id);
-            if (proposta == null) return NotFound();
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var tipo = HttpContext.Session.GetString("UserTipo");
+
+            if (userId == null || tipo != "Cliente")
+                return RedirectToAction("Login", "Account");
+
+            var proposta = await _context.PropostaTrabalhos
+                .Include(p => p.PerfilTalento)
+                .FirstOrDefaultAsync(p => p.Id == id && p.PerfilTalento.IdUtilizador == userId);
+
+            if (proposta == null || proposta.Estado != "Pendente")
+                return NotFound();
 
             proposta.Estado = novoEstado;
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("MinhasPropostas");
+            TempData["Mensagem"] = $"Proposta foi {novoEstado.ToLower()} com sucesso.";
+            return RedirectToAction(nameof(MinhasPropostas));
         }
     }
 }

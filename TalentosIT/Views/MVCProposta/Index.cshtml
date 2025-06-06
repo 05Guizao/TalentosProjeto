@@ -7,7 +7,6 @@
 
 <h2>Propostas de Trabalho</h2>
 
-
 <table class="table table-bordered">
     <thead>
     <tr>
@@ -26,12 +25,28 @@
             <td>@proposta.Nome</td>
             <td>@proposta.CategoriaTalento</td>
             <td>@proposta.NumTotalHoras</td>
-            <td>@proposta.Estado</td>
+            <td>
+                @if (proposta.Estado == "Pendente")
+                {
+                    <span class="badge bg-warning text-dark">Sem Resposta</span>
+                }
+                else if (proposta.Estado == "Aceite")
+                {
+                    <span class="badge bg-success">Aceite</span>
+                }
+                else if (proposta.Estado == "Recusada")
+                {
+                    <span class="badge bg-danger">Recusada</span>
+                }
+                else
+                {
+                    @proposta.Estado
+                }
+            </td>
             <td>@proposta.PerfilTalento?.Nome</td>
             <td>
                 <a href="@Url.Action("Edit", "MVCProposta", new { id = proposta.Id })" class="btn btn-warning btn-sm">Editar</a>
                 <a href="@Url.Action("Delete", "MVCProposta", new { id = proposta.Id })" class="btn btn-danger btn-sm">Apagar</a>
-
             </td>
         </tr>
     }
