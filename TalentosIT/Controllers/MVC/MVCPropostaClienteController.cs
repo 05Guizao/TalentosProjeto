@@ -17,7 +17,7 @@ namespace TalentosIT.Controllers.MVC
             _context = context;
         }
 
-        // GET: Visualizar propostas recebidas pelo cliente
+        // GET: Cliente vê as propostas recebidas
         public async Task<IActionResult> MinhasPropostas()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -34,7 +34,7 @@ namespace TalentosIT.Controllers.MVC
 
             var propostas = await _context.PropostaTrabalhos
                 .Where(p => p.IdPerfilTalento == perfil.Cod)
-                .OrderByDescending(p => p.Id) // ordena por mais recente primeiro
+                .OrderByDescending(p => p.Id)
                 .ToListAsync();
 
             return View("MinhasPropostasCliente", propostas);
@@ -55,8 +55,17 @@ namespace TalentosIT.Controllers.MVC
                 .Include(p => p.PerfilTalento)
                 .FirstOrDefaultAsync(p => p.Id == id && p.PerfilTalento.IdUtilizador == userId);
 
-            if (proposta == null || proposta.Estado != "Pendente")
-                return NotFound();
+            if (proposta == null)
+            {
+                TempData["Mensagem"] = "Proposta não encontrada ou não pertence ao seu perfil.";
+                return RedirectToAction(nameof(MinhasPropostas));
+            }
+
+            if (proposta.Estado != "Sem Resposta")
+            {
+                TempData["Mensagem"] = "Esta proposta já foi respondida anteriormente.";
+                return RedirectToAction(nameof(MinhasPropostas));
+            }
 
             proposta.Estado = novoEstado;
             await _context.SaveChangesAsync();

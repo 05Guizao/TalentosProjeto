@@ -1,21 +1,21 @@
 @model List<TalentosIT.Models.PropostaTrabalho>
 
 @{
-    ViewData["Title"] = "Propostas";
+    ViewData["Title"] = "Propostas de Trabalho";
     Layout = "~/Views/Shared/LayoutEmpresa.cshtml";
 }
 
-<h2>Propostas de Trabalho</h2>
+<h2 class="mt-4 mb-3">Propostas de Trabalho Enviadas</h2>
 
-<table class="table table-bordered">
-    <thead>
+<table class="table table-striped table-bordered align-middle">
+    <thead class="table-dark">
     <tr>
         <th>Nome</th>
         <th>Categoria</th>
         <th>Total Horas</th>
         <th>Estado</th>
         <th>Perfil Destinatário</th>
-        <th>Ações</th>
+        <th style="width: 150px;">Ações</th>
     </tr>
     </thead>
     <tbody>
@@ -26,27 +26,26 @@
             <td>@proposta.CategoriaTalento</td>
             <td>@proposta.NumTotalHoras</td>
             <td>
-                @if (proposta.Estado == "Pendente")
+                @switch (proposta.Estado)
                 {
-                    <span class="badge bg-warning text-dark">Sem Resposta</span>
-                }
-                else if (proposta.Estado == "Aceite")
-                {
-                    <span class="badge bg-success">Aceite</span>
-                }
-                else if (proposta.Estado == "Recusada")
-                {
-                    <span class="badge bg-danger">Recusada</span>
-                }
-                else
-                {
-                    @proposta.Estado
+                    case "Pendente":
+                        <span class="badge bg-warning text-dark">Sem Resposta</span>
+                        break;
+                    case "Aceite":
+                        <span class="badge bg-success">Aceite</span>
+                        break;
+                    case "Recusada":
+                        <span class="badge bg-danger">Recusada</span>
+                        break;
+                    default:
+                        <span class="badge bg-secondary">@proposta.Estado</span>
+                        break;
                 }
             </td>
-            <td>@proposta.PerfilTalento?.Nome</td>
+            <td>@proposta.PerfilTalento?.Nome ?? "Desconhecido"</td>
             <td>
-                <a href="@Url.Action("Edit", "MVCProposta", new { id = proposta.Id })" class="btn btn-warning btn-sm">Editar</a>
-                <a href="@Url.Action("Delete", "MVCProposta", new { id = proposta.Id })" class="btn btn-danger btn-sm">Apagar</a>
+                <a asp-action="Edit" asp-route-id="@proposta.Id" class="btn btn-sm btn-warning me-1">Editar</a>
+                <a asp-action="Delete" asp-route-id="@proposta.Id" class="btn btn-sm btn-danger">Apagar</a>
             </td>
         </tr>
     }

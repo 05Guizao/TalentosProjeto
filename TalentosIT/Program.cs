@@ -6,10 +6,10 @@ using TalentosIT.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Usa a connection string do ficheiro appsettings.json
+// 📌 Connection String
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Serviços
+// 📦 Serviços da aplicação
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString, npgsqlOptions =>
     {
@@ -24,6 +24,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
+
+// ✅ Injeção de Dependências
 builder.Services.AddScoped<SessaoUtilizadorService>();
 builder.Services.AddScoped<PerfilTalentoRepository>();
 builder.Services.AddScoped<PerfilTalentoService>();
@@ -31,9 +33,9 @@ builder.Services.AddScoped<SkillRepository>();
 builder.Services.AddScoped<SkillService>();
 builder.Services.AddScoped<IDetalheExperienciaService, DetalheExperienciaService>();
 
-// Swagger & HttpClient
+// 🌐 Swagger
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5072") });
-builder.Services.AddControllers();
+builder.Services.AddControllers(); // necessário para endpoints API
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -47,13 +49,14 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// ✅ Aplica migrations na base de dados no arranque
+// ✅ Aplicar migrações na base de dados (se necessário)
 //using (var scope = app.Services.CreateScope())
 //{
 //    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 //    db.Database.Migrate();
 //}
 
+// ⚙️ Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -70,15 +73,18 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 app.UseRouting();
-app.UseSession();
+
+app.UseSession(); // importante para login e estado do utilizador
 app.UseAuthorization();
 
+// Rotas MVC + API
 app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
-).WithStaticAssets();
+);
 
 app.Run();

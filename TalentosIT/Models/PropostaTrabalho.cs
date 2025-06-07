@@ -22,7 +22,7 @@ namespace TalentosIT.Models
         [Required]
         public string DescricaoTrabalho { get; set; }
 
-        public string Estado { get; set; }
+        public string Estado { get; set; } = "Sem Resposta";
 
         [ForeignKey("Utilizador")]
         public int IdUtilizador { get; set; }
