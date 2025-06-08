@@ -21,12 +21,22 @@ namespace TalentosIT.Services
         {
             await _repository.AdicionarAsync(perfil);
         }
+
         public async Task AtualizarPerfilAsync(PerfilTalento perfil)
         {
             _repository.Atualizar(perfil);
             await _repository.GravarAsync();
         }
 
+        // ✅ ADICIONAR
+        public async Task<List<PerfilTalento>> ObterTodosAsync()
+        {
+            return await _repository.ObterTodosAsync();
+        }
 
+        public async Task ApagarPerfilAsync(int id)
+        {
+            await _repository.ApagarAsync(id);
+        }
     }
 }

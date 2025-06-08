@@ -34,7 +34,7 @@ namespace TalentosIT.Repository
             await _context.PerfilTalentos.AddAsync(perfil);
             await _context.SaveChangesAsync();
         }
-        
+
         public void Atualizar(PerfilTalento perfil)
         {
             _context.PerfilTalentos.Update(perfil);
@@ -45,6 +45,20 @@ namespace TalentosIT.Repository
             await _context.SaveChangesAsync();
         }
 
+        // ✅ NOVO - Obter todos os perfis
+        public async Task<List<PerfilTalento>> ObterTodosAsync()
+        {
+            return await _context.PerfilTalentos.ToListAsync();
+        }
 
+        public async Task ApagarAsync(int id)
+        {
+            var perfil = await _context.PerfilTalentos.FindAsync(id);
+            if (perfil != null)
+            {
+                _context.PerfilTalentos.Remove(perfil);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

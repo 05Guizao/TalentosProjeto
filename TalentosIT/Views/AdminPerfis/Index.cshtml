@@ -1,0 +1,55 @@
+﻿@model IEnumerable<PerfilTalento>
+
+<h2>Gestão de Perfis</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>País</th>
+            <th>Preço/hora</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var perfil in Model)
+{
+    <tr>
+        <td>@perfil.Nome</td>
+        <td>@perfil.Email</td>
+        <td>@perfil.Pais</td>
+        <td>@perfil.PrecoHora</td>
+        <td>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditar-@perfil.Cod">Editar</button>
+            <form method="post" asp-action="ApagarPerfil" style="display:inline">
+                <input type="hidden" name="id" value="@perfil.Cod" />
+                <button class="btn btn-danger">Apagar</button>
+            </form>
+        </td>
+    </tr>
+
+    <!-- Modal Editar -->
+    <div class="modal fade" id="modalEditar-@perfil.Cod" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-action="EditarPerfil">
+                <div class="modal-header"><h5>Editar Perfil</h5></div>
+                <div class="modal-body">
+                    <input type="hidden" name="Cod" value="@perfil.Cod" />
+                    <label>Nome:</label><input class="form-control" name="Nome" value="@perfil.Nome" />
+                    <label>Email:</label><input class="form-control" name="Email" value="@perfil.Email" />
+                    <label>País:</label><input class="form-control" name="Pais" value="@perfil.Pais" />
+                    <label>Preço/hora:</label><input class="form-control" name="PrecoHora" value="@perfil.PrecoHora" />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-success" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+}
+    </tbody>
+</table>

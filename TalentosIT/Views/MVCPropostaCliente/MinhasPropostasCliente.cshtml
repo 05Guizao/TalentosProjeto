@@ -1,11 +1,12 @@
-@model List<TalentosIT.Models.PropostaTrabalho>
+@model X.PagedList.IPagedList<TalentosIT.Models.PropostaTrabalho>
+@using X.PagedList.Mvc.Core
 
 @{
     ViewData["Title"] = "Minhas Propostas";
     Layout = "~/Views/Shared/LayoutCliente.cshtml";
 }
 
-<h2 class="mb-4">Minhas Propostas Recebidas</h2>
+<h2 class="mb-4">Propostas Recebidas</h2>
 
 <!-- Alerta de sucesso -->
 @if (TempData["Mensagem"] != null)
@@ -16,7 +17,18 @@
     </div>
 }
 
-<!-- Sem propostas -->
+<!-- Filtro por estado -->
+<form method="get" class="row mb-3">
+    <div class="col-md-4">
+        <select name="estado" class="form-select" onchange="this.form.submit()">
+            <option value="">-- Filtrar por estado --</option>
+            <option value="Pendente" selected="@(ViewBag.EstadoAtual == "Pendente")">Pendente</option>
+            <option value="Aceite" selected="@(ViewBag.EstadoAtual == "Aceite")">Aceite</option>
+            <option value="Recusada" selected="@(ViewBag.EstadoAtual == "Recusada")">Recusada</option>
+        </select>
+    </div>
+</form>
+
 @if (!Model.Any())
 {
     <div class="alert alert-info">Ainda não recebeste propostas para o teu perfil.</div>
@@ -25,20 +37,22 @@ else
 {
     <table class="table table-bordered table-striped align-middle shadow-sm">
         <thead class="table-dark">
-            <tr>
-                <th>Nome</th>
-                <th>Categoria</th>
-                <th>Horas</th>
-                <th>Descrição</th>
-                <th>Estado</th>
-                <th class="text-center">Ações</th>
-            </tr>
+        <tr>
+            <th>Nome</th>
+            <th>Data</th> <!-- NOVA COLUNA -->
+            <th>Categoria</th>
+            <th>Horas</th>
+            <th>Descrição</th>
+            <th>Estado</th>
+            <th class="text-center">Ações</th>
+        </tr>
         </thead>
         <tbody>
         @foreach (var proposta in Model)
         {
             <tr>
                 <td>@proposta.Nome</td>
+                <td>@proposta.DataCriacao.ToString("dd/MM/yyyy")</td> <!-- NOVA CÉLULA -->
                 <td>@proposta.CategoriaTalento</td>
                 <td>@proposta.NumTotalHoras</td>
                 <td>@proposta.DescricaoTrabalho</td>
@@ -66,12 +80,12 @@ else
                             <form method="post" asp-action="AtualizarEstado" asp-controller="MVCPropostaCliente">
                                 <input type="hidden" name="id" value="@proposta.Id" />
                                 <input type="hidden" name="novoEstado" value="Aceite" />
-                                <button type="submit" class="btn btn-success btn-sm">Aceitar</button>
+                                <button type="submit" class="btn btn-success btn-sm">✔️ Aceitar</button>
                             </form>
                             <form method="post" asp-action="AtualizarEstado" asp-controller="MVCPropostaCliente">
                                 <input type="hidden" name="id" value="@proposta.Id" />
                                 <input type="hidden" name="novoEstado" value="Recusada" />
-                                <button type="submit" class="btn btn-danger btn-sm">Recusar</button>
+                                <button type="submit" class="btn btn-danger btn-sm">❌ Recusar</button>
                             </form>
                         </div>
                     }
@@ -84,4 +98,10 @@ else
         }
         </tbody>
     </table>
+
+    <!-- Paginação -->
+    <div class="d-flex justify-content-center mt-4">
+        @Html.PagedListPager(Model, page => Url.Action("MinhasPropostas", new { page, estado = ViewBag.EstadoAtual }),
+            new PagedListRenderOptions { UlElementClasses = new[] { "pagination" } })
+    </div>
 }

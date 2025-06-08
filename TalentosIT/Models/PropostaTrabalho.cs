@@ -32,5 +32,8 @@ namespace TalentosIT.Models
         public int IdPerfilTalento { get; set; }
 
         public PerfilTalento? PerfilTalento { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime DataCriacao { get; set; } = DateTime.Now;
     }
 }

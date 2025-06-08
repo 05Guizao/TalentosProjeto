@@ -5,6 +5,8 @@ using TalentosIT.Models;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Linq;
+using X.PagedList;
+using X.PagedList.Extensions;
 
 namespace TalentosIT.Controllers.MVC
 {
@@ -17,8 +19,8 @@ namespace TalentosIT.Controllers.MVC
             _context = context;
         }
 
-        // GET: Cliente vê as propostas recebidas
-        public async Task<IActionResult> MinhasPropostas()
+        // GET: Cliente vê as propostas recebidas com paginação e filtro
+        public async Task<IActionResult> MinhasPropostas(int? page, string estado)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             var tipo = HttpContext.Session.GetString("UserTipo");
@@ -32,11 +34,20 @@ namespace TalentosIT.Controllers.MVC
             if (perfil == null)
                 return RedirectToAction("Create", "MVCPerfilTalento");
 
-            var propostas = await _context.PropostaTrabalhos
-                .Where(p => p.IdPerfilTalento == perfil.Cod)
-                .OrderByDescending(p => p.Id)
-                .ToListAsync();
+            var query = _context.PropostaTrabalhos
+                .Where(p => p.IdPerfilTalento == perfil.Cod);
 
+            if (!string.IsNullOrEmpty(estado))
+            {
+                query = query.Where(p => p.Estado == estado);
+            }
+
+            int pageSize = 5;
+            int pageNumber = page ?? 1;
+
+            var propostas = query.OrderByDescending(p => p.Id).ToPagedList(pageNumber, pageSize);
+            
+            ViewBag.EstadoAtual = estado;
             return View("MinhasPropostasCliente", propostas);
         }
 
@@ -61,7 +72,7 @@ namespace TalentosIT.Controllers.MVC
                 return RedirectToAction(nameof(MinhasPropostas));
             }
 
-            if (proposta.Estado != "Sem Resposta")
+            if (proposta.Estado != "Sem resposta")
             {
                 TempData["Mensagem"] = "Esta proposta já foi respondida anteriormente.";
                 return RedirectToAction(nameof(MinhasPropostas));
