@@ -33,6 +33,10 @@ builder.Services.AddScoped<SkillRepository>();
 builder.Services.AddScoped<SkillService>();
 builder.Services.AddScoped<IDetalheExperienciaService, DetalheExperienciaService>();
 
+// 🔹 Novos Serviços
+builder.Services.AddScoped<PropostaTrabalhoRepository>();
+builder.Services.AddScoped<PropostaTrabalhoService>();
+
 // 🌐 Swagger
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5072") });
 builder.Services.AddControllers(); // necessário para endpoints API
