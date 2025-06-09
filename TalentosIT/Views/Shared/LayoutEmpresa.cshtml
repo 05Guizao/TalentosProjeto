@@ -1,6 +1,9 @@
+@inject IHttpContextAccessor HttpContextAccessor
+
 @{
-    var nome = ViewBag.Nome as string ?? Context.Session.GetString("UserNome");
-    var tipo = ViewBag.Tipo as string ?? Context.Session.GetString("UserTipo");
+    var Context = HttpContextAccessor.HttpContext;
+    var nome = Context?.Session?.GetString("UserNome");
+    var tipo = Context?.Session?.GetString("UserTipo");
     var estaAutenticado = !string.IsNullOrEmpty(nome) && tipo == "Empresa";
 }
 

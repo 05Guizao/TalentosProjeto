@@ -1,19 +1,32 @@
+@inject IHttpContextAccessor HttpContextAccessor
+
 @{
-    var nome = Context.Session.GetString("UserNome");
+    var Context = HttpContextAccessor.HttpContext;
+    var nome = Context?.Session?.GetString("UserNome");
+    var tipo = Context?.Session?.GetString("UserTipo");
+    var estaAutenticado = !string.IsNullOrEmpty(nome) && tipo == "Empresa";
+
     ViewData["Title"] = "Bem-vindo Empresa";
     Layout = "~/Views/Shared/LayoutEmpresa.cshtml";
 }
 
 <div class="text-center mt-5">
-    <h2 class="mb-4">Bem-vindo de volta, @nome 👋</h2>
-    <p class="lead">Aqui podes gerir as tuas propostas de trabalho e encontrar os melhores talentos.</p>
+    @if (estaAutenticado)
+    {
+        <h2 class="mb-4">Bem-vindo de volta, @nome 👋</h2>
+        <p class="lead">Aqui podes gerir as tuas propostas de trabalho e encontrar os melhores talentos.</p>
 
-    <a href="@Url.Action("SelecionarPerfil", "MVCProposta")" class="btn btn-primary mt-4">
-        Criar Nova Proposta
-    </a>
+        <a href="@Url.Action("SelecionarPerfil", "MVCProposta")" class="btn btn-primary mt-4">
+            Criar Nova Proposta
+        </a>
 
-    <a href="@Url.Action("Index", "MVCProposta")" class="btn btn-outline-secondary mt-4 ms-3">
-        Ver Propostas Feitas
-    </a>
+        <a href="@Url.Action("Index", "MVCProposta")" class="btn btn-outline-secondary mt-4 ms-3">
+            Ver Propostas Feitas
+        </a>
+    }
+    else
+    {
+        <h2 class="text-danger">Acesso não autorizado</h2>
+        <p>Por favor, autentique-se como empresa.</p>
+    }
 </div>
-
