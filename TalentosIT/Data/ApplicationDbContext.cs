@@ -17,7 +17,7 @@ namespace TalentosIT.Data
         public DbSet<Skill> Skills { get; set; }
         public DbSet<TalentoSkill> TalentoSkills { get; set; }
         public DbSet<DetalheExperiencia> DetalheExperiencias { get; set; }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

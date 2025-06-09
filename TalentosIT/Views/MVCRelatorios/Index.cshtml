@@ -1,0 +1,49 @@
+﻿@model TalentosIT.ViewModels.RelatorioViewModel
+@{
+    ViewData["Title"] = "Relatórios";
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Relatórios de Preço Médio Mensal</h2>
+
+    <h4>Por Categoria e País</h4>
+    <table class="table table-bordered">
+        <thead class="table-light">
+        <tr>
+            <th>Categoria</th>
+            <th>País</th>
+            <th>Preço Médio Mensal (€)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.PorCategoriaPais)
+        {
+            <tr>
+                <td>@item.Categoria</td>
+                <td>@item.Pais</td>
+                <td>@item.PrecoMedio.ToString("F2")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <h4 class="mt-5">Por Skill</h4>
+    <table class="table table-bordered">
+        <thead class="table-light">
+        <tr>
+            <th>Skill</th>
+            <th>Preço Médio Mensal (€)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.PorSkill)
+        {
+            <tr>
+                <td>@item.Skill</td>
+                <td>@item.PrecoMedio.ToString("F2")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

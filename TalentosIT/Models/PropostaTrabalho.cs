@@ -23,6 +23,9 @@ namespace TalentosIT.Models
         public string DescricaoTrabalho { get; set; }
 
         public string Estado { get; set; } = "Sem Resposta";
+        
+        [Required]
+        public decimal Valor { get; set; }
 
         [ForeignKey("Utilizador")]
         public int IdUtilizador { get; set; }

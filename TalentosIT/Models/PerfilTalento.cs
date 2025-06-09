@@ -27,5 +27,8 @@ namespace TalentosIT.Models
         public virtual ICollection<TalentoSkill> TalentoSkills { get; set; }
         
         public virtual ICollection<DetalheExperiencia> Experiencias { get; set; }
+        
+        public virtual ICollection<PropostaTrabalho> PropostasTrabalho { get; set; }
+
     }
 }
