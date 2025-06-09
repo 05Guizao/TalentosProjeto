@@ -24,11 +24,17 @@ namespace TalentosIT.Models
 
         [NotMapped] [ValidateNever] public Utilizador Utilizador { get; set; }
 
-        public virtual ICollection<TalentoSkill> TalentoSkills { get; set; }
+        [NotMapped] public int PrecoMensal => PrecoHora * 160;
         
-        public virtual ICollection<DetalheExperiencia> Experiencias { get; set; }
-        
-        public virtual ICollection<PropostaTrabalho> PropostasTrabalho { get; set; }
+        [ValidateNever]
+        public virtual ICollection<TalentoSkill>? TalentoSkills { get; set; } = new List<TalentoSkill>();
+
+        [ValidateNever]
+        public virtual ICollection<DetalheExperiencia>? Experiencias { get; set; } = new List<DetalheExperiencia>();
+
+        [ValidateNever]
+        public virtual ICollection<PropostaTrabalho>? PropostasTrabalho { get; set; } = new List<PropostaTrabalho>();
+
 
     }
 }

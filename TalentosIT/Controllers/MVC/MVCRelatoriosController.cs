@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using TalentosIT.Data;
 using TalentosIT.ViewModels;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using TalentosIT.Documents;
+using System.IO;
 
 namespace TalentosIT.Controllers
 {
@@ -17,22 +22,12 @@ namespace TalentosIT.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        private async Task<RelatorioViewModel> GerarRelatorioAsync()
         {
-            var tipo = HttpContext.Session.GetString("UserTipo");
-            var nome = HttpContext.Session.GetString("UserNome");
-
-            if (tipo != "Admin")
-                return RedirectToAction("Login", "Account");
-
-            ViewBag.Nome = nome;
-            ViewBag.Tipo = tipo;
-
-            // Relatório por categoria e país
             var precoCategoriaPais = await _context.PropostaTrabalhos
                 .Where(p => p.NumTotalHoras > 0 && p.Valor > 0 && p.PerfilTalento != null)
                 .Include(p => p.PerfilTalento)
-                .ToListAsync(); // Processar em memória
+                .ToListAsync();
 
             var agrupadoCategoriaPais = precoCategoriaPais
                 .GroupBy(p => new { p.CategoriaTalento, p.PerfilTalento.Pais })
@@ -44,7 +39,6 @@ namespace TalentosIT.Controllers
                 })
                 .ToList();
 
-            // Relatório por skill
             var talentoSkills = await _context.TalentoSkills
                 .Include(ts => ts.Skill)
                 .Include(ts => ts.PerfilTalento)
@@ -63,13 +57,35 @@ namespace TalentosIT.Controllers
                 })
                 .ToList();
 
-            var model = new RelatorioViewModel
+            return new RelatorioViewModel
             {
                 PorCategoriaPais = agrupadoCategoriaPais,
                 PorSkill = precoSkill
             };
+        }
 
+        public async Task<IActionResult> Index()
+        {
+            var tipo = HttpContext.Session.GetString("UserTipo");
+            var nome = HttpContext.Session.GetString("UserNome");
+
+            if (tipo != "Admin")
+                return RedirectToAction("Login", "Account");
+
+            ViewBag.Nome = nome;
+            ViewBag.Tipo = tipo;
+
+            var model = await GerarRelatorioAsync();
             return View(model);
+        }
+
+        public async Task<IActionResult> ExportarPDF()
+        {
+            var model = await GerarRelatorioAsync();
+            var document = new RelatorioPdfDocument(model);
+            var pdfBytes = document.GeneratePdf();
+
+            return File(pdfBytes, "application/pdf", "RelatorioTalentosIT.pdf");
         }
     }
 }

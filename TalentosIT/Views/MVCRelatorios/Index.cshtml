@@ -7,6 +7,12 @@
 <div class="container mt-5">
     <h2 class="mb-4">Relatórios de Preço Médio Mensal</h2>
 
+    <form asp-controller="MVCRelatorios" asp-action="ExportarPDF" method="post">
+        <button type="submit" class="btn btn-danger mb-4">
+            <i class="bi bi-file-earmark-pdf-fill"></i> Exportar PDF
+        </button>
+    </form>
+
     <h4>Por Categoria e País</h4>
     <table class="table table-bordered">
         <thead class="table-light">
