@@ -20,42 +20,47 @@ namespace TalentosIT.Controllers
         {
             return View();
         }
-        
 
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            email = email?.Trim();
-            password = password?.Trim();
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
+                ViewBag.Error = "Por favor preencha o email e a palavra-passe.";
+                return View();
+            }
+
+            email = email.Trim();
+            password = password.Trim();
 
             var utilizador = _context.Utilizadores
                 .FirstOrDefault(u => u.Email == email && u.Password == password);
 
             if (utilizador != null)
             {
+                // Armazenar dados da sessão
                 HttpContext.Session.SetInt32("UserId", utilizador.Id);
-                HttpContext.Session.SetString("UserTipo", utilizador.Tipo); // Guardando tipo como string
-                HttpContext.Session.SetString("UserNome", utilizador.Nome);
+                HttpContext.Session.SetString("UserTipo", utilizador.Tipo.Trim());
+                HttpContext.Session.SetString("UserNome", utilizador.Nome.Trim());
 
-                // Verificando tipo de utilizador e redirecionando para a página apropriada
-                if (utilizador.Tipo == "Admin")
+                // Redirecionamento baseado no tipo
+                switch (utilizador.Tipo.Trim())
                 {
-                    return RedirectToAction("Index", "MVCAdmin"); // Alterar para o nome da página de administração
-                }
-                else if (utilizador.Tipo == "Empresa")
-                {
-                    return RedirectToAction("BemVindo", "MVCProposta");
-                }
-                else if (utilizador.Tipo == "Cliente")
-                {
-                    return RedirectToAction("Index", "BemVindoPerfil"); // Exemplo de redirecionamento para o Perfil do Cliente
+                    case "Admin":
+                        return RedirectToAction("Index", "MVCAdmin"); // Admin dashboard
+                    case "Empresa":
+                        return RedirectToAction("BemVindo", "MVCProposta"); // Empresa página inicial
+                    case "Cliente":
+                        return RedirectToAction("Index", "BemVindoPerfil"); // Cliente dashboard
+                    default:
+                        break;
                 }
             }
 
-            ViewBag.Error = "Email ou password inválidos.";
+            // Login inválido
+            ViewBag.Error = "Email ou palavra-passe inválidos.";
             return View();
         }
-
 
         [HttpGet]
         public IActionResult Register()
@@ -66,7 +71,14 @@ namespace TalentosIT.Controllers
         [HttpPost]
         public IActionResult Register(Utilizador utilizador)
         {
-            utilizador.Email = utilizador.Email?.Trim();
+            if (string.IsNullOrWhiteSpace(utilizador.Email) || string.IsNullOrWhiteSpace(utilizador.Password))
+            {
+                ViewBag.Error = "Email e palavra-passe são obrigatórios.";
+                return View(utilizador);
+            }
+
+            utilizador.Email = utilizador.Email.Trim();
+            utilizador.Password = utilizador.Password.Trim();
 
             var emailExiste = _context.Utilizadores.Any(u => u.Email == utilizador.Email);
             if (emailExiste)

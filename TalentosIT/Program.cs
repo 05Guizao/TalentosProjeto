@@ -3,11 +3,14 @@ using Microsoft.OpenApi.Models;
 using TalentosIT.Data;
 using TalentosIT.Repository;
 using TalentosIT.Services;
+using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Connection string
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+// DbContext com retry
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString, npgsqlOptions =>
     {
@@ -19,6 +22,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     })
 );
 
+// MVC + sessões + HttpContext
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 
@@ -27,20 +31,26 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(60);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.None; // 👈 permite sessão em HTTP
 });
 
+// Serviços e repositórios personalizados
 builder.Services.AddScoped<SessaoUtilizadorService>();
 builder.Services.AddScoped<PerfilTalentoRepository>();
 builder.Services.AddScoped<PerfilTalentoService>();
 builder.Services.AddScoped<SkillRepository>();
 builder.Services.AddScoped<SkillService>();
 builder.Services.AddScoped<IDetalheExperienciaService, DetalheExperienciaService>();
-
 builder.Services.AddScoped<PropostaTrabalhoRepository>();
 builder.Services.AddScoped<PropostaTrabalhoService>();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5072") });
-builder.Services.AddControllers(); 
+// Cliente HTTP
+builder.Services.AddScoped(sp => new HttpClient
+{
+    BaseAddress = new Uri("http://localhost:5072")
+});
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -54,6 +64,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+// Ambiente dev
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -73,10 +84,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession(); 
+// Sessão e autorização
+app.UseSession();
 app.UseAuthorization();
-
-app.MapControllers(); 
 
 app.MapControllerRoute(
     name: "default",

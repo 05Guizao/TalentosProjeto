@@ -15,9 +15,15 @@
             <select id="skillIds" name="skillIds" class="form-select" multiple size="6">
                 @foreach (var skill in skills)
                 {
-                    <option value="@skill.Cod" @(selectedSkills.Contains(skill.Cod) ? "selected" : "")>
-                        @skill.Nome
-                    </option>
+                    @if (selectedSkills.Contains(skill.Cod))
+                    {
+                        <option value="@skill.Cod" selected>@skill.Nome</option>
+                    }
+                    else
+                    {
+                        <option value="@skill.Cod">@skill.Nome</option>
+                    }
+
                 }
             </select>
             <button type="submit" class="btn btn-primary mt-2">Filtrar</button>

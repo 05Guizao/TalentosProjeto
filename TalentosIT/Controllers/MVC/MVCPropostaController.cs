@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TalentosIT.Models;
 
 namespace TalentosIT.Controllers
 {
@@ -30,6 +29,7 @@ namespace TalentosIT.Controllers
 
             ViewBag.Nome = nome ?? "";
             ViewBag.Tipo = tipo ?? "";
+
             return View();
         }
 
@@ -52,7 +52,8 @@ namespace TalentosIT.Controllers
 
             return View(propostas);
         }
-        public async Task<IActionResult> SelecionarPerfil([FromQuery] List<int> skillIds)
+
+        public async Task<IActionResult> SelecionarPerfil([FromQuery] int? skillId)
         {
             var tipo = HttpContext.Session.GetString("UserTipo");
             var nome = HttpContext.Session.GetString("UserNome");
@@ -65,7 +66,7 @@ namespace TalentosIT.Controllers
 
             var skills = await _context.Skills.ToListAsync();
             ViewBag.Skills = skills;
-            ViewBag.SelectedSkills = skillIds;
+            ViewBag.SkillId = skillId;
 
             var perfisQuery = _context.PerfilTalentos
                 .Include(p => p.TalentoSkills)
@@ -73,16 +74,15 @@ namespace TalentosIT.Controllers
                 .Include(p => p.Experiencias)
                 .AsQueryable();
 
-            if (skillIds != null && skillIds.Any())
+            if (skillId.HasValue)
             {
                 perfisQuery = perfisQuery.Where(p =>
-                    skillIds.All(sid => p.TalentoSkills.Any(ts => ts.CodSkill == sid)));
+                    p.TalentoSkills.Any(ts => ts.CodSkill == skillId.Value));
             }
 
             var perfis = await perfisQuery.ToListAsync();
             return View(perfis);
         }
-
 
         public async Task<IActionResult> Create(int perfilId)
         {
@@ -101,8 +101,10 @@ namespace TalentosIT.Controllers
 
             ViewBag.PerfilId = perfilId;
             ViewBag.Experiencias = perfil.Experiencias?.ToList() ?? new List<DetalheExperiencia>();
-            ViewBag.Nome = nome ?? "";
-            ViewBag.Tipo = tipo ?? "";
+
+            // ✅ Garante que a toolbar aparece corretamente
+            ViewBag.Nome = nome ?? HttpContext.Session.GetString("UserNome");
+            ViewBag.Tipo = tipo ?? HttpContext.Session.GetString("UserTipo");
 
             return View();
         }
