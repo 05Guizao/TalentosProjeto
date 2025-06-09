@@ -1,43 +1,95 @@
 @using System.Linq
+@model IEnumerable<TalentosIT.Models.PerfilTalento>
+
+@{
+    var skills = ViewBag.Skills as List<TalentosIT.Models.Skill>;
+    List<int> selectedSkills = ViewBag.SelectedSkills as List<int> ?? new List<int>();
+}
+
+<h2>Selecionar Perfil</h2>
+
+<form method="get" asp-action="SelecionarPerfil" class="mb-4">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="skillIds" class="form-label">Filtrar por Skills:</label>
+            <select id="skillIds" name="skillIds" class="form-select" multiple size="6">
+                @foreach (var skill in skills)
+                {
+                    <option value="@skill.Cod" @(selectedSkills.Contains(skill.Cod) ? "selected" : "")>
+                        @skill.Nome
+                    </option>
+                }
+            </select>
+            <button type="submit" class="btn btn-primary mt-2">Filtrar</button>
+        </div>
+    </div>
+</form>
 
 <table class="table table-hover">
     <thead>
-    <tr>
-        <th>Perfil</th>
-        <th>País</th>
-        <th>Email</th>
-        <th>Ações</th>
-    </tr>
+        <tr>
+            <th>Perfil</th>
+            <th>País</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var perfil in Model)
-    {
-        var talentoSkills = perfil.TalentoSkills as IEnumerable<TalentosIT.Models.TalentoSkill>;
+        @foreach (var perfil in Model)
+        {
+            <tr>
+                <td>
+                    <strong>@perfil.Nome</strong><br />
 
-        <tr>
-            <td>
-                <strong>@perfil.Nome</strong><br />
-
-                <small><i>Skills:</i>
-                    @if (talentoSkills != null && talentoSkills.Any())
-                    {
-                        foreach (var ts in talentoSkills)
-                        {
-                            <span class="badge bg-secondary me-1">@ts.Skill?.Nome</span>
+                    <small><i>Skills:</i>
+                        @{
+                            var talentoSkills = perfil.TalentoSkills ?? new List<TalentosIT.Models.TalentoSkill>();
                         }
-                    }
-                    else
-                    {
-                        <span class="text-muted">Sem skills</span>
-                    }
-                </small>
-            </td>
-            <td>@perfil.Pais</td>
-            <td>@perfil.Email</td>
-            <td>
-                <a class="btn btn-primary btn-sm" asp-action="Create" asp-route-perfilId="@perfil.Cod">Criar Proposta</a>
-            </td>
-        </tr>
-    }
+
+                        @if (talentoSkills.Any())
+                        {
+                            foreach (var ts in talentoSkills)
+                            {
+                                <span class="badge bg-secondary me-1">@ts.Skill?.Nome</span>
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-muted">Sem skills</span>
+                        }
+                    </small>
+
+                    <br />
+                    <small><i>Experiências:</i><br />
+                        @{
+                            var experiencias = perfil.Experiencias ?? new List<TalentosIT.Models.DetalheExperiencia>();
+                        }
+
+                        @if (experiencias.Any())
+                        {
+                            foreach (var exp in experiencias)
+                            {
+                                <div class="border rounded p-2 my-1">
+                                    <strong>@exp.Titulo</strong><br />
+                                    <span>@exp.NomeEmpresa</span> |
+                                    <span>@exp.AnoComeco - @exp.AnoTermino</span>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-muted">Sem experiências</span>
+                        }
+                    </small>
+                </td>
+                <td>@perfil.Pais</td>
+                <td>@perfil.Email</td>
+                <td>
+                    <a class="btn btn-primary btn-sm"
+                       asp-action="Create"
+                       asp-route-perfilId="@perfil.Cod">Criar Proposta</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

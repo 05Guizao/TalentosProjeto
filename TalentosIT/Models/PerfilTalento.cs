@@ -24,7 +24,8 @@ namespace TalentosIT.Models
 
         [NotMapped] [ValidateNever] public Utilizador Utilizador { get; set; }
 
-        // IMPORTANTE: adicionar esta linha
         public virtual ICollection<TalentoSkill> TalentoSkills { get; set; }
+        
+        public virtual ICollection<DetalheExperiencia> Experiencias { get; set; }
     }
 }

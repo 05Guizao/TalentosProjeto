@@ -5,6 +5,8 @@ using TalentosIT.Models;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using TalentosIT.Models;
 
 namespace TalentosIT.Controllers
 {
@@ -21,9 +23,13 @@ namespace TalentosIT.Controllers
         public IActionResult BemVindo()
         {
             var tipo = HttpContext.Session.GetString("UserTipo");
+            var nome = HttpContext.Session.GetString("UserNome");
+
             if (tipo != "Empresa")
                 return RedirectToAction("Login", "Account");
 
+            ViewBag.Nome = nome ?? "";
+            ViewBag.Tipo = tipo ?? "";
             return View();
         }
 
@@ -31,9 +37,13 @@ namespace TalentosIT.Controllers
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             var tipo = HttpContext.Session.GetString("UserTipo");
+            var nome = HttpContext.Session.GetString("UserNome");
 
             if (userId == null || tipo != "Empresa")
                 return RedirectToAction("Login", "Account");
+
+            ViewBag.Nome = nome ?? "";
+            ViewBag.Tipo = tipo ?? "";
 
             var propostas = await _context.PropostaTrabalhos
                 .Where(p => p.IdUtilizador == userId)
@@ -42,33 +52,58 @@ namespace TalentosIT.Controllers
 
             return View(propostas);
         }
-
-        public async Task<IActionResult> SelecionarPerfil()
+        public async Task<IActionResult> SelecionarPerfil([FromQuery] List<int> skillIds)
         {
             var tipo = HttpContext.Session.GetString("UserTipo");
+            var nome = HttpContext.Session.GetString("UserNome");
+
             if (tipo != "Empresa")
                 return RedirectToAction("Login", "Account");
 
-            var perfis = await _context.PerfilTalentos
+            ViewBag.Nome = nome ?? "";
+            ViewBag.Tipo = tipo ?? "";
+
+            var skills = await _context.Skills.ToListAsync();
+            ViewBag.Skills = skills;
+            ViewBag.SelectedSkills = skillIds;
+
+            var perfisQuery = _context.PerfilTalentos
                 .Include(p => p.TalentoSkills)
                 .ThenInclude(ts => ts.Skill)
-                .ToListAsync();
+                .Include(p => p.Experiencias)
+                .AsQueryable();
 
+            if (skillIds != null && skillIds.Any())
+            {
+                perfisQuery = perfisQuery.Where(p =>
+                    skillIds.All(sid => p.TalentoSkills.Any(ts => ts.CodSkill == sid)));
+            }
+
+            var perfis = await perfisQuery.ToListAsync();
             return View(perfis);
         }
+
 
         public async Task<IActionResult> Create(int perfilId)
         {
             var tipo = HttpContext.Session.GetString("UserTipo");
+            var nome = HttpContext.Session.GetString("UserNome");
+
             if (tipo != "Empresa")
                 return RedirectToAction("Login", "Account");
 
-            // Verificar se o perfil realmente existe
-            var perfil = await _context.PerfilTalentos.FindAsync(perfilId);
+            var perfil = await _context.PerfilTalentos
+                .Include(p => p.Experiencias)
+                .FirstOrDefaultAsync(p => p.Cod == perfilId);
+
             if (perfil == null)
                 return NotFound("Perfil não encontrado.");
 
             ViewBag.PerfilId = perfilId;
+            ViewBag.Experiencias = perfil.Experiencias?.ToList() ?? new List<DetalheExperiencia>();
+            ViewBag.Nome = nome ?? "";
+            ViewBag.Tipo = tipo ?? "";
+
             return View();
         }
 
@@ -78,16 +113,18 @@ namespace TalentosIT.Controllers
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             var tipo = HttpContext.Session.GetString("UserTipo");
+            var nome = HttpContext.Session.GetString("UserNome");
 
             if (userId == null || tipo != "Empresa")
                 return RedirectToAction("Login", "Account");
 
-            // Verificar se o perfil ainda existe
             var perfil = await _context.PerfilTalentos.FindAsync(perfilId);
             if (perfil == null)
             {
                 ModelState.AddModelError("", "O perfil selecionado já não existe.");
                 ViewBag.PerfilId = perfilId;
+                ViewBag.Nome = nome ?? "";
+                ViewBag.Tipo = tipo ?? "";
                 return View(proposta);
             }
 
@@ -103,6 +140,8 @@ namespace TalentosIT.Controllers
             }
 
             ViewBag.PerfilId = perfilId;
+            ViewBag.Nome = nome ?? "";
+            ViewBag.Tipo = tipo ?? "";
             return View(proposta);
         }
     }

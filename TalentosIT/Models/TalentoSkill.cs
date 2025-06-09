@@ -14,7 +14,7 @@ namespace TalentosIT.Models
         public int AnosDeExperiencia { get; set; }
 
         [Column(TypeName = "text")]
-        public string NivelConforto { get; set; }  // "Baixo", "Médio" ou "Alto"
+        public string NivelConforto { get; set; }  
 
         [Column(TypeName = "text")]
         public string DescricaoProjetos { get; set; }

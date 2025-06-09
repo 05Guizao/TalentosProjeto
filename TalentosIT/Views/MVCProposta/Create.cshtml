@@ -3,48 +3,81 @@
 @{
     ViewData["Title"] = "Criar Proposta";
     Layout = "~/Views/Shared/LayoutEmpresa.cshtml";
+    var experiencias = ViewBag.Experiencias as List<TalentosIT.Models.DetalheExperiencia>;
 }
 
-<h2>Criar Proposta</h2>
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Criar Nova Proposta</h2>
 
-<!-- Mensagem de erro geral (caso necessário) -->
-@if (!ViewData.ModelState.IsValid && ViewData.ModelState.ErrorCount > 0)
-{
-    <div class="alert alert-danger">Por favor preenche todos os campos corretamente.</div>
-}
+    @if (!ViewData.ModelState.IsValid && ViewData.ModelState.ErrorCount > 0)
+    {
+        <div class="alert alert-danger">Por favor preenche todos os campos corretamente.</div>
+    }
 
-<form asp-action="Create" method="post">
-    @Html.AntiForgeryToken()
+    <form asp-action="Create" method="post" class="border p-4 rounded shadow-sm bg-light">
+        @Html.AntiForgeryToken()
 
-    <!-- Campo oculto para o perfilId (essencial para o POST funcionar corretamente) -->
-    <input type="hidden" name="perfilId" value="@ViewBag.PerfilId" />
+        <input type="hidden" name="perfilId" value="@ViewBag.PerfilId" />
 
-    <div class="mb-3">
-        <label asp-for="Nome" class="form-label"></label>
-        <input asp-for="Nome" class="form-control" />
-        <span asp-validation-for="Nome" class="text-danger"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Nome" class="form-label fw-bold"></label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="CategoriaTalento" class="form-label"></label>
-        <input asp-for="CategoriaTalento" class="form-control" />
-        <span asp-validation-for="CategoriaTalento" class="text-danger"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="CategoriaTalento" class="form-label fw-bold"></label>
+            <input asp-for="CategoriaTalento" class="form-control" />
+            <span asp-validation-for="CategoriaTalento" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="NumTotalHoras" class="form-label"></label>
-        <input asp-for="NumTotalHoras" type="number" class="form-control" min="1" />
-        <span asp-validation-for="NumTotalHoras" class="text-danger"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="NumTotalHoras" class="form-label fw-bold"></label>
+            <input asp-for="NumTotalHoras" type="number" class="form-control" min="1" />
+            <span asp-validation-for="NumTotalHoras" class="text-danger"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="DescricaoTrabalho" class="form-label"></label>
-        <textarea asp-for="DescricaoTrabalho" class="form-control" rows="4"></textarea>
-        <span asp-validation-for="DescricaoTrabalho" class="text-danger"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="DescricaoTrabalho" class="form-label fw-bold"></label>
+            <textarea asp-for="DescricaoTrabalho" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="DescricaoTrabalho" class="text-danger"></span>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Submeter Proposta</button>
-</form>
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary">Submeter Proposta</button>
+        </div>
+    </form>
+
+    <hr class="my-5" />
+
+    @if (experiencias != null && experiencias.Any())
+    {
+        <h4 class="mb-3">Experiências do Talento</h4>
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+            <tr>
+                <th>Título</th>
+                <th>Empresa</th>
+                <th>Período</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var exp in experiencias)
+            {
+                <tr>
+                    <td>@exp.Titulo</td>
+                    <td>@exp.NomeEmpresa</td>
+                    <td>@exp.AnoComeco - @exp.AnoTermino</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-muted">Este talento ainda não tem experiências registadas.</p>
+    }
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

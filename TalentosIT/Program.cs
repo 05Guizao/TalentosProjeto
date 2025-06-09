@@ -6,10 +6,8 @@ using TalentosIT.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 📌 Connection String
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// 📦 Serviços da aplicação
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString, npgsqlOptions =>
     {
@@ -22,10 +20,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 );
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
-// ✅ Injeção de Dependências
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddScoped<SessaoUtilizadorService>();
 builder.Services.AddScoped<PerfilTalentoRepository>();
 builder.Services.AddScoped<PerfilTalentoService>();
@@ -33,13 +36,11 @@ builder.Services.AddScoped<SkillRepository>();
 builder.Services.AddScoped<SkillService>();
 builder.Services.AddScoped<IDetalheExperienciaService, DetalheExperienciaService>();
 
-// 🔹 Novos Serviços
 builder.Services.AddScoped<PropostaTrabalhoRepository>();
 builder.Services.AddScoped<PropostaTrabalhoService>();
 
-// 🌐 Swagger
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5072") });
-builder.Services.AddControllers(); // necessário para endpoints API
+builder.Services.AddControllers(); 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -53,14 +54,6 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// ✅ Aplicar migrações na base de dados (se necessário)
-//using (var scope = app.Services.CreateScope())
-//{
-//    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-//    db.Database.Migrate();
-//}
-
-// ⚙️ Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -80,11 +73,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession(); // importante para login e estado do utilizador
+app.UseSession(); 
 app.UseAuthorization();
 
-// Rotas MVC + API
-app.MapControllers();
+app.MapControllers(); 
 
 app.MapControllerRoute(
     name: "default",
