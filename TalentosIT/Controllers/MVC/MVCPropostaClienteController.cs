@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Linq;
 using X.PagedList;
-using X.PagedList.Extensions;
+using X.PagedList;
+
 
 namespace TalentosIT.Controllers.MVC
 {
@@ -72,12 +73,18 @@ namespace TalentosIT.Controllers.MVC
                 return RedirectToAction(nameof(MinhasPropostas));
             }
 
-            if (proposta.Estado != "Sem resposta")
+            // DEBUG: ver estado real
+            Console.WriteLine($"[DEBUG] Proposta ID: {id}");
+            Console.WriteLine($"[DEBUG] Estado atual: '{proposta?.Estado}'");
+
+            // Verificação robusta do estado atual
+            if (!string.Equals(proposta.Estado?.Trim(), "Sem Resposta", StringComparison.OrdinalIgnoreCase))
             {
                 TempData["Mensagem"] = "Esta proposta já foi respondida anteriormente.";
                 return RedirectToAction(nameof(MinhasPropostas));
             }
 
+            // Atualização
             proposta.Estado = novoEstado;
             await _context.SaveChangesAsync();
 
