@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Linq;
 using X.PagedList;
-using X.PagedList;
+
 
 
 namespace TalentosIT.Controllers.MVC

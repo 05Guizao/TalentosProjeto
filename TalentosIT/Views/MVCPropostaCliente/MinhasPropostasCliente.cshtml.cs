@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using X.PagedList;
+
 
 namespace TalentosIT.Views.MVCPropostaCliente;
 
