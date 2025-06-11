@@ -6,7 +6,17 @@
 
 <h2>Adicionar Experiência</h2>
 
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        Por favor, corrija os erros no formulário.
+    </div>
+}
+
 <form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="All" class="text-danger"></div>
+
     <div class="mb-3">
         <label asp-for="Titulo" class="form-label"></label>
         <input asp-for="Titulo" class="form-control" />
@@ -33,3 +43,4 @@
 
     <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
+

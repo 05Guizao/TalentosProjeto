@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TalentosIT.Data;
@@ -18,7 +19,11 @@ namespace TalentosIT.Services
         public List<DetalheExperiencia> ObterPorUtilizador(int userId)
         {
             var perfil = _context.PerfilTalentos.FirstOrDefault(p => p.IdUtilizador == userId);
-            if (perfil == null) return new List<DetalheExperiencia>();
+            if (perfil == null)
+            {
+                Console.WriteLine($"[ERRO] Perfil não encontrado para utilizador com ID {userId}");
+                return new List<DetalheExperiencia>();
+            }
 
             return _context.DetalheExperiencias
                 .Where(e => e.CodPerfilTalento == perfil.Cod)
@@ -33,17 +38,24 @@ namespace TalentosIT.Services
         public async Task CriarAsync(int userId, DetalheExperiencia experiencia)
         {
             var perfil = _context.PerfilTalentos.FirstOrDefault(p => p.IdUtilizador == userId);
-            if (perfil == null) return;
+            if (perfil == null)
+                throw new Exception($"Perfil não encontrado para o utilizador {userId}");
 
+            // Associar a experiência ao perfil do cliente
             experiencia.CodPerfilTalento = perfil.Cod;
+
             _context.DetalheExperiencias.Add(experiencia);
             await _context.SaveChangesAsync();
+
+            Console.WriteLine($"[INFO] Experiência criada para perfil ID {perfil.Cod}");
         }
 
         public async Task AtualizarAsync(DetalheExperiencia experiencia)
         {
             _context.DetalheExperiencias.Update(experiencia);
             await _context.SaveChangesAsync();
+
+            Console.WriteLine($"[INFO] Experiência com ID {experiencia.Cod} atualizada.");
         }
 
         public async Task EliminarAsync(int id)
@@ -53,6 +65,12 @@ namespace TalentosIT.Services
             {
                 _context.DetalheExperiencias.Remove(experiencia);
                 await _context.SaveChangesAsync();
+
+                Console.WriteLine($"[INFO] Experiência com ID {id} eliminada.");
+            }
+            else
+            {
+                Console.WriteLine($"[ERRO] Experiência com ID {id} não encontrada para eliminar.");
             }
         }
     }
