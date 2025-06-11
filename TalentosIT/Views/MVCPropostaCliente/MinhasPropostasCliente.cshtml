@@ -1,5 +1,7 @@
 @model X.PagedList.IPagedList<TalentosIT.Models.PropostaTrabalho>
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
 
 @{
     ViewData["Title"] = "Minhas Propostas";
@@ -8,7 +10,6 @@
 
 <h2 class="mb-4">Propostas Recebidas</h2>
 
-<!-- Alerta de sucesso -->
 @if (TempData["Mensagem"] != null)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -17,7 +18,6 @@
     </div>
 }
 
-<!-- Filtro por estado -->
 <form method="get" class="row mb-3">
     <div class="col-md-4">
         <select name="estado" class="form-select" onchange="this.form.submit()">
@@ -39,7 +39,7 @@ else
         <thead class="table-dark">
         <tr>
             <th>Nome</th>
-            <th>Data</th> <!-- NOVA COLUNA -->
+            <th>Data</th>
             <th>Categoria</th>
             <th>Horas</th>
             <th>Descrição</th>
@@ -52,7 +52,7 @@ else
         {
             <tr>
                 <td>@proposta.Nome</td>
-                <td>@proposta.DataCriacao.ToString("dd/MM/yyyy")</td> <!-- NOVA CÉLULA -->
+                <td>@proposta.DataCriacao.ToString("dd/MM/yyyy")</td>
                 <td>@proposta.CategoriaTalento</td>
                 <td>@proposta.NumTotalHoras</td>
                 <td>@proposta.DescricaoTrabalho</td>
@@ -101,7 +101,19 @@ else
 
     <!-- Paginação -->
     <div class="d-flex justify-content-center mt-4">
-        @Html.PagedListPager(Model, page => Url.Action("MinhasPropostas", new { page, estado = ViewBag.EstadoAtual }),
-            new PagedListRenderOptions { UlElementClasses = new[] { "pagination" } })
+        @Html.PagedListPager(
+            Model,
+            page => Url.Action("MinhasPropostas", new { page, estado = ViewBag.EstadoAtual }),
+            new PagedListRenderOptions
+            {
+                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                UlElementClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" }
+            }
+        )
     </div>
 }

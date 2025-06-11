@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Linq;
 using X.PagedList;
-
-
+using X.PagedList;
 
 namespace TalentosIT.Controllers.MVC
 {
@@ -46,8 +45,11 @@ namespace TalentosIT.Controllers.MVC
             int pageSize = 5;
             int pageNumber = page ?? 1;
 
-            var propostas = query.OrderByDescending(p => p.Id).ToPagedList(pageNumber, pageSize);
-            
+            // Paginação assíncrona
+            var propostas = query
+                .OrderByDescending(p => p.Id)
+                .ToPagedList(pageNumber, pageSize); // ✅ Correto
+
             ViewBag.EstadoAtual = estado;
             return View("MinhasPropostasCliente", propostas);
         }
@@ -73,18 +75,12 @@ namespace TalentosIT.Controllers.MVC
                 return RedirectToAction(nameof(MinhasPropostas));
             }
 
-            // DEBUG: ver estado real
-            Console.WriteLine($"[DEBUG] Proposta ID: {id}");
-            Console.WriteLine($"[DEBUG] Estado atual: '{proposta?.Estado}'");
-
-            // Verificação robusta do estado atual
             if (!string.Equals(proposta.Estado?.Trim(), "Sem Resposta", StringComparison.OrdinalIgnoreCase))
             {
                 TempData["Mensagem"] = "Esta proposta já foi respondida anteriormente.";
                 return RedirectToAction(nameof(MinhasPropostas));
             }
 
-            // Atualização
             proposta.Estado = novoEstado;
             await _context.SaveChangesAsync();
 
