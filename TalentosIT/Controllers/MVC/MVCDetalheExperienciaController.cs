@@ -64,6 +64,8 @@ namespace TalentosIT.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(DetalheExperiencia experiencia)
         {
+            ModelState.Remove(nameof(DetalheExperiencia.PerfilTalento)); 
+
             if (ModelState.IsValid)
             {
                 await _service.AtualizarAsync(experiencia);

@@ -1,5 +1,7 @@
 ﻿using TalentosIT.Models;
 using TalentosIT.Repository;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TalentosIT.Services
 {
@@ -28,7 +30,6 @@ namespace TalentosIT.Services
             await _repository.GravarAsync();
         }
 
-        // ✅ ADICIONAR
         public async Task<List<PerfilTalento>> ObterTodosAsync()
         {
             return await _repository.ObterTodosAsync();
@@ -37,6 +38,11 @@ namespace TalentosIT.Services
         public async Task ApagarPerfilAsync(int id)
         {
             await _repository.ApagarAsync(id);
+        }
+
+        public async Task<PerfilTalento?> ObterPorIdAsync(int id)
+        {
+            return await _repository.ObterPorIdAsync(id);
         }
     }
 }

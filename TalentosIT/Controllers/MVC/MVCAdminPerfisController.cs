@@ -20,15 +20,23 @@ public class AdminPerfisController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> EditarPerfil(PerfilTalento perfil)
+    public async Task<IActionResult> EditarPerfil(int Cod, string Nome, string Email, string Pais, decimal PrecoHora)
     {
-        if (ModelState.IsValid)
+        var perfil = await _perfilService.ObterPorIdAsync(Cod);
+        if (perfil == null)
         {
-            await _perfilService.AtualizarPerfilAsync(perfil);
+            TempData["Erro"] = "Perfil não encontrado.";
             return RedirectToAction("Index");
         }
 
-        TempData["Erro"] = "Erro ao editar perfil.";
+        // Atualiza apenas os campos relevantes
+        perfil.Nome = Nome;
+        perfil.Email = Email;
+        perfil.Pais = Pais;
+        perfil.PrecoHora = PrecoHora;
+
+        await _perfilService.AtualizarPerfilAsync(perfil);
+        TempData["Sucesso"] = "Perfil atualizado com sucesso!";
         return RedirectToAction("Index");
     }
 

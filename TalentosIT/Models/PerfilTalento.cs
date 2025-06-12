@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using TalentosIT.Models;
 
 namespace TalentosIT.Models
 {
     [Table("PerfilTalento")]
     public class PerfilTalento
     {
-        [Key] public int Cod { get; set; }
+        [Key]
+        public int Cod { get; set; }
 
         public string Nome { get; set; }
 
@@ -16,16 +16,22 @@ namespace TalentosIT.Models
 
         public string Email { get; set; }
 
-        public int PrecoHora { get; set; }
+        [Required(ErrorMessage = "Preço por hora é obrigatório")]
+        [Range(0, 9999.99, ErrorMessage = "Preço/hora inválido")]
+        public decimal PrecoHora { get; set; }
 
         public string Tipo { get; set; }
 
-        [ForeignKey("IdUtilizador")] public int IdUtilizador { get; set; }
+        [ForeignKey("IdUtilizador")]
+        public int IdUtilizador { get; set; }
 
-        [NotMapped] [ValidateNever] public Utilizador Utilizador { get; set; }
+        [NotMapped]
+        [ValidateNever]
+        public Utilizador Utilizador { get; set; }
 
-        [NotMapped] public int PrecoMensal => PrecoHora * 160;
-        
+        [NotMapped]
+        public decimal PrecoMensal => PrecoHora * 160;
+
         [ValidateNever]
         public virtual ICollection<TalentoSkill>? TalentoSkills { get; set; } = new List<TalentoSkill>();
 
@@ -34,7 +40,5 @@ namespace TalentosIT.Models
 
         [ValidateNever]
         public virtual ICollection<PropostaTrabalho>? PropostasTrabalho { get; set; } = new List<PropostaTrabalho>();
-
-
     }
 }
