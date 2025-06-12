@@ -20,7 +20,7 @@ namespace TalentosIT.Models
         public int NumTotalHoras { get; set; }
 
         [Required]
-        public string DescricaoTrabalho { get; set; }
+        public string DescricaoTrabalho { get; set; } = "Sem descrição";
 
         public string Estado { get; set; } = "Sem Resposta";
         

@@ -64,5 +64,12 @@ namespace TalentosIT.Repository
         {
             return await _context.PerfilTalentos.FindAsync(id);
         }
+        
+        public async Task<List<PerfilTalento>> ObterTodosComPropostasAsync()
+        {
+            return await _context.PerfilTalentos
+                .Include(p => p.PropostasTrabalho)
+                .ToListAsync();
+        }
     }
 }

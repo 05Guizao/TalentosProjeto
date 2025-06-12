@@ -18,6 +18,11 @@ namespace TalentosIT.Repository
             return await _context.PropostaTrabalhos.AsNoTracking().ToListAsync();
         }
 
+        public async Task<PropostaTrabalho?> ObterPorIdAsync(int id)
+        {
+            return await _context.PropostaTrabalhos.FindAsync(id);
+        }
+
         public void Atualizar(PropostaTrabalho proposta)
         {
             _context.PropostaTrabalhos.Update(proposta);

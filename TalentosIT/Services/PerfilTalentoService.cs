@@ -44,5 +44,11 @@ namespace TalentosIT.Services
         {
             return await _repository.ObterPorIdAsync(id);
         }
+        
+        public async Task<List<PerfilTalento>> ObterTodosComPropostasAsync()
+        {
+            return await _repository.ObterTodosComPropostasAsync();
+        }
+
     }
 }

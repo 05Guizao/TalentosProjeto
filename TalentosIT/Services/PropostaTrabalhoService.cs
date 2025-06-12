@@ -17,6 +17,11 @@ namespace TalentosIT.Services
             return await _repository.ObterTodasAsync();
         }
 
+        public async Task<PropostaTrabalho?> ObterPorIdAsync(int id)
+        {
+            return await _repository.ObterPorIdAsync(id);
+        }
+
         public async Task AtualizarAsync(PropostaTrabalho proposta)
         {
             _repository.Atualizar(proposta);

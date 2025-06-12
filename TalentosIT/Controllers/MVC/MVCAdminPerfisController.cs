@@ -15,7 +15,7 @@ public class AdminPerfisController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var perfis = await _perfilService.ObterTodosAsync();
+        var perfis = await _perfilService.ObterTodosComPropostasAsync(); // 👈 garantir que carrega propostas
         return View(perfis);
     }
 
