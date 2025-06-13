@@ -6,10 +6,18 @@
 
 <h2 class="mb-4">Gestão de Propostas</h2>
 
-@if (TempData["Mensagem"] != null)
+@if (TempData["Sucesso"] != null)
 {
-    <div class="alert alert-success">
-        @TempData["Mensagem"]
+    <div id="popupSucesso" class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Sucesso"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+}
+@if (TempData["Erro"] != null)
+{
+    <div id="popupErro" class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Erro"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
     </div>
 }
 
@@ -81,7 +89,7 @@
                                 </div>
                                 <div class="mb-2">
                                     <label class="form-label">Estado:</label>
-                                    <input class="form-control" name="Estado" value="@proposta.Estado" />
+                                    <input class="form-control" name="Estado" value="@proposta.Estado" readonly />
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -96,3 +104,19 @@
     }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const popup = document.querySelector('.alert');
+            if (popup) {
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                    popup.classList.add('fade');
+                    popup.style.opacity = '0';
+                    setTimeout(() => popup.remove(), 1000); // remove da DOM após o fade
+                }, 3000);
+            }
+        });
+    </script>
+}

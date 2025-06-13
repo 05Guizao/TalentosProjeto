@@ -30,9 +30,9 @@ namespace TalentosIT.Controllers.MVC
                 return RedirectToAction("Index");
             }
 
-            if (propostaOriginal.Estado == "Sem Resposta")
+            if (propostaOriginal.Estado != "Pendente")
             {
-                TempData["Erro"] = "Só é possível editar propostas Aceites ou Recusadas.";
+                TempData["Erro"] = "Só é possível editar propostas com estado 'Pendente'.";
                 return RedirectToAction("Index");
             }
 
@@ -60,9 +60,9 @@ namespace TalentosIT.Controllers.MVC
                 return RedirectToAction("Index");
             }
 
-            if (proposta.Estado == "Sem Resposta")
+            if (proposta.Estado != "Pendente")
             {
-                TempData["Erro"] = "Só é possível apagar propostas Aceites ou Recusadas.";
+                TempData["Erro"] = "Só é possível apagar propostas com estado 'Pendente'.";
                 return RedirectToAction("Index");
             }
 
