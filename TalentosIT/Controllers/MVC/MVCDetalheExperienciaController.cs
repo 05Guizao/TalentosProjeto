@@ -4,16 +4,20 @@ using TalentosIT.Models;
 using TalentosIT.Services;
 using System.Threading.Tasks;
 using TalentosIT.Views.MVCDetalheExperiencia;
+using System.Linq;
+using TalentosIT.Data;
 
 namespace TalentosIT.Controllers
 {
     public class MVCDetalheExperienciaController : Controller
     {
         private readonly IDetalheExperienciaService _service;
+        private readonly ApplicationDbContext _context;
 
-        public MVCDetalheExperienciaController(IDetalheExperienciaService service)
+        public MVCDetalheExperienciaController(IDetalheExperienciaService service, ApplicationDbContext context)
         {
             _service = service;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -32,7 +36,22 @@ namespace TalentosIT.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create() => View();
+        public IActionResult Create()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            // Verifica se o utilizador tem um perfil associado
+            var perfil = _context.PerfilTalentos.FirstOrDefault(p => p.IdUtilizador == userId.Value);
+            if (perfil == null)
+            {
+                TempData["Erro"] = "Precisa de criar o seu perfil antes de adicionar experiências.";
+                return RedirectToAction("Create", "MVCPerfilTalento");
+            }
+
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
