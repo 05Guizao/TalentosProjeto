@@ -32,8 +32,8 @@ namespace TalentosIT.Tests
                 Id = 1,
                 Nome = "Teste",
                 Email = "teste@teste.com",
-                Password = "123456",   // ✅ OBRIGATÓRIO
-                Tipo = "Cliente"       // ✅ OBRIGATÓRIO
+                Password = "123456",   
+                Tipo = "Cliente"     
             });
 
             _context.SaveChanges();
