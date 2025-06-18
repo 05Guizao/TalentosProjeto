@@ -58,12 +58,16 @@
                             </div>
                             <div class="mb-2">
                                 <label class="form-label">Preço/hora:</label>
-                                <input class="form-control" name="PrecoHora" value="@perfil.PrecoHora.ToString("0.00")" type="number" step="0.01" />
+                                <input class="form-control"
+                                       name="PrecoHora"
+                                       id="PrecoHora-@perfil.Cod"
+                                       type="number" step="0.01"
+                                       value="@perfil.PrecoHora.ToString("0.00")" />
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
-                            <button class="btn btn-success" type="submit">Guardar</button>
+                            <button class="btn btn-success" id="btnGuardar-@perfil.Cod" type="submit">Guardar</button>
                         </div>
                     </form>
                 </div>
