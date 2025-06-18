@@ -33,6 +33,7 @@ namespace TalentosIT.Controllers
             return View(skills);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             int? userId = HttpContext.Session.GetInt32("UserId");
@@ -47,7 +48,44 @@ namespace TalentosIT.Controllers
 
             return View();
         }
-        
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(TalentoSkill model)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login", "Account");
+
+            var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
+            if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
+
+            var exists = await _context.TalentoSkills
+                .AnyAsync(t => t.CodPerfilTalento == perfil.Cod && t.CodSkill == model.CodSkill);
+
+            if (exists)
+            {
+                ModelState.AddModelError("", "Skill já associada.");
+            }
+
+            model.CodPerfilTalento = perfil.Cod;
+
+            if (!ModelState.IsValid)
+            {
+                var erros = ModelState.Values.SelectMany(v => v.Errors).ToList();
+                foreach (var erro in erros)
+                {
+                    Console.WriteLine($"Erro: {erro.ErrorMessage}");
+                }
+
+                ViewBag.Skills = await _context.Skills.Where(s => s.Estado == "Ativo").ToListAsync();
+                return View(model);
+            }
+
+            _context.TalentoSkills.Add(model);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
         [HttpGet]
         public async Task<IActionResult> Edit(int codSkill)
         {
@@ -68,62 +106,6 @@ namespace TalentosIT.Controllers
             return View(talentoSkill);
         }
 
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int CodSkill, int AnosDeExperiencia, string NivelConforto, string DescricaoProjetos, string AreaProfissional)
-        {
-            int? userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null) return RedirectToAction("Login", "Account");
-
-            var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
-            if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
-
-            var exists = await _context.TalentoSkills.AnyAsync(t => t.CodPerfilTalento == perfil.Cod && t.CodSkill == CodSkill);
-            if (exists)
-            {
-                ModelState.AddModelError("", "Skill já associada.");
-                ViewBag.Skills = await _context.Skills.Where(s => s.Estado == "Ativo").ToListAsync();
-                return View();
-            }
-
-            _context.TalentoSkills.Add(new TalentoSkill
-            {
-                CodPerfilTalento = perfil.Cod,
-                CodSkill = CodSkill,
-                AnosDeExperiencia = AnosDeExperiencia,
-                NivelConforto = NivelConforto,
-                DescricaoProjetos = DescricaoProjetos,
-                AreaProfissional = AreaProfissional // 🆕 NOVO
-            });
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
-
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int codSkill)
-        {
-            int? userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null) return RedirectToAction("Login", "Account");
-
-            var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
-            if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
-
-            var talentoSkill = await _context.TalentoSkills.FirstOrDefaultAsync(ts => ts.CodPerfilTalento == perfil.Cod && ts.CodSkill == codSkill);
-            if (talentoSkill != null)
-            {
-                _context.TalentoSkills.Remove(talentoSkill);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction("Index");
-        }
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(TalentoSkill model)
@@ -142,7 +124,6 @@ namespace TalentosIT.Controllers
                 return NotFound();
             }
 
-            // Atualizar os campos editáveis
             talentoSkill.AreaProfissional = model.AreaProfissional;
             talentoSkill.AnosDeExperiencia = model.AnosDeExperiencia;
             talentoSkill.NivelConforto = model.NivelConforto;
@@ -152,5 +133,26 @@ namespace TalentosIT.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int codSkill)
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login", "Account");
+
+            var perfil = await _context.PerfilTalentos.FirstOrDefaultAsync(p => p.IdUtilizador == userId);
+            if (perfil == null) return RedirectToAction("Create", "MVCPerfilTalento");
+
+            var talentoSkill = await _context.TalentoSkills
+                .FirstOrDefaultAsync(ts => ts.CodPerfilTalento == perfil.Cod && ts.CodSkill == codSkill);
+
+            if (talentoSkill != null)
+            {
+                _context.TalentoSkills.Remove(talentoSkill);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
