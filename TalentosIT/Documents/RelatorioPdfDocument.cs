@@ -46,8 +46,8 @@ namespace TalentosIT.Documents
 
                         foreach (var item in _model.PorCategoriaPais)
                         {
-                            table.Cell().Text(item.Categoria);
-                            table.Cell().Text(item.Pais);
+                            table.Cell().Text(item.Categoria ?? "-");
+                            table.Cell().Text(item.Pais ?? "-");
                             table.Cell().Text(item.PrecoMedio.ToString("F2"));
                         }
                     });
@@ -72,12 +72,13 @@ namespace TalentosIT.Documents
 
                         foreach (var item in _model.PorSkill)
                         {
-                            table.Cell().Text(item.Skill);
+                            table.Cell().Text(item.Skill ?? "-");
                             table.Cell().Text(item.PrecoMedio.ToString("F2"));
                             table.Cell().Text(item.PrecoMensalEstimado.ToString("F2"));
                         }
                     });
                 });
+
                 page.Footer().AlignCenter().Text(txt =>
                 {
                     txt.Span("Página ");
